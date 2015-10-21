@@ -1,0 +1,10 @@
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/FinalProject_v3.SoundWav.resources
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/FinalProject_v3.GraphForm.resources
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/FinalProject_v3.InputForm.resources
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/FinalProject_v3.Properties.Resources.resources
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/bin/Debug/FinalProject_v3.exe.config
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/bin/Debug/FinalProject_v3.exe.mdb
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/bin/Debug/FinalProject_v3.exe
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/FinalProject_v3.exe
+/Users/Spencer/OneDrive/Documents/BCIT/Term3/3931/Project/FinalProject_v3/FinalProject_v3/obj/Debug/FinalProject_v3.exe.mdb

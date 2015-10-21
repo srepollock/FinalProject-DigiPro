@@ -1,0 +1,50 @@
+--------------------
+How to use SoundWav:
+--------------------
+
+Developer: Spencer Pollock
+
+*This program was created for my Computers 3931 Digital Processing Class*
+
+Winter 2015
+Computer Systems Technology
+Term 3
+COMP 3931
+
+Developed in C# with online resources and source code written by myself.
+
+Developed in Visual Studio 2015.
+
+------------------
+Table of Contents:
+------------------
+
+1)	Introduction
+2)	Basics and Usage
+
+Appendix's
+(I)	Shortkeys
+(II)	References
+
+1)	Introduction
+----------------
+
+Hello user, and welcome to my sound editing program. This program was created with Visual Studio 2013 & 2015 for my final project in my Digital Processing class. This program will allow you to create, edit, read, write and record your own '.wav' files all with your own computer! Cool right?!
+
+As this is my first time creating a large program, there will be bugs so just bear with me and if you are trying to do something to break the program, chances are you will. So if you're using this for something important, I HIGHLY RECOMMEND you find a different program, because while this one works and is good, it's just not the best bang for your buck (which is free in this case). I hope you enjoy the program, and if there are any issues let me know with an email (you can find that on my website).
+
+Anyways, lets get down to the basics:
+
+2)	Basics and Usage
+--------------------
+
+
+
+Appendix:
+---------
+(I):
+--
+Ctrl-N:		New File
+Ctrl-O:		Open File
+Ctrl-S:		Save File
+Ctrl-Shift-S:	Save As File
