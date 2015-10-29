@@ -1,18 +1,18 @@
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\bin\Debug\Help.txt
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\bin\Debug\FinalProject_v3.exe.config
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\bin\Debug\FinalProject_v3.exe.manifest
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\bin\Debug\FinalProject_v3.application
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\bin\Debug\FinalProject_v3.exe
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\bin\Debug\FinalProject_v3.pdb
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.g.resources
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.openFileTestForm.resources
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.SoundWav.resources
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.GraphForm.resources
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.InputForm.resources
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.Properties.Resources.resources
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.csproj.GenerateResource.Cache
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.TrustInfo.xml
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.exe.manifest
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.application
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.exe
-C:\Users\Spencer\OneDrive\Documents\BCIT\Term3\3931\Project\FinalProject_v2\FinalProject_v3\obj\Debug\FinalProject_v3.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\Help.txt
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.exe.config
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.exe.manifest
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.application
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.g.resources
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.openFileTestForm.resources
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.SoundWav.resources
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.GraphForm.resources
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.InputForm.resources
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.Properties.Resources.resources
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.csproj.GenerateResource.Cache
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.TrustInfo.xml
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.exe.manifest
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.application
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.pdb
