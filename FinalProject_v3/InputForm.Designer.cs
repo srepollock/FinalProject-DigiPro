@@ -75,6 +75,7 @@
             this.newFreqBtn = new System.Windows.Forms.Button();
             this.newFreqLabel = new System.Windows.Forms.Label();
             this.newFreqUpDown = new System.Windows.Forms.NumericUpDown();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
@@ -105,6 +106,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel6, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -196,7 +198,7 @@
             this.panel1.Controls.Add(this.ampUpDown);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(2, 64);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(202, 103);
             this.panel1.TabIndex = 7;
@@ -482,7 +484,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(160, 8);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -500,7 +502,7 @@
             // newFreqBtn
             // 
             this.newFreqBtn.Location = new System.Drawing.Point(501, 1);
-            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2);
             this.newFreqBtn.Name = "newFreqBtn";
             this.newFreqBtn.Size = new System.Drawing.Size(67, 30);
             this.newFreqBtn.TabIndex = 2;
@@ -522,7 +524,7 @@
             // 
             this.newFreqUpDown.DecimalPlaces = 2;
             this.newFreqUpDown.Location = new System.Drawing.Point(392, 9);
-            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.newFreqUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -536,6 +538,14 @@
             0,
             0,
             0});
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 27);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(200, 32);
+            this.panel7.TabIndex = 12;
             // 
             // InputForm
             // 
@@ -614,5 +624,6 @@
         private System.Windows.Forms.Label ampUpDownLabel;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ToolStripMenuItem highPassFilterToolStripMenuItem;
+        private System.Windows.Forms.Panel panel7;
     }
 }
