@@ -92,6 +92,7 @@
     <Compile Include="openFileTestForm.Designer.cs">
       <DependentUpon>openFileTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Record.cs" />
     <Compile Include="SoundWav.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +113,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WaveFormatEx.cs" />
+    <Compile Include="WaveHeader.cs" />
     <Compile Include="wave_file_header.cs" />
     <EmbeddedResource Include="openFileTestForm.resx">
       <DependentUpon>openFileTestForm.cs</DependentUpon>

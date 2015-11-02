@@ -28,6 +28,9 @@ namespace FinalProject_v3
         //private newComplex[] globalCmplx; // DFT complex numbers
         private double[] globalAmp; // amplitude of wave
 
+        // Audio Player
+        Record globalAudioRecorder = new Record();
+
         // Copy and paste selection points
         public globalChartSelect globalChartSelection = new globalChartSelect();
         public globalChartSelect globalHFTChartSelection = new globalChartSelect();
@@ -44,6 +47,7 @@ namespace FinalProject_v3
             InitializeComponent();
             newFreqBtn.Enabled = false;
             filterAudioToolStripMenuItem.Enabled = false;
+            stopRecordingToolStripMenuItem.Enabled = false;
         }
 
         public double[] readingWave(String fileName)
@@ -371,12 +375,46 @@ namespace FinalProject_v3
 
         private void recordToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            
+            int i = globalAudioRecorder.setupWaveIn();
+            recordToolStripMenuItem.Enabled = false;
+            stopRecordingToolStripMenuItem.Enabled = true;
+
+            string wavIn;
+
+            if (i == -2)
+            {
+                // Dialog for waveInPrepareHeader failure
+                wavIn = "waveInPrepareHeader failure";
+                MessageBox.Show(wavIn);
+            }
+            else if (i == -3)
+            {
+                // Dialog for waveInAddBuffer failure
+                wavIn = "waveInAddBuffer failure";
+                MessageBox.Show(wavIn);
+            }
+            else if (i == -1)
+            {
+                wavIn = "waveInOpen failure";
+                MessageBox.Show(wavIn);
+            }
+            else if (i > 0)
+            {
+                wavIn = "wavInStart " + i + " failure";
+                MessageBox.Show(wavIn);
+            }
         }
 
         private void stopRecordingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            globalAudioRecorder.stopRecording();
+            recordToolStripMenuItem.Enabled = true;
+            stopRecordingToolStripMenuItem.Enabled = false;
 
+            byte[] temp = globalAudioRecorder.getSamples();
+            int[] tempByteAsInts = temp.Select(x => (int)x).ToArray();
+
+            plotFreqWaveChart(tempByteAsInts);
         }
 
         private void zoomBtn_Click(object sender, EventArgs e)

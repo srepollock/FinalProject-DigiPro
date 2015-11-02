@@ -54,3 +54,22 @@ C:\Users\samue\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalP
 C:\Users\samue\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.pdb
 C:\Users\samue\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.exe.manifest
 C:\Users\samue\Documents\Visual Studio 2015\Projects\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.application
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.exe.config
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.exe
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.pdb
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.csprojResolveAssemblyReference.cache
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.g.resources
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.openFileTestForm.resources
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.SoundWav.resources
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.GraphForm.resources
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.InputForm.resources
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.Properties.Resources.resources
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.csproj.GenerateResource.Cache
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\bin\Debug\Help.txt
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.exe.manifest
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.application
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.exe
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\bin\Debug\FinalProject_v3.pdb
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.TrustInfo.xml
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.exe.manifest
+H:\MyCourses\COMP3931\FinalProject\FinalProject-DigiPro\FinalProject_v3\obj\Debug\FinalProject_v3.application
