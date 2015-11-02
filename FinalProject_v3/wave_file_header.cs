@@ -91,7 +91,7 @@ namespace FinalProject_v3
             SubChunk2Size = 0;
         }
 
-        public void initialize(decimal freqUpDown, decimal sampUpDown)
+        public void initialize(decimal sampUpDown)
         {
             clear();
 
@@ -102,7 +102,7 @@ namespace FinalProject_v3
             SubChunk1Size = 16;
             AudioFormat = 1;
             NumChannels = 1; // mono
-            SampleRate = (int)freqUpDown; // samples per second
+            SampleRate = (int)sampUpDown; // samples per second
             BitsPerSample = 16; // or 8
             ByteRate = SampleRate * (BitsPerSample / 8); // bytes per second
             BlockAlign = (short)(BitsPerSample / 8);

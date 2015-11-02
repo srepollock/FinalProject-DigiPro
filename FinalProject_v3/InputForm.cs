@@ -99,7 +99,7 @@ namespace FinalProject_v3
             BinaryWriter wr = new BinaryWriter(f);
             // initialize new wav head
             // freq, samp
-            globalWavHead.initialize(freqUpDown.Value, (decimal)globalFreq.Length);
+            globalWavHead.initialize((decimal)globalFreq.Length);
             fwrite(wr, globalWavHead);
             // convert to int
             int[] intAr = globalFreq.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
@@ -163,7 +163,7 @@ namespace FinalProject_v3
 
         private void inputButton_Click(object sender, EventArgs e)
         {
-            globalWavHead.initialize(freqUpDown.Value, sampUpDown.Value);
+            globalWavHead.initialize(sampUpDown.Value);
             // Get input data to create a frequency from the user
             double amp = (double)ampUpDown.Value;
             double freqData = (double)freqUpDown.Value;
