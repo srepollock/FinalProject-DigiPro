@@ -260,10 +260,5 @@ namespace FinalProject_v3
         {
             this.LayoutMdi(System.Windows.Forms.MdiLayout.TileVertical);
         }
-
-        private void SoundWav_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Handle the form closing
-        }
     }
 }
