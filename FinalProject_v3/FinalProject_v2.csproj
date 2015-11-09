@@ -116,6 +116,7 @@
     <Compile Include="WaveFormatEx.cs" />
     <Compile Include="WaveHeader.cs" />
     <Compile Include="wave_file_header.cs" />
+    <Compile Include="Windowing.cs" />
     <EmbeddedResource Include="openFileTestForm.resx">
       <DependentUpon>openFileTestForm.cs</DependentUpon>
     </EmbeddedResource>

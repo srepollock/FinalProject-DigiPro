@@ -76,6 +76,7 @@
             this.newFreqLabel = new System.Windows.Forms.Label();
             this.newFreqUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
@@ -109,7 +110,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
@@ -127,7 +128,7 @@
             this.panel2.Controls.Add(this.freqUpDown);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(6, 319);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(365, 186);
             this.panel2.TabIndex = 1;
@@ -146,7 +147,7 @@
             // 
             this.freqUpDown.DecimalPlaces = 2;
             this.freqUpDown.Location = new System.Drawing.Point(7, 33);
-            this.freqUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.freqUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.freqUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -166,7 +167,7 @@
             this.panel5.Controls.Add(this.HFTChart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(383, 121);
-            this.panel5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel5.Margin = new System.Windows.Forms.Padding(6);
             this.panel5.Name = "panel5";
             this.tableLayoutPanel1.SetRowSpan(this.panel5, 2);
             this.panel5.Size = new System.Drawing.Size(1289, 384);
@@ -184,7 +185,7 @@
             legend1.Name = "Legend1";
             this.HFTChart.Legends.Add(legend1);
             this.HFTChart.Location = new System.Drawing.Point(0, 0);
-            this.HFTChart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.HFTChart.Margin = new System.Windows.Forms.Padding(6);
             this.HFTChart.Name = "HFTChart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -204,7 +205,7 @@
             this.panel1.Controls.Add(this.ampUpDown);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 119);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(369, 190);
             this.panel1.TabIndex = 7;
@@ -223,7 +224,7 @@
             // ampUpDown
             // 
             this.ampUpDown.Location = new System.Drawing.Point(9, 33);
-            this.ampUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ampUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.ampUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -243,7 +244,7 @@
             // 
             this.addButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addButton.Location = new System.Drawing.Point(119, 788);
-            this.addButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.addButton.Margin = new System.Windows.Forms.Padding(6);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(138, 42);
             this.addButton.TabIndex = 5;
@@ -257,7 +258,7 @@
             this.panel3.Controls.Add(this.sampUpDown);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(6, 517);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(365, 186);
             this.panel3.TabIndex = 8;
@@ -275,7 +276,7 @@
             // sampUpDown
             // 
             this.sampUpDown.Location = new System.Drawing.Point(7, 37);
-            this.sampUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sampUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.sampUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -295,7 +296,7 @@
             this.panel4.Controls.Add(this.freqWaveChart);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(383, 517);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel4.Margin = new System.Windows.Forms.Padding(6);
             this.panel4.Name = "panel4";
             this.tableLayoutPanel1.SetRowSpan(this.panel4, 2);
             this.panel4.Size = new System.Drawing.Size(1289, 387);
@@ -312,7 +313,7 @@
             legend2.Name = "Legend1";
             this.freqWaveChart.Legends.Add(legend2);
             this.freqWaveChart.Location = new System.Drawing.Point(0, 0);
-            this.freqWaveChart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.freqWaveChart.Margin = new System.Windows.Forms.Padding(6);
             this.freqWaveChart.Name = "freqWaveChart";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -424,22 +425,22 @@
             this.zoomToolStripMenuItem});
             this.chartToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(75, 34);
-            this.chartToolStripMenuItem.Text = "Chart";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(80, 34);
+            this.chartToolStripMenuItem.Text = "Select";
             // 
             // selectToolStripMenuItem
             // 
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(160, 34);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(160, 34);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
             // 
@@ -452,7 +453,8 @@
             // 
             this.chartToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.plotAmplitudeToolStripMenuItem,
-            this.plotFrequencyToolStripMenuItem});
+            this.plotFrequencyToolStripMenuItem,
+            this.toolStripMenuItem4});
             this.chartToolStripMenuItem1.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.chartToolStripMenuItem1.Name = "chartToolStripMenuItem1";
             this.chartToolStripMenuItem1.Size = new System.Drawing.Size(75, 34);
@@ -481,7 +483,7 @@
             this.panel6.Controls.Add(this.newFreqUpDown);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(383, 50);
-            this.panel6.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel6.Margin = new System.Windows.Forms.Padding(6);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1289, 59);
             this.panel6.TabIndex = 11;
@@ -499,7 +501,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(293, 15);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -517,7 +519,7 @@
             // newFreqBtn
             // 
             this.newFreqBtn.Location = new System.Drawing.Point(919, 2);
-            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(4);
             this.newFreqBtn.Name = "newFreqBtn";
             this.newFreqBtn.Size = new System.Drawing.Size(123, 55);
             this.newFreqBtn.TabIndex = 2;
@@ -539,7 +541,7 @@
             // 
             this.newFreqUpDown.DecimalPlaces = 2;
             this.newFreqUpDown.Location = new System.Drawing.Point(719, 17);
-            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.newFreqUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -558,10 +560,15 @@
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(6, 50);
-            this.panel7.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel7.Margin = new System.Windows.Forms.Padding(6);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(365, 59);
             this.panel7.TabIndex = 12;
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(283, 6);
             // 
             // InputForm
             // 
@@ -571,7 +578,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "InputForm";
             this.Text = "InputForm";
             this.Load += new System.EventHandler(this.InputForm_Load);
@@ -642,5 +649,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ToolStripMenuItem highPassFilterToolStripMenuItem;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
     }
 }
