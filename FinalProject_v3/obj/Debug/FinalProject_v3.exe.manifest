@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FinalProject_v3.exe" size="547800">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FinalProject_v3.exe" size="546776">
       <assemblyIdentity name="FinalProject_v3" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ju9an9wzzeM4aYGs8Xt17TpCDG1VXoCsezenQJ7cIUU=</dsig:DigestValue>
+        <dsig:DigestValue>vD2Lng8u+rVDqnJ5k44i1Fmq9lgyVuMcZvPP3QMwt1s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -36,9 +36,6 @@ namespace FinalProject_v3
         public globalChartSelect globalHFTChartSelection = new globalChartSelect();
         public globalChartSelect globalCopyPoints = new globalChartSelect();
 
-        // Windowing class
-        Windowing globalWindowing = new Windowing();
-
         // For using mmioStringToFOURCC
         [DllImport("winmm.dll")]
         public static extern int mmioStringToFOURCC([MarshalAs(UnmanagedType.LPStr)] String s, int flags);
@@ -105,11 +102,6 @@ namespace FinalProject_v3
         /*
             Saves the the data to the specified file.
         */
-
-               /*
-                        Change the save so that it saves 8 bytes as a double
-                        then have to read as the same
-               */
         public void SaveFile(string fileName)
         {
             FileStream f = new FileStream(fileName, FileMode.Create);
@@ -121,7 +113,6 @@ namespace FinalProject_v3
             // convert to int
             int[] intAr = globalFreq.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
             // convert to bytes
-        //ERROR
             byte[] waveByteData = intAr.Select(x => Convert.ToInt16(x)).SelectMany(x => BitConverter.GetBytes(x)).ToArray();
             fwrite(wr, waveByteData.Length, waveByteData);
             f.Close();
@@ -228,94 +219,27 @@ namespace FinalProject_v3
         }
 
         /*
-            This will remove the selection from the globalFreq wave, then insert a convolved window of data.
-            Will still need to call plot to insert the data to the chart after this function.
-        */
-        public void updateGlobalFreq(double[] convolvedWindow)
-        {
-            int start = (int)globalChartSelection.getStart();
-            double[] temp = new double[globalFreq.Length + convolvedWindow.Length];
-            // Get global selection the the freq chart.
-            // GF is the globalFrequency counter
-            // CW is convolvedWindow counter
-            for (int GF = 0; GF < globalFreq.Length; GF++)
-            {
-                if (GF == start)
-                {
-                    for (int CW = 0; CW < convolvedWindow.Length; CW++, GF++)
-                    {
-                        temp[GF] = convolvedWindow[CW];
-                    }
-                }
-                else
-                {
-                    temp[GF] = globalFreq[GF];
-                }
-            }
-            globalFreq = temp;
-        }
-
-        /*
             This will be to add frequencies to the chart
                 This can be a frequency with a different sample rate, but has to be specified
         */
 
         /*
-            This is to plot the DFT return to the frequency domain chart.
-            This should be windowed
+            This is to plot the DFT return to the frequency domain chart
         */
         public void plotHFTWaveChart()
         {
             int selection = (int)(globalChartSelection.getEnd() - globalChartSelection.getStart());
             if (selection != 0)
-            {
                 if (selection > (globalFreq.Length / 2))
-                {
                     globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);
-                }
                 else
-                {   
                     globalAmp = DFT.newDFTFunc(globalFreq, selection);
-                }
-            }
             else
-            {
-                globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);
-            }
+                globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);   
 
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
-            filterAudioToolStripMenuItem.Enabled = true;
-        }
-
-        /*
-            This is to plot the DFT return to the frequency domain chart.
-            This should be windowed
-        */
-        public void plotHFTWaveChart(double[] wave)
-        {
-            double[] windowedAmp;
-            int selection = (int)(globalChartSelection.getEnd() - globalChartSelection.getStart());
-            if (selection != 0)
-            {
-                if (selection > (wave.Length / 2))
-                {
-                    windowedAmp = DFT.newDFTFunc(wave, wave.Length / 10);
-                }
-                else
-                {
-                    windowedAmp = DFT.newDFTFunc(wave, selection);
-                }
-            }
-            else
-            {
-                windowedAmp = DFT.newDFTFunc(wave, wave.Length / 10);
-            }
-
-            HFTChart.Series[0].Points.Clear();
-            for (int i = 0; i < wave.Length; i++)
-            { HFTChart.Series["HFT"].Points.AddXY(i, windowedAmp[i]); }
             filterAudioToolStripMenuItem.Enabled = true;
         }
 
@@ -593,7 +517,7 @@ namespace FinalProject_v3
         /*
             Convolving handles the changing from frequency to time domain computation errors.
         */
-        private double[] convolve(double[] convolutionData, double[] orgSignal)
+        private void convolve(double[] convolutionData, double[] orgSignal)
         {
             int N = orgSignal.Length, WN = convolutionData.Length;
             double[] newSignal = new double[N];
@@ -611,8 +535,7 @@ namespace FinalProject_v3
                 newSignal[n] = temp;
             }
 
-            //globalFreq = newSignal; // setup the new signal
-            return newSignal;
+            globalFreq = newSignal; // setup the new signal
         }
 
         /*
@@ -644,21 +567,11 @@ namespace FinalProject_v3
                 cannot select more than one point
             */
 
-            // This uses the globalAmp, which is already windowed (see plotHFTWaveChart())
-
-            double[] convolved, convolvedWindow, iDFT_wave;
-            // creates the filter
             newComplex[] filter = creationOfLowpassFilter(globalAmp);
-            // convolves the window of the filter
-            iDFT_wave = DFT.invDFT(filter, filter.Length);
-            convolved = convolve(iDFT_wave, globalFreq);
-            // need to window this
-            convolvedWindow = triangleWindowing(convolved); // this will window based on the selection
-                                                            // to update globalFreq we need to remove the selection, then add the convolved-windowed data
-            // UPDATE GLOBALFREQ WITH CONVOLVED-WINDOWED
-      //    updateGlobalFreq(convolvedWindow);
 
-            plotFreqWaveChart(convolved);
+            convolve(DFT.invDFT(filter, filter.Length), globalFreq);
+
+            plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
         }
 
@@ -692,36 +605,5 @@ namespace FinalProject_v3
             plotFreqWaveChart(globalFreq, newFreqWave);
             plotHFTWaveChart();
         }
-
-        /*
-            Windowing function. This will be for editing the window.
-
-            Windows the selected double array
-        */
-        public double[] triangleWindowing(double[] wave)
-        {
-            double[] windowed;
-            int selection = (int)(globalChartSelection.getEnd() - globalChartSelection.getStart());
-            if (selection != 0)
-            {
-                if (selection > (wave.Length / 2))
-                {
-                    //globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);
-                    windowed = globalWindowing.triangle(wave, (wave.Length / 10));
-                }
-                else
-                {
-                    //globalAmp = DFT.newDFTFunc(globalFreq, selection);
-                    windowed = globalWindowing.triangle(wave, selection);
-                }
-            }
-            else
-            {
-                //globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);
-                windowed = globalWindowing.triangle(wave, (wave.Length / 10));
-            }
-            return windowed;
-        }
-
     }
 }
