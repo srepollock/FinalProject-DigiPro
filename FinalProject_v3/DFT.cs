@@ -6,9 +6,27 @@ using System.Threading.Tasks;
 
 namespace FinalProject_v3
 {
+    /*
+        DFT
+        Purpose:
+            Object to store all functions for Descrete Fourier Transform calls.
+            Created to clear up code, and to pass information through.
+    */
     class DFT
     {
         /* This returns an arry of complex numbers. This is not the amplitude of the wave. It must be run through Pythagorus. */
+        /*
+            DFTFunc
+            Purpose:
+                Forward DFT for a double array of samples of size n. This 
+                converts data in the time domain to the frequency domain. It
+                returns a complex number array for usage in inverse DFT 
+                funcitons. To properly plot the data returned from this, data
+                will have to be run through pythagorus.
+            Parameters:
+                s:  Signal we are changing
+                n:  Size of the signal
+        */
         public newComplex[] DFTFunc(double[] s, int n)
         {
             newComplex[] cmplx = new newComplex[n];
@@ -28,6 +46,17 @@ namespace FinalProject_v3
             return cmplx;
         }
 
+        /*
+            newDFTFunc
+            Purpose:
+                Forward DFT for a double array of samples of size n. This 
+                converts data in the time domain to the frequency domain. 
+                This will perform pythagorus to convert the complex array
+                directly to usable data for the frequency domain chart.
+            Parameters:
+                s:  Signal we are changing
+                n:  Size of the signal
+        */
         public double[] newDFTFunc(double[] s, int n)
         {
             double[] amplitude = new double[n];
@@ -55,6 +84,15 @@ namespace FinalProject_v3
         }
 
         /* Preforms the inverse of DFT: this will be displayed to the graph for testing with cosWavCreation */
+        /*
+            invDFT
+            Purpose:
+                Inverse Descrete Fourier Transform, used to convert from the
+                frequency domain to the time domain.
+            Variables:
+                A:  Complex array to convert
+                n:  Size of the complex array
+        */
         public double[] invDFT(newComplex[] A, int n)
         {
             double[] s = new double[n];
