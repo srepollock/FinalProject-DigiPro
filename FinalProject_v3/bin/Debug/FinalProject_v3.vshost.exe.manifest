@@ -25,66 +25,6 @@
             Specifying requestedExecutionLevel element will disable file and registry virtualization. 
             Remove this element if your application requires this virtualization for backwards
             compatibility.
-<<<<<<< HEAD
-        -->
-        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
-      </requestedPrivileges>
-    </security>
-  </trustInfo>
-  <dependency>
-    <dependentOS>
-      <osVersionInfo>
-        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
-      </osVersionInfo>
-    </dependentOS>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FinalProject_v3.exe" size="542680">
-      <assemblyIdentity name="FinalProject_v3" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>03xasGP3MGfbni89Wcu7RRUHSKFWan8Y7qXE2A2EJvk=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <file name="FinalProject_v3.exe.config" size="187">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Help.txt" size="1547">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>5fQSHJ/TvOJo5Q3B0o5jAFmMe/HbmzAYDl57aachE6A=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="SoundWaveIcon.ico" size="99678">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>SEZY4HJalNaPz+0nEfm05FAgueXvcrJxa8AYN/5GdOA=</dsig:DigestValue>
-    </hash>
-  </file>
-  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
-    <application>
-=======
         -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -110,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iVDbMpYcfuka5VxrsXC5r65bFmylqit8bm5LGWbYC9g=</dsig:DigestValue>
+        <dsig:DigestValue>qizwXdGc3hxaKPpMEOVxQ0tNttVHhkw5QE6bxfHBCQ8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -143,7 +83,6 @@
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application>
->>>>>>> 54b2828f17b6cacdf97f25f9a577d521bf1b2380
       <!-- A list of the Windows versions that this application has been tested on and is
            is designed to work with. Uncomment the appropriate elements and Windows will 
            automatically selected the most compatible environment. -->
