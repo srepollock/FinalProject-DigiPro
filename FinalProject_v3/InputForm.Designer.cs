@@ -65,7 +65,6 @@
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.plotAmplitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plotFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +74,7 @@
             this.newFreqBtn = new System.Windows.Forms.Button();
             this.newFreqLabel = new System.Windows.Forms.Label();
             this.newFreqUpDown = new System.Windows.Forms.NumericUpDown();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
@@ -105,6 +105,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel6, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -196,7 +197,7 @@
             this.panel1.Controls.Add(this.ampUpDown);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(2, 64);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(202, 103);
             this.panel1.TabIndex = 7;
@@ -316,7 +317,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.audioToolStripMenuItem,
             this.chartToolStripMenuItem,
-            this.toolStripMenuItem3,
             this.chartToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -408,29 +408,24 @@
             this.zoomToolStripMenuItem});
             this.chartToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.chartToolStripMenuItem.Text = "Chart";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.chartToolStripMenuItem.Text = "Select";
             // 
             // selectToolStripMenuItem
             // 
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(12, 20);
             // 
             // chartToolStripMenuItem1
             // 
@@ -482,7 +477,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(160, 8);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -500,7 +495,7 @@
             // newFreqBtn
             // 
             this.newFreqBtn.Location = new System.Drawing.Point(501, 1);
-            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2);
             this.newFreqBtn.Name = "newFreqBtn";
             this.newFreqBtn.Size = new System.Drawing.Size(67, 30);
             this.newFreqBtn.TabIndex = 2;
@@ -522,7 +517,7 @@
             // 
             this.newFreqUpDown.DecimalPlaces = 2;
             this.newFreqUpDown.Location = new System.Drawing.Point(392, 9);
-            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.newFreqUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -536,6 +531,14 @@
             0,
             0,
             0});
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 27);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(200, 32);
+            this.panel7.TabIndex = 12;
             // 
             // InputForm
             // 
@@ -604,7 +607,6 @@
         private System.Windows.Forms.ToolStripMenuItem stopRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem filterAudioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem plotFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem plotAmplitudeToolStripMenuItem;
@@ -614,5 +616,6 @@
         private System.Windows.Forms.Label ampUpDownLabel;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ToolStripMenuItem highPassFilterToolStripMenuItem;
+        private System.Windows.Forms.Panel panel7;
     }
 }

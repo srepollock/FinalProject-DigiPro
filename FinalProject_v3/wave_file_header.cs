@@ -11,6 +11,13 @@ namespace FinalProject_v3
     // purpose:
     // describes the first part of a wav file
     // used both by saving and loading
+    /*
+        wave_file_header
+        Purpose:
+            Describes the first part of the .wav file.
+            This object is used to store and hold the header information for the .wav file.
+            This is used to read and write the file for playing.
+    */
     public class wave_file_header
     {
         // For using mmioStringToFOURCC
@@ -20,24 +27,27 @@ namespace FinalProject_v3
         public static extern int mciSendString(String MciCommand, String MciReturn, int MciReturnLength, int CallBack);
 
         /*
-        Header
-        ------
-            ChunkID         4 bytes     int     "RIFF"
-            ChunkSize       32 bytes    uint    varies
-            Format          4 bytes     int     "WAVE"
-        Format Chunk
-        ------------
-            SubChunk1ID     4 bytes     int     "fmt "
-            SubChunk1Size   4 bytes     uint    varies
-            AudioFormat     16 bytes    ushort  1
-            NumChannels     16 bytes    ushort  varies
-            SampleRate      32 bytes    uint    varies
-            ByteRate        32 bytes    uint    sampleRate * blockAlign
-            BlockAlign      16 bytes    ushort  NumChannels * (ByteRate / 8)
-        Data Chunk
-        ----------
-            SubChunk2ID     4 bytes     int     "data"
-            SubChunk2Size   32 bytes    uint    varies
+            Variables:
+                Class variables for usage.
+
+            Header
+            ------
+                ChunkID         4 bytes     int     "RIFF"
+                ChunkSize       32 bytes    uint    varies
+                Format          4 bytes     int     "WAVE"
+            Format Chunk
+            ------------
+                SubChunk1ID     4 bytes     int     "fmt "
+                SubChunk1Size   4 bytes     uint    varies
+                AudioFormat     16 bytes    ushort  1
+                NumChannels     16 bytes    ushort  varies
+                SampleRate      32 bytes    uint    varies
+                ByteRate        32 bytes    uint    sampleRate * blockAlign
+                BlockAlign      16 bytes    ushort  NumChannels * (ByteRate / 8)
+            Data Chunk
+            ----------
+                SubChunk2ID     4 bytes     int     "data"
+                SubChunk2Size   32 bytes    uint    varies
         */
 
         // Chunk Head
@@ -73,7 +83,13 @@ namespace FinalProject_v3
                                 // 44 - ** end data (samples)
         public int SubChunk2Size;
 
-
+        /*
+            clear
+            Purpose:
+                Used to clear the wave_file_header object information. This is 
+                called usually when we want to open a new .wav file, or start
+                a new .wav file in the window.
+        */
         public void clear() // clears the data currently stored in the header
         {
             ChunkID = 0;
@@ -91,7 +107,17 @@ namespace FinalProject_v3
             SubChunk2Size = 0;
         }
 
-        public void initialize(decimal freqUpDown, decimal sampUpDown)
+        /*
+            initialize
+            Purpose:
+                Initializes the .wav header information based on what we are
+                inserting into the file. This is used when we 'Add' a new wave
+                to the window. This is never called unless we start a new file.
+            Parameters:
+                sampUpDown: used for calculating SampleRate, ByteRate, 
+                            SubChunk2Size and BitsPerSample
+        */
+        public void initialize(decimal sampUpDown)
         {
             clear();
 
@@ -102,7 +128,7 @@ namespace FinalProject_v3
             SubChunk1Size = 16;
             AudioFormat = 1;
             NumChannels = 1; // mono
-            SampleRate = (int)freqUpDown; // samples per second
+            SampleRate = (int)sampUpDown; // samples per second
             BitsPerSample = 16; // or 8
             ByteRate = SampleRate * (BitsPerSample / 8); // bytes per second
             BlockAlign = (short)(BitsPerSample / 8);
