@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
@@ -76,6 +77,25 @@ namespace FinalProject_v3
         */
         public globalChartSelect globalCopyPoints = new globalChartSelect();
 
+        /*
+            globalWindowedSelection
+            Class object. This object is used to store the selected window 
+            points so that if the user selects a new point on the time domain
+            graph, they are still able to properly filter the windowed data.
+            This variable is only set when the user plots to the frequency 
+            domain.
+        */
+        public globalChartSelect globalWindowedSelection = new globalChartSelect();
+
+        /*
+            globalWindowing
+            Class object for a windowing algorithm. This will allow one to 
+            window the selection for processing. Example being filtering. If
+            the user would like to remove just a frequency from a certain point
+            in the signal, they may select a portion to filter.
+        */
+        public Windowing globalWindowing = new Windowing();
+
         // For using mmioStringToFOURCC
         [DllImport("winmm.dll")]
         public static extern int mmioStringToFOURCC([MarshalAs(UnmanagedType.LPStr)] String s, int flags);
@@ -86,8 +106,9 @@ namespace FinalProject_v3
         {
             InitializeComponent();
             newFreqBtn.Enabled = false;
-            filterAudioToolStripMenuItem.Enabled = false;
-            stopRecordingToolStripMenuItem.Enabled = false;
+            filterAudioToolStripMenuItem.Enabled = false; // Cannot use until we have plotted the frequency domain chart
+            stopRecordingToolStripMenuItem.Enabled = false; // Cannot use until we have pressed recording
+            plotAmplitudeToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
         }
 
         /*
@@ -142,16 +163,16 @@ namespace FinalProject_v3
         public void OpenFile(string fileName)
         {
             globalFilePath = fileName;
-            // try to set numericsUpDown to the values of the wave here
             globalFreq = readingWave(globalFilePath);
-        //    globalCmplx = DFT.DFTFunc(globalFreq, globalFreq.Length);
-        //    globalAmp = amplitudeLength(globalCmplx, globalFreq.Length);
+
+            ampUpDown.Value = 0; // We don't know what the amplitude is yet
+            freqUpDown.Value = 0; // We don't know the frequency yet
+            sampUpDown.Value = globalWavHead.SampleRate; // we know what the sample rate of the file is already
             HFTChart.Series[0].Points.Clear(); // clears the data of the amplitude chart
             freqWaveChart.Series[0].Points.Clear(); // clears the data in the wave form chart
             // Plots the wave data
             plotFreqWaveChart(globalFreq);
-            // Plots the data to the DFT Chart
-            //    plotHFTWaveChart(globalAmp);
+
             newFreqBtn.Enabled = true;
         }
 
@@ -342,6 +363,47 @@ namespace FinalProject_v3
             }
         }
 
+         /*
+            This will remove the selection from the globalFreq wave, then insert a convolved window of data.
+            Will still need to call plot to insert the data to the chart after this function.
+        */
+        /*
+            updateGlobalFreq
+            Purpose:
+                This function is meant to update the globalFrequency after
+                filtering the data. This is meant to take in the data that
+                has been filtered, and then add it to the globalFreq array to
+                be used. This data will still have to be plotted after 
+                completion.
+            Parameters:
+                filteredWindow: This is the array of the filtered window data.
+        */
+        public void updateGlobalFreq(double[] filteredWindow)
+        {
+            // Use windowed selection
+            int start = (int)globalWindowedSelection.getStart();
+
+            double[] temp = new double[globalFreq.Length + filteredWindow.Length];
+            // Get global selection the the freq chart.
+            // GF is the globalFrequency counter
+            // CW is convolvedWindow counter
+            for (int GF = 0; GF < globalFreq.Length; GF++)
+            {
+                if (GF == start)
+                {
+                    for (int CW = 0; CW < filteredWindow.Length; CW++, GF++)
+                    {
+                        temp[GF] = filteredWindow[CW];
+                    }
+                }
+                else
+                {
+                    temp[GF] = globalFreq[GF];
+                }
+            }
+            globalFreq = temp;
+        }
+
         /*
             plotHFTWaveChart
             Purpose:
@@ -354,13 +416,14 @@ namespace FinalProject_v3
         public void plotHFTWaveChart()
         {
             int selection = (int)(globalChartSelection.getEnd() - globalChartSelection.getStart());
-            if (selection != 0)
-                if (selection > (globalFreq.Length / 2))
-                    globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);
-                else
-                    globalAmp = DFT.newDFTFunc(globalFreq, selection);
-            else
-                globalAmp = DFT.newDFTFunc(globalFreq, globalFreq.Length / 10);   
+            int start = (int)(globalChartSelection.getStart());
+            // Save the points for the windowed data
+                // This is incase the user selects a new point.
+            globalWindowedSelection.setStart(globalChartSelection.getStart());
+            globalWindowedSelection.setEnd(globalChartSelection.getEnd());
+
+            globalWindowing.Triangle(globalFreq, selection, start);
+            globalAmp = DFT.newDFTFunc(globalFreq, selection);
 
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
@@ -423,6 +486,14 @@ namespace FinalProject_v3
             {
                 globalChartSelection.setStart(dataEnd);
                 globalChartSelection.setEnd(dataStart);
+            }
+            if((dataEnd - dataStart) > 0) // If we have selected more that 1
+            {
+                plotAmplitudeToolStripMenuItem.Enabled = true;
+            }
+            else // Set the button as disabled until we have something selected
+            {
+                plotAmplitudeToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -772,8 +843,12 @@ namespace FinalProject_v3
                 Cannot select more than the niquist limit
                 cannot select more than one point
             */
-
             newComplex[] filter = creationOfLowpassFilter(globalAmp);
+
+            // convolve(WindowTechnique(iDFT(weights)))
+
+            // Windowing?
+            // convolve(globalWindowing.Triangle(DFT.invDFT(filter, filter.Length), filter.Length), globalFreq);
 
             convolve(DFT.invDFT(filter, filter.Length), globalFreq);
 
@@ -781,11 +856,11 @@ namespace FinalProject_v3
             plotHFTWaveChart();
         }
 
-
+        // Don't worry about this for now...
         private void highPassFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newComplex[] filter = creationOfHighpassFilter(globalAmp);
-
+            
             convolve(DFT.invDFT(filter, filter.Length), globalFreq);
 
             plotFreqWaveChart(globalFreq);

@@ -65,7 +65,6 @@
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.plotAmplitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plotFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -318,7 +317,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.audioToolStripMenuItem,
             this.chartToolStripMenuItem,
-            this.toolStripMenuItem3,
             this.chartToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -410,29 +408,24 @@
             this.zoomToolStripMenuItem});
             this.chartToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.chartToolStripMenuItem.Text = "Chart";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.chartToolStripMenuItem.Text = "Select";
             // 
             // selectToolStripMenuItem
             // 
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(12, 20);
             // 
             // chartToolStripMenuItem1
             // 
@@ -614,7 +607,6 @@
         private System.Windows.Forms.ToolStripMenuItem stopRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem filterAudioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem plotFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem plotAmplitudeToolStripMenuItem;
