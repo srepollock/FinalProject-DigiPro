@@ -108,7 +108,9 @@ namespace FinalProject_v3
             newFreqBtn.Enabled = false;
             filterAudioToolStripMenuItem.Enabled = false; // Cannot use until we have plotted the frequency domain chart
             stopRecordingToolStripMenuItem.Enabled = false; // Cannot use until we have pressed recording
-            plotAmplitudeToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
+            triangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
+            rectangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
+            welchWindowToolStripMenuItem.Enabled = false;  // Cannot use until we have a selection
         }
 
         /*
@@ -431,6 +433,47 @@ namespace FinalProject_v3
             filterAudioToolStripMenuItem.Enabled = true;
         }
 
+        /*
+            plotHFTWaveChart
+            Purpose:
+                Plots the frequency domain chart based on the seleciton of the
+                user on the time domain. This will check to see if the
+                selection from the user is greater than half of the maximum 
+                sample size, and if so will minimize the amount of data the 
+                function will plot.  
+            Parameters:
+                              
+        */
+        public void plotHFTWaveChart(String windowType)
+        {
+            int selection = (int)(globalChartSelection.getEnd() - globalChartSelection.getStart());
+            int start = (int)(globalChartSelection.getStart());
+            double[] copiedFreq = globalFreq;
+            // Save the points for the windowed data
+            // This is incase the user selects a new point.
+            globalWindowedSelection.setStart(globalChartSelection.getStart());
+            globalWindowedSelection.setEnd(globalChartSelection.getEnd());
+
+            if(String.Compare(windowType, "Triangle") == 0)
+            {
+                globalWindowing.Triangle(copiedFreq, selection, start);
+            }
+            else if(String.Compare(windowType, "Rectangle") == 0)
+            {
+                globalWindowing.Rectangle(copiedFreq, selection, start);
+            }
+            else if(String.Compare(windowType, "Welch") == 0)
+            {
+                globalWindowing.Welch(copiedFreq, selection, start);
+            }
+            globalAmp = DFT.newDFTFunc(copiedFreq, selection);
+
+            HFTChart.Series[0].Points.Clear();
+            for (int i = 0; i < globalAmp.Length; i++)
+            { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
+            filterAudioToolStripMenuItem.Enabled = true;
+        }
+
         private void insertButton_Click(object sender, EventArgs e)
         {
 
@@ -489,11 +532,15 @@ namespace FinalProject_v3
             }
             if((dataEnd - dataStart) > 0) // If we have selected more that 1
             {
-                plotAmplitudeToolStripMenuItem.Enabled = true;
+                triangleWindowToolStripMenuItem.Enabled = true;
+                rectangleWindowToolStripMenuItem.Enabled = true;
+                welchWindowToolStripMenuItem.Enabled = true;
             }
             else // Set the button as disabled until we have something selected
             {
-                plotAmplitudeToolStripMenuItem.Enabled = false;
+                triangleWindowToolStripMenuItem.Enabled = false;
+                rectangleWindowToolStripMenuItem.Enabled = false;
+                welchWindowToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -870,11 +917,31 @@ namespace FinalProject_v3
         /*
             plotAmplitudeToolStripMenuItem_Click
             Purpose:
-                Button to call plotHFTWaveChart for the frequency domain.
+                Button to call to plot triangle window.
         */
-        private void plotAmplitudeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void triangleWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            plotHFTWaveChart();
+            plotHFTWaveChart("Triangle");
+        }
+
+        /*
+            rectangleWindowToolStripMenuItem_Click
+            Purpose:
+                Button to call to plot rectangle window.
+        */
+        private void rectangleWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            plotHFTWaveChart("Rectangle");
+        }
+
+        /*
+            hammingWindowToolStripMenuItem_Click
+            Purpose:
+                Button to call to plot hamming window.
+        */
+        private void welchWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            plotHFTWaveChart("Welch");
         }
 
         /*
