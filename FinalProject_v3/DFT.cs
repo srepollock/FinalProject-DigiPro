@@ -15,6 +15,12 @@ namespace FinalProject_v3
     */
     class DFT
     {
+        /*
+            WaveData
+            Purpose:
+                Structure to hold the wave data. This inner structure is
+                specific for the threading side of DFT.
+        */
         struct WaveData
         {
             public double[] s { get; set; }
@@ -133,9 +139,8 @@ namespace FinalProject_v3
                 cmplx = new newComplex(re, im);
                 temp = (cmplx.getReal() * cmplx.getReal()) + (cmplx.getImaginary() * cmplx.getImaginary());
                 temp = Math.Sqrt(temp);
-                amplitude[f] = temp; // These are the points we are going to plot.
 
-                // am I squaring i?
+                amplitude[f] = temp; // These are the points we are going to plot.
             }
             w.amp = amplitude;
         }
@@ -145,7 +150,9 @@ namespace FinalProject_v3
             Purpose:
                 
             Parameters:
-                
+                s:          
+                n:          
+                threadNum:  
         */
         public double[] splitDFTFunc(double[] s, int n, int threadNum)
         {
@@ -171,7 +178,7 @@ namespace FinalProject_v3
             Purpose:
                 Inverse Descrete Fourier Transform, used to convert from the
                 frequency domain to the time domain.
-            Variables:
+            Parameters:
                 A:  Complex array to convert
                 n:  Size of the complex array
         */

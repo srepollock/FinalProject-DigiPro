@@ -23,6 +23,13 @@ namespace FinalProject_v3
         */
         private DFT DFT = new DFT();
         /*
+            threads
+            This is the number of threads specified by the user to run the DFT
+            function with.
+            Defualted to 1.
+        */
+        private int threads = 1;
+        /*
             globalWavHead
             Class object for the .wav file header. This is used for the
             current file int the window.
@@ -965,6 +972,38 @@ namespace FinalProject_v3
             double[] newFreqWave = cosWaveCreation((int)ampUpDown.Value, (double)newFreqUpDown.Value, globalFreq.Length);
             plotFreqWaveChart(globalFreq, newFreqWave);
             plotHFTWaveChart();
+        }
+
+        private void threads1MenuButton_Click(object sender, EventArgs e)
+        {
+            threads = 1;
+            threads2MenuButton.Checked = false;
+            threads3MenuButton.Checked = false;
+            threads4MenuButton.Checked = false;
+        }
+
+        private void threads2MenuButton_Click(object sender, EventArgs e)
+        {
+            threads = 2;
+            threads1MenuButton.Checked = false;
+            threads3MenuButton.Checked = false;
+            threads4MenuButton.Checked = false;
+        }
+
+        private void threads3MenuButton_Click(object sender, EventArgs e)
+        {
+            threads = 3;
+            threads1MenuButton.Checked = false;
+            threads2MenuButton.Checked = false;
+            threads4MenuButton.Checked = false;
+        }
+
+        private void threads4MenuButton_Click(object sender, EventArgs e)
+        {
+            threads = 4;
+            threads1MenuButton.Checked = false;
+            threads2MenuButton.Checked = false;
+            threads3MenuButton.Checked = false;
         }
     }
 }
