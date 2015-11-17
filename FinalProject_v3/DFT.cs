@@ -115,7 +115,7 @@ namespace FinalProject_v3
             double re; /*real*/
             double im; /*imaginary*/
 
-            int startP = ((n / maxThreads) * threadNum), endP = ((n / maxThreads) * (threadNum + 1);
+            int startP = ((n / maxThreads) * threadNum), endP = ((n / maxThreads) * (threadNum + 1));
             if(threadNum == maxThreads - 1)
             {
                 endP = n;
