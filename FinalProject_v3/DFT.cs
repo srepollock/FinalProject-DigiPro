@@ -15,21 +15,7 @@ namespace FinalProject_v3
     */
     class DFT
     {
-        /*
-            WaveData
-            Purpose:
-                Structure to hold the wave data. This inner structure is
-                specific for the threading side of DFT.
-        */
-        struct WaveData
-        {
-            public double[] s { get; set; }
-            public int n { get; set; }
-            public int threadNum { get; set; }
-            public ManualResetEvent _doneEvent { get; set; }
-            public int maxThreads { get; set; }
-            public double[] amp { get; set; }
-        };
+        double[] amplitude;
 
         /* This returns an arry of complex numbers. This is not the amplitude of the wave. It must be run through Pythagorus. */
         /*
@@ -100,82 +86,6 @@ namespace FinalProject_v3
             return amplitude;
         }
 
-        /*
-            runningDFT
-            Purpose:
-                
-            Parameters:
-                
-        */
-        private void runningDFT(ref WaveData w)
-        {
-            double[] s = w.s;
-            int n = w.n;
-            int threadNum = w.threadNum;
-            int maxThreads = w.maxThreads;
-
-            double[] amplitude = new double[n];
-            double temp;
-            newComplex cmplx;
-            double re; /*real*/
-            double im; /*imaginary*/
-
-            int startP = ((n / maxThreads) * threadNum), endP = ((n / maxThreads) * (threadNum + 1));
-            if(threadNum == maxThreads - 1)
-            {
-                endP = n;
-            }
-
-            for (int f = startP; f < endP; f++) // run through first half
-            {
-                re = 0;
-                im = 0;
-                for (int t = 0; t < n - 1; t++)
-                {
-                    re += s[t] * Math.Cos(2 * Math.PI * t * f / n);
-                    im -= s[t] * Math.Sin(2 * Math.PI * t * f / n);
-                }
-                cmplx = new newComplex(re, im);
-                temp = (cmplx.getReal() * cmplx.getReal()) + (cmplx.getImaginary() * cmplx.getImaginary());
-                temp = Math.Sqrt(temp);
-
-                amplitude[f] = temp; // These are the points we are going to plot.
-            }
-            w.amp = amplitude;
-            w._doneEvent.Set();
-        }
-
-        /*
-            splitDFTFunc
-            Purpose:
-                
-            Parameters:
-                s:          
-                n:          
-                threadNum:  
-        */
-        public double[] splitDFTFunc(double[] s, int n, int threadNum)
-        {
-            ManualResetEvent[] doneArray = new ManualResetEvent[threadNum];
-
-            double[] amplitude = new double[n];
-            WaveData w = new WaveData();
-            w.s = s;
-            w.n = n;
-            w.maxThreads = threadNum;
-            for(int i = 0; i < threadNum; i++)
-            {
-                w.threadNum = i;
-                doneArray[i] = new ManualResetEvent(false);
-                w._doneEvent = doneArray[i];
-                // creates threads, runs them, and waits for all
-                ThreadPool.QueueUserWorkItem(o => runningDFT(ref w));
-            }
-            WaitHandle.WaitAll(doneArray);
-
-            return amplitude;
-        }
-
         /* Preforms the inverse of DFT: this will be displayed to the graph for testing with cosWavCreation */
         /*
             invDFT
@@ -203,6 +113,67 @@ namespace FinalProject_v3
                 s[t] = (re + im) / n;
             }
             return s;
+        }
+
+        // Threading function. This can take in the data, or just the object
+        private void runningDFT(double[] s, int n, int threadNum, int maxThreads)
+        {
+            double temp;
+            newComplex cmplx;
+            double re; /*real*/
+            double im; /*imaginary*/
+
+            int startP = ((n / maxThreads) * (threadNum - 1)), endP = ((n / maxThreads) * (threadNum));
+            if (threadNum == maxThreads - 1)
+            {
+                endP = n;
+            }
+
+            for (int f = startP; f < endP; f++) // run through first half
+            {
+                re = 0;
+                im = 0;
+                for (int t = 0; t < n - 1; t++)
+                {
+                    re += s[t] * Math.Cos(2 * Math.PI * t * f / n);
+                    im -= s[t] * Math.Sin(2 * Math.PI * t * f / n);
+                }
+                cmplx = new newComplex(re, im);
+                temp = (cmplx.getReal() * cmplx.getReal()) + (cmplx.getImaginary() * cmplx.getImaginary());
+                temp = Math.Sqrt(temp);
+
+                amplitude[f] = temp; // These are the points we are going to plot.
+            }
+            //return amplitude;
+        }
+
+        public double[] threadDFTFunc(double[] s, int n, int threadNum)
+        {
+            Thread[] tArray = new Thread[threadNum];
+            double[][] amp = new double[threadNum + 1][];
+            amplitude = new double[n];
+
+            for (int t = 0; t < threadNum; t++)
+            {
+                tArray[t] = new Thread(() => { runningDFT(s, n, t, threadNum); });
+                tArray[t].Start();
+            }
+
+            foreach(Thread t in tArray){
+                t.Join();
+            }
+
+            // join all of the data's
+            // each sub array size
+            /*
+            int arsz = (n / threadNum);
+            for(int t = 0; t < threadNum; t++){
+                double[] temp = amp[t];
+                Array.Copy(temp, 0, amplitude, (arsz * t), arsz);
+            }
+             */
+
+            return amplitude;
         }
     }
 }

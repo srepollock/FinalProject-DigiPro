@@ -433,7 +433,7 @@ namespace FinalProject_v3
 
             globalWindowing.Triangle(globalFreq, selection, start);
             //globalAmp = DFT.newDFTFunc(globalFreq, selection);
-            globalAmp = DFT.splitDFTFunc(globalFreq, selection, threads);
+            globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
 
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
@@ -475,7 +475,7 @@ namespace FinalProject_v3
                 globalWindowing.Welch(copiedFreq, selection, start);
             }
             //globalAmp = DFT.newDFTFunc(copiedFreq, selection);
-            globalAmp = DFT.splitDFTFunc(copiedFreq, selection, threads);
+            globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
 
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
