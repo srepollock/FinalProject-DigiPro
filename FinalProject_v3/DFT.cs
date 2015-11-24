@@ -26,6 +26,7 @@ namespace FinalProject_v3
             public double[] s { get; set; }
             public int n { get; set; }
             public int threadNum { get; set; }
+            public ManualResetEvent _doneEvent { get; set; }
             public int maxThreads { get; set; }
             public double[] amp { get; set; }
         };
@@ -106,10 +107,8 @@ namespace FinalProject_v3
             Parameters:
                 
         */
-        private void runningDFT(Object state)
+        private void runningDFT(ref WaveData w)
         {
-            WaveData w = (WaveData)state;
-
             double[] s = w.s;
             int n = w.n;
             int threadNum = w.threadNum;
@@ -143,6 +142,7 @@ namespace FinalProject_v3
                 amplitude[f] = temp; // These are the points we are going to plot.
             }
             w.amp = amplitude;
+            w._doneEvent.Set();
         }
 
         /*
@@ -156,6 +156,8 @@ namespace FinalProject_v3
         */
         public double[] splitDFTFunc(double[] s, int n, int threadNum)
         {
+            ManualResetEvent[] doneArray = new ManualResetEvent[threadNum];
+
             double[] amplitude = new double[n];
             WaveData w = new WaveData();
             w.s = s;
@@ -164,10 +166,12 @@ namespace FinalProject_v3
             for(int i = 0; i < threadNum; i++)
             {
                 w.threadNum = i;
+                doneArray[i] = new ManualResetEvent(false);
+                w._doneEvent = doneArray[i];
                 // creates threads, runs them, and waits for all
-                ThreadPool.QueueUserWorkItem(runningDFT, w);
+                ThreadPool.QueueUserWorkItem(o => runningDFT(ref w));
             }
-            //WaitHandle.WaitAll();
+            WaitHandle.WaitAll(doneArray);
 
             return amplitude;
         }
