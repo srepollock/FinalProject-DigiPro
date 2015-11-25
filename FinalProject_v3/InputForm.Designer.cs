@@ -70,6 +70,12 @@
             this.rectangleWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.welchWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plotFrequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descreteFourierTransformThreadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.threads1MenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.threads2MenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.threads3MenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.threads4MenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.ampUpDownLabel = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -77,12 +83,6 @@
             this.newFreqLabel = new System.Windows.Forms.Label();
             this.newFreqUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.descreteFourierTransformThreadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.threads1MenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.threads2MenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.threads3MenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.threads4MenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
@@ -205,7 +205,7 @@
             this.panel1.Controls.Add(this.ampUpDown);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(2, 63);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(193, 100);
             this.panel1.TabIndex = 7;
@@ -241,6 +241,8 @@
             // addButton
             // 
             this.addButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Location = new System.Drawing.Point(61, 414);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
@@ -424,14 +426,14 @@
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
             // 
@@ -475,95 +477,6 @@
             this.plotFrequencyToolStripMenuItem.Text = "Plot Signal";
             this.plotFrequencyToolStripMenuItem.Click += new System.EventHandler(this.plotFrequencyToolStripMenuItem_Click);
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.ampUpDownLabel);
-            this.panel6.Controls.Add(this.numericUpDown1);
-            this.panel6.Controls.Add(this.newFreqBtn);
-            this.panel6.Controls.Add(this.newFreqLabel);
-            this.panel6.Controls.Add(this.newFreqUpDown);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(200, 27);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(672, 31);
-            this.panel6.TabIndex = 11;
-            // 
-            // ampUpDownLabel
-            // 
-            this.ampUpDownLabel.AutoSize = true;
-            this.ampUpDownLabel.Location = new System.Drawing.Point(79, 9);
-            this.ampUpDownLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.ampUpDownLabel.Name = "ampUpDownLabel";
-            this.ampUpDownLabel.Size = new System.Drawing.Size(53, 13);
-            this.ampUpDownLabel.TabIndex = 4;
-            this.ampUpDownLabel.Text = "Amplitude";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(160, 8);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(77, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // newFreqBtn
-            // 
-            this.newFreqBtn.Location = new System.Drawing.Point(501, 1);
-            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.newFreqBtn.Name = "newFreqBtn";
-            this.newFreqBtn.Size = new System.Drawing.Size(67, 30);
-            this.newFreqBtn.TabIndex = 2;
-            this.newFreqBtn.Text = "Insert";
-            this.newFreqBtn.UseVisualStyleBackColor = true;
-            this.newFreqBtn.Click += new System.EventHandler(this.newFreqBtn_Click);
-            // 
-            // newFreqLabel
-            // 
-            this.newFreqLabel.AutoSize = true;
-            this.newFreqLabel.Location = new System.Drawing.Point(263, 9);
-            this.newFreqLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.newFreqLabel.Name = "newFreqLabel";
-            this.newFreqLabel.Size = new System.Drawing.Size(104, 13);
-            this.newFreqLabel.TabIndex = 1;
-            this.newFreqLabel.Text = "Add New Frequency";
-            // 
-            // newFreqUpDown
-            // 
-            this.newFreqUpDown.DecimalPlaces = 2;
-            this.newFreqUpDown.Location = new System.Drawing.Point(392, 9);
-            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.newFreqUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.newFreqUpDown.Name = "newFreqUpDown";
-            this.newFreqUpDown.Size = new System.Drawing.Size(85, 20);
-            this.newFreqUpDown.TabIndex = 0;
-            this.newFreqUpDown.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 27);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(191, 31);
-            this.panel7.TabIndex = 12;
-            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -590,7 +503,7 @@
             this.threads1MenuButton.CheckOnClick = true;
             this.threads1MenuButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.threads1MenuButton.Name = "threads1MenuButton";
-            this.threads1MenuButton.Size = new System.Drawing.Size(152, 22);
+            this.threads1MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads1MenuButton.Text = "1";
             this.threads1MenuButton.Click += new System.EventHandler(this.threads1MenuButton_Click);
             // 
@@ -598,7 +511,7 @@
             // 
             this.threads2MenuButton.CheckOnClick = true;
             this.threads2MenuButton.Name = "threads2MenuButton";
-            this.threads2MenuButton.Size = new System.Drawing.Size(152, 22);
+            this.threads2MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads2MenuButton.Text = "2";
             this.threads2MenuButton.Click += new System.EventHandler(this.threads2MenuButton_Click);
             // 
@@ -606,7 +519,7 @@
             // 
             this.threads3MenuButton.CheckOnClick = true;
             this.threads3MenuButton.Name = "threads3MenuButton";
-            this.threads3MenuButton.Size = new System.Drawing.Size(152, 22);
+            this.threads3MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads3MenuButton.Text = "3";
             this.threads3MenuButton.Click += new System.EventHandler(this.threads3MenuButton_Click);
             // 
@@ -614,9 +527,99 @@
             // 
             this.threads4MenuButton.CheckOnClick = true;
             this.threads4MenuButton.Name = "threads4MenuButton";
-            this.threads4MenuButton.Size = new System.Drawing.Size(152, 22);
+            this.threads4MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads4MenuButton.Text = "4";
             this.threads4MenuButton.Click += new System.EventHandler(this.threads4MenuButton_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.ampUpDownLabel);
+            this.panel6.Controls.Add(this.numericUpDown1);
+            this.panel6.Controls.Add(this.newFreqBtn);
+            this.panel6.Controls.Add(this.newFreqLabel);
+            this.panel6.Controls.Add(this.newFreqUpDown);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(200, 27);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(672, 31);
+            this.panel6.TabIndex = 11;
+            // 
+            // ampUpDownLabel
+            // 
+            this.ampUpDownLabel.AutoSize = true;
+            this.ampUpDownLabel.Location = new System.Drawing.Point(79, 9);
+            this.ampUpDownLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ampUpDownLabel.Name = "ampUpDownLabel";
+            this.ampUpDownLabel.Size = new System.Drawing.Size(53, 13);
+            this.ampUpDownLabel.TabIndex = 4;
+            this.ampUpDownLabel.Text = "Amplitude";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(160, 8);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(77, 20);
+            this.numericUpDown1.TabIndex = 3;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // newFreqBtn
+            // 
+            this.newFreqBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newFreqBtn.Location = new System.Drawing.Point(501, 1);
+            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.newFreqBtn.Name = "newFreqBtn";
+            this.newFreqBtn.Size = new System.Drawing.Size(67, 30);
+            this.newFreqBtn.TabIndex = 2;
+            this.newFreqBtn.Text = "Insert";
+            this.newFreqBtn.UseVisualStyleBackColor = true;
+            this.newFreqBtn.Click += new System.EventHandler(this.newFreqBtn_Click);
+            // 
+            // newFreqLabel
+            // 
+            this.newFreqLabel.AutoSize = true;
+            this.newFreqLabel.Location = new System.Drawing.Point(263, 9);
+            this.newFreqLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.newFreqLabel.Name = "newFreqLabel";
+            this.newFreqLabel.Size = new System.Drawing.Size(104, 13);
+            this.newFreqLabel.TabIndex = 1;
+            this.newFreqLabel.Text = "Add New Frequency";
+            // 
+            // newFreqUpDown
+            // 
+            this.newFreqUpDown.DecimalPlaces = 2;
+            this.newFreqUpDown.Location = new System.Drawing.Point(392, 9);
+            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2);
+            this.newFreqUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.newFreqUpDown.Name = "newFreqUpDown";
+            this.newFreqUpDown.Size = new System.Drawing.Size(85, 20);
+            this.newFreqUpDown.TabIndex = 0;
+            this.newFreqUpDown.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 27);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(191, 31);
+            this.panel7.TabIndex = 12;
             // 
             // InputForm
             // 
