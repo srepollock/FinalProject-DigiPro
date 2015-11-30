@@ -77,13 +77,21 @@
             this.newFreqUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.volumeValue = new System.Windows.Forms.TextBox();
             this.resetButton = new System.Windows.Forms.Button();
             this.volLabel = new System.Windows.Forms.Label();
             this.volumeBar = new System.Windows.Forms.VScrollBar();
             this.playButton = new System.Windows.Forms.Button();
             this.stopRec = new System.Windows.Forms.Button();
             this.recButton = new System.Windows.Forms.Button();
-            this.volumeValue = new System.Windows.Forms.TextBox();
+            this.stopPlaying = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.clearFreqButton = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.hzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hzToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lengthOfData = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
@@ -100,6 +108,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newFreqUpDown)).BeginInit();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lengthOfData)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -111,13 +121,13 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.addButton, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel6, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel8, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel9, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -247,7 +257,7 @@
             this.addButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addButton.Location = new System.Drawing.Point(67, 414);
+            this.addButton.Location = new System.Drawing.Point(58, 21);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 5;
@@ -257,6 +267,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.lengthOfData);
             this.panel3.Controls.Add(this.sampLabel);
             this.panel3.Controls.Add(this.sampUpDown);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -283,10 +295,11 @@
             0,
             0});
             this.sampUpDown.Name = "sampUpDown";
+            this.sampUpDown.ReadOnly = true;
             this.sampUpDown.Size = new System.Drawing.Size(192, 20);
             this.sampUpDown.TabIndex = 5;
             this.sampUpDown.Value = new decimal(new int[] {
-            10000,
+            11250,
             0,
             0,
             0});
@@ -343,7 +356,10 @@
             // 
             this.audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterAudioToolStripMenuItem,
-            this.highPassFilterToolStripMenuItem});
+            this.highPassFilterToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.hzToolStripMenuItem,
+            this.hzToolStripMenuItem1});
             this.audioToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.audioToolStripMenuItem.Name = "audioToolStripMenuItem";
             this.audioToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
@@ -575,6 +591,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.stopPlaying);
             this.panel8.Controls.Add(this.volumeValue);
             this.panel8.Controls.Add(this.resetButton);
             this.panel8.Controls.Add(this.volLabel);
@@ -588,10 +605,18 @@
             this.panel8.Size = new System.Drawing.Size(111, 411);
             this.panel8.TabIndex = 13;
             // 
+            // volumeValue
+            // 
+            this.volumeValue.Location = new System.Drawing.Point(8, 223);
+            this.volumeValue.Name = "volumeValue";
+            this.volumeValue.ReadOnly = true;
+            this.volumeValue.Size = new System.Drawing.Size(74, 20);
+            this.volumeValue.TabIndex = 6;
+            // 
             // resetButton
             // 
             this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resetButton.Location = new System.Drawing.Point(4, 116);
+            this.resetButton.Location = new System.Drawing.Point(3, 145);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(102, 23);
             this.resetButton.TabIndex = 5;
@@ -602,7 +627,7 @@
             // volLabel
             // 
             this.volLabel.AutoSize = true;
-            this.volLabel.Location = new System.Drawing.Point(27, 178);
+            this.volLabel.Location = new System.Drawing.Point(26, 207);
             this.volLabel.Name = "volLabel";
             this.volLabel.Size = new System.Drawing.Size(42, 13);
             this.volLabel.TabIndex = 4;
@@ -610,10 +635,14 @@
             // 
             // volumeBar
             // 
-            this.volumeBar.Location = new System.Drawing.Point(86, 145);
+            this.volumeBar.Location = new System.Drawing.Point(86, 174);
+            this.volumeBar.Maximum = 109;
             this.volumeBar.Name = "volumeBar";
-            this.volumeBar.Size = new System.Drawing.Size(16, 80);
-            this.volumeBar.TabIndex = 3;
+            this.volumeBar.Size = new System.Drawing.Size(16, 100);
+            this.volumeBar.SmallChange = 10;
+            this.volumeBar.TabIndex = 10;
+            this.volumeBar.TabStop = true;
+            this.volumeBar.Value = 100;
             this.volumeBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.volumeBar_Scroll);
             // 
             // playButton
@@ -649,13 +678,83 @@
             this.recButton.UseVisualStyleBackColor = true;
             this.recButton.Click += new System.EventHandler(this.recButton_Click);
             // 
-            // volumeValue
+            // stopPlaying
             // 
-            this.volumeValue.Location = new System.Drawing.Point(9, 194);
-            this.volumeValue.Name = "volumeValue";
-            this.volumeValue.ReadOnly = true;
-            this.volumeValue.Size = new System.Drawing.Size(74, 20);
-            this.volumeValue.TabIndex = 6;
+            this.stopPlaying.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stopPlaying.Location = new System.Drawing.Point(3, 116);
+            this.stopPlaying.Name = "stopPlaying";
+            this.stopPlaying.Size = new System.Drawing.Size(102, 23);
+            this.stopPlaying.TabIndex = 7;
+            this.stopPlaying.Text = "Stop Playing";
+            this.stopPlaying.UseVisualStyleBackColor = true;
+            this.stopPlaying.Click += new System.EventHandler(this.stopPlaying_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.clearFreqButton);
+            this.panel9.Controls.Add(this.addButton);
+            this.panel9.Location = new System.Drawing.Point(3, 376);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(200, 99);
+            this.panel9.TabIndex = 14;
+            // 
+            // clearFreqButton
+            // 
+            this.clearFreqButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.clearFreqButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.clearFreqButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearFreqButton.Location = new System.Drawing.Point(58, 50);
+            this.clearFreqButton.Name = "clearFreqButton";
+            this.clearFreqButton.Size = new System.Drawing.Size(75, 23);
+            this.clearFreqButton.TabIndex = 6;
+            this.clearFreqButton.Text = "Clear";
+            this.clearFreqButton.UseVisualStyleBackColor = true;
+            this.clearFreqButton.Click += new System.EventHandler(this.clearFreqButton_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 6);
+            // 
+            // hzToolStripMenuItem
+            // 
+            this.hzToolStripMenuItem.Name = "hzToolStripMenuItem";
+            this.hzToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.hzToolStripMenuItem.Text = "11250Hz";
+            this.hzToolStripMenuItem.Click += new System.EventHandler(this.hzToolStripMenuItem_Click);
+            // 
+            // hzToolStripMenuItem1
+            // 
+            this.hzToolStripMenuItem1.Name = "hzToolStripMenuItem1";
+            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.hzToolStripMenuItem1.Text = "44500Hz";
+            this.hzToolStripMenuItem1.Click += new System.EventHandler(this.hzToolStripMenuItem1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Length";
+            // 
+            // lengthOfData
+            // 
+            this.lengthOfData.Location = new System.Drawing.Point(4, 61);
+            this.lengthOfData.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.lengthOfData.Name = "lengthOfData";
+            this.lengthOfData.Size = new System.Drawing.Size(192, 20);
+            this.lengthOfData.TabIndex = 7;
+            this.lengthOfData.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             // 
             // InputForm
             // 
@@ -691,6 +790,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.newFreqUpDown)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lengthOfData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -745,5 +846,13 @@
         private System.Windows.Forms.VScrollBar volumeBar;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.TextBox volumeValue;
+        private System.Windows.Forms.Button stopPlaying;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button clearFreqButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem hzToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hzToolStripMenuItem1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown lengthOfData;
     }
 }

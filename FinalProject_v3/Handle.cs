@@ -197,6 +197,36 @@ namespace FinalProject_v3
             setupOutbuffer();
         }
 
+        public void play(double[] data, uint samplespersec, float volume)
+        {
+            int[] intAr = data.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
+            byte[] waveByteData = intAr.Select(x => Convert.ToInt16(x)).SelectMany(x => BitConverter.GetBytes(x)).ToArray();
+
+            save = adjustVolume(waveByteData, volume);
+            savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
+
+            // change this so that we pass in the header information from the file
+            
+            hWaveOut = new IntPtr();
+            waveIn = this.callbackWaveOut;
+            format.wFormatTag = 1; //WAVE_FORMAT_PCM
+            format.nChannels = 1;
+            format.nSamplesPerSec = samplespersec;
+            format.wBitPerSample = 8;
+            format.nBlockAlign = Convert.ToUInt16(format.nChannels * (format.wBitPerSample >> 3));
+            format.nAvgBytesPerSec = format.nSamplesPerSec * format.nBlockAlign;
+            savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
+            format.cbSize = 0;
+            //WAVE_MAPPER
+            int i = Handle.waveOutOpen(ref hWaveOut, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
+            if (i != 0)
+            {
+                //Error
+                return;
+            }
+            setupOutbuffer();
+        }
+
         public void stop_playing()
         {
             Handle.waveOutUnprepareHeader(hWaveOut, ref Outheader, Convert.ToUInt32(Marshal.SizeOf(Outheader)));

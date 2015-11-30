@@ -119,6 +119,7 @@ namespace FinalProject_v3
             welchWindowToolStripMenuItem.Enabled = false;  // Cannot use until we have a selection
             stopRec.Enabled = false;
             playButton.Enabled = false;
+            stopPlaying.Enabled = false;
             volumeBar.Value = 100;
             volumeValue.Text = volumeBar.Value.ToString();
         }
@@ -324,6 +325,14 @@ namespace FinalProject_v3
             plotFreqWaveChart(globalFreq);
 
             newFreqBtn.Enabled = true;
+            playButton.Enabled = true;
+        }
+
+        private void clearFreqButton_Click(object sender, EventArgs e)
+        {
+            globalFreq = new double[1];
+            plotFreqWaveChart(globalFreq);
+            lengthOfData.Value = globalFreq.Length;
         }
 
         /*
@@ -339,6 +348,7 @@ namespace FinalProject_v3
             freqWaveChart.Series[0].Points.Clear();
             for (int m = 0; m < freq.Length; m++)
             { freqWaveChart.Series[0].Points.AddXY(m, freq[m]); }
+            lengthOfData.Value = freq.Length;
         }
 
         /*
@@ -354,6 +364,7 @@ namespace FinalProject_v3
             freqWaveChart.Series[0].Points.Clear();
             for (int m = 0; m < freq.Length; m++)
             { freqWaveChart.Series[0].Points.AddXY(m, freq[m]); }
+            lengthOfData.Value = freq.Length;
         }
 
         /*
@@ -378,6 +389,7 @@ namespace FinalProject_v3
                 globalFreq[m] = freq[m] + newFreq[m];
                 freqWaveChart.Series[0].Points.AddXY(m, globalFreq[m]);
             }
+            lengthOfData.Value = freq.Length;
         }
 
          /*
@@ -419,6 +431,7 @@ namespace FinalProject_v3
                 }
             }
             globalFreq = temp;
+            lengthOfData.Value = globalFreq.Length;
         }
 
         /*
@@ -489,6 +502,16 @@ namespace FinalProject_v3
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
             filterAudioToolStripMenuItem.Enabled = true;
+        }
+
+        private void hzToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sampUpDown.Value = 11250;
+        }
+
+        private void hzToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            sampUpDown.Value = 44500;
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -640,7 +663,9 @@ namespace FinalProject_v3
             {
                 if(i == globalChartSelection.getStart())
                 {
-                    for(int j = 0; j < globalChartSelection.getEnd(); i++, j++) { }
+                    int tempI = i;
+                    for(int j = tempI; j < globalChartSelection.getEnd() + tempI; i++, j++) {  }
+                    i--;
                 }
                 else
                 {
@@ -649,7 +674,7 @@ namespace FinalProject_v3
             }
             globalFreq = temp;
             plotFreqWaveChart(globalFreq);
-            plotHFTWaveChart();
+            //plotHFTWaveChart();
 
             return copyArray;
         }
@@ -811,19 +836,6 @@ namespace FinalProject_v3
         }
 
         /*
-            filterAudiotoolStripMenuItem
-            Purpose:
-                Button to call the functions to create the filter. After one
-                has selected the filter point on the frequency domain chart,
-                we can now create a lowpass filter. This function will call
-                creationOfLowpassFilter, convolve and inverse DFT.
-        */
-        private void filterAudioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // This is where I will filter
-            // get the selection of the frequency to filter from the audio file
-
-            /*
                 Select the filter
                     in freq view
                         low pass
@@ -839,10 +851,24 @@ namespace FinalProject_v3
                                 train
             */
 
-            /*
-                Cannot select more than the niquist limit
-                cannot select more than one point
-            */
+        /*
+            Cannot select more than the niquist limit
+            cannot select more than one point
+        */
+
+        /*
+            filterAudiotoolStripMenuItem
+            Purpose:
+                Button to call the functions to create the filter. After one
+                has selected the filter point on the frequency domain chart,
+                we can now create a lowpass filter. This function will call
+                creationOfLowpassFilter, convolve and inverse DFT.
+        */
+        private void filterAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // This is where I will filter
+            // get the selection of the frequency to filter from the audio file
+
             newComplex[] filter = creationOfLowpassFilter(globalAmp);
 
             // convolve(WindowTechnique(iDFT(weights)))
@@ -957,6 +983,7 @@ namespace FinalProject_v3
             recButton.Enabled = false;
             stopRec.Enabled = true;
             playButton.Enabled = false;
+            stopPlaying.Enabled = false;
             handler.Record();
         }
 
@@ -979,6 +1006,7 @@ namespace FinalProject_v3
             recButton.Enabled = true;
             stopRec.Enabled = false;
             playButton.Enabled = true;
+            stopPlaying.Enabled = false;
             if (handler.recordData != null)
             {
 
@@ -989,9 +1017,15 @@ namespace FinalProject_v3
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            handler.play((float)volumeBar.Value / 100);
+            handler.play(globalFreq, globalWavHead.SampleRate,(float)volumeBar.Value / 100);
             recButton.Enabled = true;
             stopRec.Enabled = false;
+            stopPlaying.Enabled = true;
+        }
+
+        private void stopPlaying_Click(object sender, EventArgs e)
+        {
+            handler.stop_playing();
         }
 
         private void resetButton_Click(object sender, EventArgs e)
