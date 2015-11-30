@@ -60,7 +60,7 @@ namespace FinalProject_v3
         private double[] globalAmp; // amplitude of wave
 
         // Audio Player
-        Record globalAudioRecorder = new Record();
+        Handle handler = new Handle();
 
         // Copy and paste selection points
         /*
@@ -114,10 +114,13 @@ namespace FinalProject_v3
             InitializeComponent();
             newFreqBtn.Enabled = false;
             filterAudioToolStripMenuItem.Enabled = false; // Cannot use until we have plotted the frequency domain chart
-            stopRecordingToolStripMenuItem.Enabled = false; // Cannot use until we have pressed recording
             triangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
             rectangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
             welchWindowToolStripMenuItem.Enabled = false;  // Cannot use until we have a selection
+            stopRec.Enabled = false;
+            playButton.Enabled = false;
+            volumeBar.Value = 100;
+            volumeValue.Text = volumeBar.Value.ToString();
         }
 
         /*
@@ -141,21 +144,26 @@ namespace FinalProject_v3
             globalWavHead.Format = reader.ReadInt32();
             globalWavHead.SubChunk1ID = reader.ReadInt32();
             globalWavHead.SubChunk1Size = reader.ReadInt32();
-            globalWavHead.AudioFormat = reader.ReadInt16();
-            globalWavHead.NumChannels = reader.ReadInt16();
-            globalWavHead.SampleRate = reader.ReadInt32();
-            globalWavHead.ByteRate = reader.ReadInt32();
-            globalWavHead.BlockAlign = reader.ReadInt16();
-            globalWavHead.BitsPerSample = reader.ReadInt16();
+            globalWavHead.AudioFormat = reader.ReadUInt16();
+            globalWavHead.NumChannels = reader.ReadUInt16();
+            globalWavHead.SampleRate = reader.ReadUInt32();
+            globalWavHead.ByteRate = reader.ReadUInt32();
+            globalWavHead.BlockAlign = reader.ReadUInt16();
+            globalWavHead.BitsPerSample = reader.ReadUInt16();
             globalWavHead.SubChunk2ID = reader.ReadInt32();
             globalWavHead.SubChunk2Size = reader.ReadInt32();
+            
             byteArray = reader.ReadBytes((int)globalWavHead.SubChunk2Size);
+            
             short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
             double[] outputArray;
+            
             for (int i = 0; i < globalWavHead.SubChunk2Size / globalWavHead.BlockAlign; i++)
             { shortAr[i] = BitConverter.ToInt16(byteArray, i * globalWavHead.BlockAlign); }
+            
             outputArray = shortAr.Select(x => (double)(x)).ToArray();
             reader.Close();
+
             return outputArray;
         }
 
@@ -646,70 +654,6 @@ namespace FinalProject_v3
             return copyArray;
         }
 
-        private void playToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void recButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void recordToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            int i = globalAudioRecorder.setupWaveIn();
-            recordToolStripMenuItem.Enabled = false;
-            stopRecordingToolStripMenuItem.Enabled = true;
-
-            string wavIn;
-
-            if (i == -2)
-            {
-                // Dialog for waveInPrepareHeader failure
-                wavIn = "waveInPrepareHeader failure";
-                MessageBox.Show(wavIn);
-            }
-            else if (i == -3)
-            {
-                // Dialog for waveInAddBuffer failure
-                wavIn = "waveInAddBuffer failure";
-                MessageBox.Show(wavIn);
-            }
-            else if (i == -1)
-            {
-                wavIn = "waveInOpen failure";
-                MessageBox.Show(wavIn);
-            }
-            else if (i > 0)
-            {
-                wavIn = "wavInStart " + i + " failure";
-                MessageBox.Show(wavIn);
-            }
-        }
-
-        private void stopRecordingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            globalAudioRecorder.stopRecording();
-            recordToolStripMenuItem.Enabled = true;
-            stopRecordingToolStripMenuItem.Enabled = false;
-
-            byte[] temp = globalAudioRecorder.getSamples();
-            int[] tempByteAsInts = temp.Select(x => (int)x).ToArray();
-
-            plotFreqWaveChart(tempByteAsInts);
-        }
-
         /*
             selectToolStripMenuButton_Click
             Purpose:
@@ -1006,6 +950,58 @@ namespace FinalProject_v3
             threads1MenuButton.Checked = false;
             threads2MenuButton.Checked = false;
             threads3MenuButton.Checked = false;
+        }
+
+        private void recButton_Click(object sender, EventArgs e)
+        {
+            recButton.Enabled = false;
+            stopRec.Enabled = true;
+            playButton.Enabled = false;
+            handler.Record();
+        }
+
+        private void stopRec_Click(object sender, EventArgs e)
+        {
+            byte[] temp = handler.stop();
+            // get the header and set it to the global wav header
+            globalWavHead = handler.getHeader();
+
+            short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
+
+            // take temp and convert it into a double array (ie: globalFreq)
+            for (int i = 0; i < globalWavHead.SubChunk2Size / globalWavHead.BlockAlign; i++)
+            { shortAr[i] = BitConverter.ToInt16(temp, i * globalWavHead.BlockAlign); }
+
+            globalFreq = shortAr.Select(x => (double)(x)).ToArray();
+
+            plotFreqWaveChart(globalFreq);
+
+            recButton.Enabled = true;
+            stopRec.Enabled = false;
+            playButton.Enabled = true;
+            if (handler.recordData != null)
+            {
+
+            }
+            else
+                Console.Write("Record data null");
+        }
+
+        private void playButton_Click(object sender, EventArgs e)
+        {
+            handler.play((float)volumeBar.Value / 100);
+            recButton.Enabled = true;
+            stopRec.Enabled = false;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            handler.reset();
+        }
+
+        private void volumeBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            volumeValue.Text = volumeBar.Value.ToString();
         }
     }
 }

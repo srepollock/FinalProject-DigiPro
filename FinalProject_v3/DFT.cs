@@ -114,6 +114,7 @@ namespace FinalProject_v3
             return s;
         }
 
+        /*
         // Threading function. This can take in the data, or just the object
         private double[] runningDFT(double[] s, int n, int threadNum, int maxThreads)
         {
@@ -121,8 +122,8 @@ namespace FinalProject_v3
 
             double temp;
             newComplex cmplx;
-            double re; /*real*/
-            double im; /*imaginary*/
+            double re; //real
+            double im; //imaginary
 
             int startP = ((n / maxThreads) * (threadNum)), endP = ((n / maxThreads) * (threadNum));
             if (threadNum == maxThreads - 1)
@@ -147,44 +148,7 @@ namespace FinalProject_v3
             }
             return amplitude;
         }
-
-        public double[] threadDFTFunc(double[] s, int n, int threadNum)
-        {
-            Thread[] tArray = new Thread[threadNum];
-            double[][] amp = new double[threadNum + 1][]; // check this
-            double[] amplitude = new double[n];
-
-            for (int t = 0; t < threadNum; t++)
-            {
-                tArray[t] = new Thread(() => { amp[t] = runningDFT(s, n, t, threadNum); });
-                tArray[t].Start();
-                //tArray[t].Join();
-            }
-
-            foreach(Thread th in tArray){
-                th.Join(); // wait for the thread to finish
-            }
-
-            // join all of the data's
-            // each sub array size
-            int arsz = (n / threadNum), lastArsz = 0;
-            int pos = 0;
-            double[] temp;
-            if ((arsz * threadNum) != n)
-            {
-                lastArsz = arsz + 1;
-            }
-            for(int j = 0; j < threadNum; j++){
-                temp = amp[j];
-                pos = (arsz * j);
-                if ((threadNum - 1) == j)
-                {
-                    Array.Copy(temp, 0, amplitude, pos, lastArsz);
-                }else
-                    Array.Copy(temp, 0, amplitude, pos, arsz);
-            }
-
-            return amplitude;
-        }
+        */
+        
     }
 }

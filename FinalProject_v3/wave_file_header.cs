@@ -51,15 +51,15 @@ namespace FinalProject_v3
         */
 
         // Chunk Head
-        public int ChunkID; // identifies file as a wav file | 12 bytes total length
-                            // 0 - 3 "RIFF" ASCII
-                            // 4 - 7 total length of package to follow (binary, little endian)
-                            // little endian is where: "1101" is saved as "a[1], a+1[0], a+2[1], a+3[1]" (Backwards)
-                            // 8 - 11 "WAVE" ASCII
+        // identifies file as a wav file | 12 bytes total length
+        // 0 - 3 "RIFF" ASCII
+        // 4 - 7 total length of package to follow (binary, little endian)
+                                 // little endian is where: "1101" is saved as "a[1], a+1[0], a+2[1], a+3[1]" (Backwards)
+        // 8 - 11 "WAVE" ASCII
+        public int ChunkID; 
         public int ChunkSize; // incase of extra at end
         public int Format;
         // Format Chunk
-        public int SubChunk1ID;
         // identifies parameters (ex: sample rate)
         // 12 - 15 "fmt_" ASCII
         // 16 - 19 length of FORMAT (binary) ( 16 for PCM
@@ -69,18 +69,20 @@ namespace FinalProject_v3
         // 28 - 31 bytes per second
         // 32 - 33 bytes per sample (1 = 8 bit mono, 2 = 8 bit stereo or 16 bit mono, 4 = 16 bit stereo
         // 34 - 35 bits per sample
+        public int SubChunk1ID;
         public int SubChunk1Size;
-        public short AudioFormat;
-        public short NumChannels;
-        public int SampleRate;
-        public int ByteRate;
-        public short BlockAlign;
-        public short BitsPerSample;
+        public ushort AudioFormat;
+        public ushort NumChannels;
+        public uint SampleRate;
+        public uint ByteRate;
+        public ushort BlockAlign;
+        public ushort BitsPerSample;
         // Data Chunk
-        public int SubChunk2ID; // contains actual data (samples)
-                                // 36 - 39 "data" ASCII
-                                // 40 - 43 length of data to follow
-                                // 44 - ** end data (samples)
+        // contains actual data (samples)
+        // 36 - 39 "data" ASCII
+        // 40 - 43 length of data to follow
+        // 44 - ** end data (samples)
+        public int SubChunk2ID; 
         public int SubChunk2Size;
 
         /*
@@ -128,14 +130,22 @@ namespace FinalProject_v3
             SubChunk1Size = 16;
             AudioFormat = 1;
             NumChannels = 1; // mono
-            SampleRate = (int)sampUpDown; // samples per second
+            SampleRate = (uint)sampUpDown; // samples per second
             BitsPerSample = 16; // or 8
-            ByteRate = SampleRate * (BitsPerSample / 8); // bytes per second
-            BlockAlign = (short)(BitsPerSample / 8);
+            ByteRate = (uint)(SampleRate * (BitsPerSample / 8)); // bytes per second
+            BlockAlign = (ushort)(BitsPerSample / 8);
             SubChunk2ID = mmioStringToFOURCC("data", 0);
             SubChunk2Size = (int)(sampUpDown * BlockAlign);
 
             ChunkSize = (int)(SubChunk2Size + 44);
+        }
+
+        public void init()
+        {
+            ChunkID = mmioStringToFOURCC("RIFF", 0);
+            Format = mmioStringToFOURCC("WAVE", 0);
+            SubChunk1ID = mmioStringToFOURCC("fmt ", 0);
+            SubChunk2ID = mmioStringToFOURCC("data", 0);
         }
     }
 }
