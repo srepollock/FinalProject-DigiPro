@@ -299,7 +299,7 @@
             this.sampUpDown.Size = new System.Drawing.Size(192, 20);
             this.sampUpDown.TabIndex = 5;
             this.sampUpDown.Value = new decimal(new int[] {
-            11250,
+            22050,
             0,
             0,
             0});
@@ -720,14 +720,14 @@
             // 
             this.hzToolStripMenuItem.Name = "hzToolStripMenuItem";
             this.hzToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.hzToolStripMenuItem.Text = "11250Hz";
+            this.hzToolStripMenuItem.Text = "22050Hz";
             this.hzToolStripMenuItem.Click += new System.EventHandler(this.hzToolStripMenuItem_Click);
             // 
             // hzToolStripMenuItem1
             // 
             this.hzToolStripMenuItem1.Name = "hzToolStripMenuItem1";
             this.hzToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
-            this.hzToolStripMenuItem1.Text = "44500Hz";
+            this.hzToolStripMenuItem1.Text = "44100Hz";
             this.hzToolStripMenuItem1.Click += new System.EventHandler(this.hzToolStripMenuItem1_Click);
             // 
             // label1

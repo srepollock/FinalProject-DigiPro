@@ -140,12 +140,43 @@ namespace FinalProject_v3
             ChunkSize = (int)(SubChunk2Size + 44);
         }
 
+        /*
+            init
+            Purpose:
+                Initializes the ID's for the current object.
+        */
         public void init()
         {
             ChunkID = mmioStringToFOURCC("RIFF", 0);
             Format = mmioStringToFOURCC("WAVE", 0);
             SubChunk1ID = mmioStringToFOURCC("fmt ", 0);
             SubChunk2ID = mmioStringToFOURCC("data", 0);
+        }
+
+        /*
+            updateSampleRate
+            Purpose:
+                Updates the sample rate of the current header object.
+            Parameters:
+                newSampRate This is the new sample rate to set the header data
+                            to
+        */
+        public void updateSampleRate(uint newSampRate){
+            SampleRate = newSampRate;
+            ByteRate = (uint)(SampleRate * (BitsPerSample / 8));
+        }
+
+        /*
+            updateSubChunk2
+            Purpose:
+                This adds the value of newSubChunkSize to that of the old size.
+            Parameters:
+                added   Size of data that is to be added to the SubChunk2Size
+                        and chunk size
+        */
+        public void updateSubChunk2(int added){
+            SubChunk2Size += added;
+            ChunkSize = SubChunk2Size + 44;
         }
     }
 }

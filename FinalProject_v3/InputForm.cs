@@ -59,7 +59,11 @@ namespace FinalProject_v3
         */
         private double[] globalAmp; // amplitude of wave
 
-        // Audio Player
+        /*
+			handler
+			Class object to handle the audio recording and playing for the 
+			file.
+        */
         Handle handler = new Handle();
 
         // Copy and paste selection points
@@ -112,6 +116,7 @@ namespace FinalProject_v3
         public InputForm()
         {
             InitializeComponent();
+            globalWavHead.initalize(sampUpDown.Value);
             newFreqBtn.Enabled = false;
             filterAudioToolStripMenuItem.Enabled = false; // Cannot use until we have plotted the frequency domain chart
             triangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
@@ -328,6 +333,12 @@ namespace FinalProject_v3
             playButton.Enabled = true;
         }
 
+        /*
+			clearFreqButton_Click
+			Purpose:
+				This method will clear the current freq domain. It sets the
+				size of the globalFreq variable to 1 with no value set inside.
+        */
         private void clearFreqButton_Click(object sender, EventArgs e)
         {
             globalFreq = new double[1];
@@ -392,7 +403,7 @@ namespace FinalProject_v3
             lengthOfData.Value = freq.Length;
         }
 
-         /*
+        /*
             This will remove the selection from the globalFreq wave, then insert a convolved window of data.
             Will still need to call plot to insert the data to the chart after this function.
         */
@@ -504,14 +515,26 @@ namespace FinalProject_v3
             filterAudioToolStripMenuItem.Enabled = true;
         }
 
+        /*
+			hzToolStripMenuItem_Click
+			Purpose:
+				Sets the sample rate of the data to be used as playing;
+        */
         private void hzToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sampUpDown.Value = 11250;
+            sampUpDown.Value = 22050;
+            globalWavHead.updateSampleRate(sampUpDown.Value);
         }
 
+		/*
+			hzToolStripMenuItem1_Click
+			Purpose:
+				Sets the sample rate of the data to be used as playing;
+        */
         private void hzToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            sampUpDown.Value = 44500;
+            sampUpDown.Value = 44100;
+            globalWavHead.updateSampleRate(sampUpDown.Value);
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -946,6 +969,11 @@ namespace FinalProject_v3
             plotHFTWaveChart();
         }
 
+        /*
+			threads1MenuButton_Click
+			Purpose:
+				This method sets the thread count for the DFT function to 1.
+        */
         private void threads1MenuButton_Click(object sender, EventArgs e)
         {
             threads = 1;
@@ -954,6 +982,11 @@ namespace FinalProject_v3
             threads4MenuButton.Checked = false;
         }
 
+        /*
+			threads2MenuButton_Click
+			Purpose:
+				This method sets the thread count for the DFT function to 2.
+        */
         private void threads2MenuButton_Click(object sender, EventArgs e)
         {
             threads = 2;
@@ -962,6 +995,11 @@ namespace FinalProject_v3
             threads4MenuButton.Checked = false;
         }
 
+        /*
+			threads3MenuButton_Click
+			Purpose:
+				This method sets the thread count for the DFT function to 3.
+        */
         private void threads3MenuButton_Click(object sender, EventArgs e)
         {
             threads = 3;
@@ -970,6 +1008,11 @@ namespace FinalProject_v3
             threads4MenuButton.Checked = false;
         }
 
+        /*
+			threads4MenuButton_Click
+			Purpose:
+				This method sets the thread count for the DFT function to 4.
+        */
         private void threads4MenuButton_Click(object sender, EventArgs e)
         {
             threads = 4;
@@ -978,6 +1021,14 @@ namespace FinalProject_v3
             threads3MenuButton.Checked = false;
         }
 
+        /*
+			recButton_Click
+			Purpose:
+				This will allow the user to begin recording audio from the 
+				standard audio input device connected to their computer. 
+				This will then call the handler.Record() function that will
+				record the audio through DLL imported C functions.
+        */
         private void recButton_Click(object sender, EventArgs e)
         {
             recButton.Enabled = false;
@@ -987,18 +1038,31 @@ namespace FinalProject_v3
             handler.Record();
         }
 
+        /*
+			stopRec_Click
+			Purpose:
+				This will stop the recording by calling the handler.stopRec()
+				method. This sends a stop message through imported C functions.
+				This will also get the wave_header of that recorded and set
+				it to the globalWavHead.
+        */
         private void stopRec_Click(object sender, EventArgs e)
         {
             byte[] temp = handler.stop();
             // get the header and set it to the global wav header
-            globalWavHead = handler.getHeader();
+            // this should just update the header information
+            wave_file_header temp = handler.getHeader(); // we want to just get the size
+            											 // of the data recorded
+            
+            // update subchunksize
+            // this will just add to the current size (originally 0)
+            globalWavHead.updateSubChunk2(temp.SubChunk2Size); // Also updates ChunkSize
+            // Check if this will fail to write the proper data
 
             short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
-
             // take temp and convert it into a double array (ie: globalFreq)
             for (int i = 0; i < globalWavHead.SubChunk2Size / globalWavHead.BlockAlign; i++)
             { shortAr[i] = BitConverter.ToInt16(temp, i * globalWavHead.BlockAlign); }
-
             globalFreq = shortAr.Select(x => (double)(x)).ToArray();
 
             plotFreqWaveChart(globalFreq);
@@ -1015,24 +1079,51 @@ namespace FinalProject_v3
                 Console.Write("Record data null");
         }
 
+        /*
+			playButton_Click
+			Purpose:
+				This will allow the user to play the current signal displayed.
+				This method passes in the data we wish to play, as well as 
+				playing at the current sample rate defined by the user.
+        */
         private void playButton_Click(object sender, EventArgs e)
         {
+        	// Plays at the current sample rate defined by user control
             handler.play(globalFreq, globalWavHead.SampleRate,(float)volumeBar.Value / 100);
             recButton.Enabled = true;
             stopRec.Enabled = false;
             stopPlaying.Enabled = true;
         }
 
+        /*
+			stopPlaying_Click
+			Purpose:
+				This stops the currently playing audio.
+        */
         private void stopPlaying_Click(object sender, EventArgs e)
         {
             handler.stop_playing();
         }
 
+        // Is this needed?
+        /*
+			resetButton_Click
+			Purpose:
+				Passes to the handler object to reset the currently recorded 
+				data.
+        */
         private void resetButton_Click(object sender, EventArgs e)
         {
             handler.reset();
         }
 
+        /*
+			volumeBar_Scroll
+			Purpose:
+				This allows the user to control the volume of the audio being
+				currently played. This cannot be adjusted at the time of 
+				playing. Only before or after the play has stopped.
+        */
         private void volumeBar_Scroll(object sender, ScrollEventArgs e)
         {
             volumeValue.Text = volumeBar.Value.ToString();
