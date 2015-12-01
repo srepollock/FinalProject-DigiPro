@@ -106,12 +106,11 @@ namespace FinalProject_v3
             header.NumChannels = format.nChannels;
             header.SampleRate = format.nSamplesPerSec;
             header.ByteRate = format.nAvgBytesPerSec;
-            header.BlockAlign = format.nBlockAlign;
+            header.BlockAlign = 1;
             header.BitsPerSample = format.wBitPerSample;
-            header.SubChunk2Size = format.cbSize;
+            // chunk size and subchunk2size not set
 
             // chunk size based on subchunk2size + 44 (44 for the size of the header)
-            header.ChunkSize = header.SubChunk2Size + 44;
 
             return header;
         }
@@ -199,7 +198,7 @@ namespace FinalProject_v3
         }
         */
 
-        public void play(double[] data, uint samplespersec)
+        public void play(double[] data, wave_file_header waveHeader)
         {
             int[] intAr = data.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
             byte[] waveByteData = intAr.Select(x => Convert.ToInt16(x)).SelectMany(x => BitConverter.GetBytes(x)).ToArray();
@@ -212,14 +211,16 @@ namespace FinalProject_v3
             
             hWaveOut = new IntPtr();
             waveIn = this.callbackWaveOut;
-            format.wFormatTag = 1; //WAVE_FORMAT_PCM
-            format.nChannels = 1;
-            format.nSamplesPerSec = samplespersec;
-            format.wBitPerSample = 8;
-            format.nBlockAlign = Convert.ToUInt16(format.nChannels * (format.wBitPerSample >> 3));
-            format.nAvgBytesPerSec = format.nSamplesPerSec * format.nBlockAlign;
+            
+            format.wFormatTag = 1; // WAVE_FORMAT_PCM
+            format.nChannels = waveHeader.NumChannels;
+            format.nSamplesPerSec = waveHeader.SampleRate;
+            format.wBitPerSample = waveHeader.BitsPerSample;
+            format.nBlockAlign = waveHeader.BlockAlign;
+            format.nAvgBytesPerSec = waveHeader.ByteRate;
             savePin = GCHandle.Alloc(waveByteData, GCHandleType.Pinned);
             format.cbSize = 0;
+
             //WAVE_MAPPER
             int i = Handle.waveOutOpen(ref hWaveOut, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
             if (i != 0)
@@ -242,14 +243,16 @@ namespace FinalProject_v3
             waveIn = this.callbackWaveIn;
             format.wFormatTag = 1; //WAVE_FORMAT_PCM
             format.nChannels = 1;
-            format.nSamplesPerSec = 11025;
+            format.nSamplesPerSec = 22050;
             format.wBitPerSample = 8;
-            format.nBlockAlign = Convert.ToUInt16(format.nChannels * (format.wBitPerSample >> 3));
-            format.nAvgBytesPerSec = format.nSamplesPerSec * format.nBlockAlign;
-            bufferLength = 40000;
+            format.nBlockAlign = (ushort)(format.wBitPerSample / 8);
+            format.nAvgBytesPerSec = (format.nSamplesPerSec * format.nBlockAlign);
+            bufferLength = (22050 / 800);
+            format.cbSize = 0;
+
             buffer = new byte[bufferLength];
             bufferPin = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-            format.cbSize = 0;
+
             int i = Handle.waveInOpen(ref handle, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
             if (i != 0)
             {
@@ -257,7 +260,7 @@ namespace FinalProject_v3
                 return;
             }
             setupBuffer();
-            i = Handle.waveInStart(handle);
+            i = waveInStart(handle);
             if (i != 0)
             {
                 //error
@@ -266,14 +269,16 @@ namespace FinalProject_v3
 
         private void callbackWaveIn(IntPtr deviceHandle, uint message, IntPtr instance, ref WAVEHDR wavehdr, IntPtr reserved2)
         {
-            if (message == 0x3BF) //WIM_DATA
+            if (message == 0x3C0) //WIM_DATA
             {
                 if (save != null)
                 {
-                    List<byte> temp = save.ToList();
-                    temp.AddRange(buffer.ToList());
-                    temp.RemoveAll(delegate(byte a) { return a == 0; });
-                    save = temp.ToArray();
+                    //List<byte> temp = save.ToList();
+                    byte[] temp = new byte[bufferLength + save.Length];
+                    Array.Copy(save, temp, bufferLength);
+                    Array.Copy(buffer, 0, temp, save.Length, bufferLength);
+                    bufferLength += (uint)save.Length;
+                    save = temp;
                 }
                 else
                     save = buffer;
@@ -291,7 +296,7 @@ namespace FinalProject_v3
 
         private void callbackWaveOut(IntPtr deviceHandle, uint message, IntPtr instance, ref WAVEHDR wavehdr, IntPtr reserved2)
         {
-            if (message == 0x3BF) //WIM_DATA
+            if (message == 0x3C0) //WIM_DATA
             {
                 List<byte> temp = save.ToList();
                 temp.AddRange(buffer.ToList());
@@ -312,6 +317,7 @@ namespace FinalProject_v3
         {
             List<byte> temp = buffer.ToList();
             temp.RemoveAll(delegate(byte a) { return a == 0; });
+
             buffer = temp.ToArray();
             bufferPin.Free();
             bufferPin = GCHandle.Alloc(buffer, GCHandleType.Pinned);

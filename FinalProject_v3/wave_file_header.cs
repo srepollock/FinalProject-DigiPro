@@ -175,7 +175,7 @@ namespace FinalProject_v3
                         and chunk size
         */
         public void updateSubChunk2(int added){
-            SubChunk2Size += added;
+            SubChunk2Size = added;
             ChunkSize = SubChunk2Size + 44;
         }
     }

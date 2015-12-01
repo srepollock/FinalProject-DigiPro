@@ -194,6 +194,7 @@ namespace FinalProject_v3
             plotFreqWaveChart(globalFreq);
 
             newFreqBtn.Enabled = true;
+            playButton.Enabled = true;
         }
 
         /*
@@ -890,7 +891,7 @@ namespace FinalProject_v3
             // This is where I will filter
             // get the selection of the frequency to filter from the audio file
 
-            newComplex[] filter = creationOfLowpassFilter(globalFreq);
+            newComplex[] filter = creationOfLowpassFilter(globalAmp);
 
             // convolve(WindowTechnique(iDFT(weights)))
 
@@ -1049,16 +1050,17 @@ namespace FinalProject_v3
             // get the header and set it to the global wav header
             // this should just update the header information
             wave_file_header tempHeader = handler.getHeader(); // we want to just get the size
-            											 // of the data recorded
-            
+                                                                 // of the data recorded
+            //globalWavHead = handler.getHeader();
             // update subchunksize
             // this will just add to the current size (originally 0)
-            globalWavHead.updateSubChunk2(tempHeader.SubChunk2Size); // Also updates ChunkSize
+            globalWavHead.updateSubChunk2(temp.Length); // Also updates ChunkSize
+            globalWavHead.BlockAlign = 2;
             // Check if this will fail to write the proper data
 
             short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
             // take temp and convert it into a double array (ie: globalFreq)
-            for (int i = 0; i < globalWavHead.SubChunk2Size / globalWavHead.BlockAlign; i++)
+            for (int i = 0; i < (globalWavHead.SubChunk2Size / globalWavHead.BlockAlign); i++)
             { shortAr[i] = BitConverter.ToInt16(temp, i * globalWavHead.BlockAlign); }
             globalFreq = shortAr.Select(x => (double)(x)).ToArray();
 
@@ -1085,7 +1087,7 @@ namespace FinalProject_v3
         private void playButton_Click(object sender, EventArgs e)
         {
         	// Plays at the current sample rate defined by user control
-            handler.play(globalFreq, globalWavHead.SampleRate);
+            handler.play(globalFreq, globalWavHead);
             recButton.Enabled = true;
             stopRec.Enabled = false;
         }
