@@ -116,7 +116,7 @@ namespace FinalProject_v3
         public InputForm()
         {
             InitializeComponent();
-            globalWavHead.initalize(sampUpDown.Value);
+            globalWavHead.initialize((uint)sampUpDown.Value);
             newFreqBtn.Enabled = false;
             filterAudioToolStripMenuItem.Enabled = false; // Cannot use until we have plotted the frequency domain chart
             triangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
@@ -124,9 +124,6 @@ namespace FinalProject_v3
             welchWindowToolStripMenuItem.Enabled = false;  // Cannot use until we have a selection
             stopRec.Enabled = false;
             playButton.Enabled = false;
-            stopPlaying.Enabled = false;
-            volumeBar.Value = 100;
-            volumeValue.Text = volumeBar.Value.ToString();
         }
 
         /*
@@ -523,7 +520,7 @@ namespace FinalProject_v3
         private void hzToolStripMenuItem_Click(object sender, EventArgs e)
         {
             sampUpDown.Value = 22050;
-            globalWavHead.updateSampleRate(sampUpDown.Value);
+            globalWavHead.updateSampleRate((uint)sampUpDown.Value);
         }
 
 		/*
@@ -534,7 +531,7 @@ namespace FinalProject_v3
         private void hzToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             sampUpDown.Value = 44100;
-            globalWavHead.updateSampleRate(sampUpDown.Value);
+            globalWavHead.updateSampleRate((uint)sampUpDown.Value);
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -850,11 +847,12 @@ namespace FinalProject_v3
                     if ((n + wn) < (N - 1)) // if we are less than the frequency data size
                         temp += convolutionData[wn] * orgSignal[n + wn];
                     else
-                       temp += 0;
+                    {
+                        temp += 0;
+                    }
                 }
                 newSignal[n] = temp;
             }
-
             globalFreq = newSignal; // setup the new signal
         }
 
@@ -892,7 +890,7 @@ namespace FinalProject_v3
             // This is where I will filter
             // get the selection of the frequency to filter from the audio file
 
-            newComplex[] filter = creationOfLowpassFilter(globalAmp);
+            newComplex[] filter = creationOfLowpassFilter(globalFreq);
 
             // convolve(WindowTechnique(iDFT(weights)))
 
@@ -1034,7 +1032,6 @@ namespace FinalProject_v3
             recButton.Enabled = false;
             stopRec.Enabled = true;
             playButton.Enabled = false;
-            stopPlaying.Enabled = false;
             handler.Record();
         }
 
@@ -1051,12 +1048,12 @@ namespace FinalProject_v3
             byte[] temp = handler.stop();
             // get the header and set it to the global wav header
             // this should just update the header information
-            wave_file_header temp = handler.getHeader(); // we want to just get the size
+            wave_file_header tempHeader = handler.getHeader(); // we want to just get the size
             											 // of the data recorded
             
             // update subchunksize
             // this will just add to the current size (originally 0)
-            globalWavHead.updateSubChunk2(temp.SubChunk2Size); // Also updates ChunkSize
+            globalWavHead.updateSubChunk2(tempHeader.SubChunk2Size); // Also updates ChunkSize
             // Check if this will fail to write the proper data
 
             short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
@@ -1070,7 +1067,6 @@ namespace FinalProject_v3
             recButton.Enabled = true;
             stopRec.Enabled = false;
             playButton.Enabled = true;
-            stopPlaying.Enabled = false;
             if (handler.recordData != null)
             {
 
@@ -1089,20 +1085,9 @@ namespace FinalProject_v3
         private void playButton_Click(object sender, EventArgs e)
         {
         	// Plays at the current sample rate defined by user control
-            handler.play(globalFreq, globalWavHead.SampleRate,(float)volumeBar.Value / 100);
+            handler.play(globalFreq, globalWavHead.SampleRate);
             recButton.Enabled = true;
             stopRec.Enabled = false;
-            stopPlaying.Enabled = true;
-        }
-
-        /*
-			stopPlaying_Click
-			Purpose:
-				This stops the currently playing audio.
-        */
-        private void stopPlaying_Click(object sender, EventArgs e)
-        {
-            handler.stop_playing();
         }
 
         // Is this needed?
@@ -1115,18 +1100,6 @@ namespace FinalProject_v3
         private void resetButton_Click(object sender, EventArgs e)
         {
             handler.reset();
-        }
-
-        /*
-			volumeBar_Scroll
-			Purpose:
-				This allows the user to control the volume of the audio being
-				currently played. This cannot be adjusted at the time of 
-				playing. Only before or after the play has stopped.
-        */
-        private void volumeBar_Scroll(object sender, ScrollEventArgs e)
-        {
-            volumeValue.Text = volumeBar.Value.ToString();
         }
     }
 }

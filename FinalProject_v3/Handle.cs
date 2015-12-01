@@ -173,6 +173,7 @@ namespace FinalProject_v3
             waveOutReset(hWaveOut);
         }
 
+        /*
         public void play(float volume)
         {
             save = adjustVolume(save, volume);
@@ -196,13 +197,15 @@ namespace FinalProject_v3
             }
             setupOutbuffer();
         }
+        */
 
-        public void play(double[] data, uint samplespersec, float volume)
+        public void play(double[] data, uint samplespersec)
         {
             int[] intAr = data.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
             byte[] waveByteData = intAr.Select(x => Convert.ToInt16(x)).SelectMany(x => BitConverter.GetBytes(x)).ToArray();
 
-            save = adjustVolume(waveByteData, volume);
+            save = waveByteData;
+
             savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
 
             // change this so that we pass in the header information from the file
@@ -215,7 +218,7 @@ namespace FinalProject_v3
             format.wBitPerSample = 8;
             format.nBlockAlign = Convert.ToUInt16(format.nChannels * (format.wBitPerSample >> 3));
             format.nAvgBytesPerSec = format.nSamplesPerSec * format.nBlockAlign;
-            savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
+            savePin = GCHandle.Alloc(waveByteData, GCHandleType.Pinned);
             format.cbSize = 0;
             //WAVE_MAPPER
             int i = Handle.waveOutOpen(ref hWaveOut, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
@@ -317,20 +320,6 @@ namespace FinalProject_v3
             waveInClose(handle);
 
             return buffer;
-        }
-
-        private byte[] adjustVolume(byte[] audioSamples, float volume)
-        {
-            byte[] array = new byte[audioSamples.Length];
-            for (int i = 0; i < array.Length; i++)
-            {
-                short buf1 = audioSamples[i];
-                buf1 = (short)((buf1) << 8);
-                buf1 = (short)(buf1 * volume);
-                // convert back
-                array[i] = (byte)(buf1 >> 8);
-            }
-            return array;
         }
     }
 }
