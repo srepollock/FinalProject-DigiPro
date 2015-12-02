@@ -106,7 +106,7 @@ namespace FinalProject_v3
             header.NumChannels = format.nChannels;
             header.SampleRate = format.nSamplesPerSec;
             header.ByteRate = format.nAvgBytesPerSec;
-            header.BlockAlign = 1;
+            header.BlockAlign = format.nBlockAlign;
             header.BitsPerSample = format.wBitPerSample;
             // chunk size and subchunk2size not set
 
@@ -166,38 +166,6 @@ namespace FinalProject_v3
                 return;
         }
 
-        public void reset()
-        {
-            waveInReset(handle);
-            waveOutReset(hWaveOut);
-        }
-
-        /*
-        public void play(float volume)
-        {
-            save = adjustVolume(save, volume);
-            savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
-            hWaveOut = new IntPtr();
-            waveIn = this.callbackWaveOut;
-            format.wFormatTag = 1; //WAVE_FORMAT_PCM
-            format.nChannels = 1;
-            format.nSamplesPerSec = 11025;
-            format.wBitPerSample = 8;
-            format.nBlockAlign = Convert.ToUInt16(format.nChannels * (format.wBitPerSample >> 3));
-            format.nAvgBytesPerSec = format.nSamplesPerSec * format.nBlockAlign;
-            savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
-            format.cbSize = 0;
-            //WAVE_MAPPER
-            int i = Handle.waveOutOpen(ref hWaveOut, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
-            if (i != 0)
-            {
-                //Error
-                return;
-            }
-            setupOutbuffer();
-        }
-        */
-
         public void play(double[] data, wave_file_header waveHeader)
         {
             int[] intAr = data.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
@@ -218,6 +186,7 @@ namespace FinalProject_v3
             format.wBitPerSample = waveHeader.BitsPerSample;
             format.nBlockAlign = waveHeader.BlockAlign;
             format.nAvgBytesPerSec = waveHeader.ByteRate;
+
             savePin = GCHandle.Alloc(waveByteData, GCHandleType.Pinned);
             format.cbSize = 0;
 
@@ -239,15 +208,18 @@ namespace FinalProject_v3
 
         private void setupWaveIn()
         {
+            save = null;
             handle = new IntPtr();
             waveIn = this.callbackWaveIn;
+
             format.wFormatTag = 1; //WAVE_FORMAT_PCM
             format.nChannels = 1;
-            format.nSamplesPerSec = 22050;
-            format.wBitPerSample = 8;
+            format.nSamplesPerSec = 11025;
+            format.wBitPerSample = 16;
             format.nBlockAlign = (ushort)(format.wBitPerSample / 8);
             format.nAvgBytesPerSec = (format.nSamplesPerSec * format.nBlockAlign);
-            bufferLength = (22050 / 800);
+
+            bufferLength = format.nSamplesPerSec * 2;
             format.cbSize = 0;
 
             buffer = new byte[bufferLength];
@@ -273,17 +245,19 @@ namespace FinalProject_v3
             {
                 if (save != null)
                 {
-                    //List<byte> temp = save.ToList();
-                    byte[] temp = new byte[bufferLength + save.Length];
-                    Array.Copy(save, temp, bufferLength);
-                    Array.Copy(buffer, 0, temp, save.Length, bufferLength);
-                    bufferLength += (uint)save.Length;
-                    save = temp;
+                    List<byte> temp = save.ToList(); // easier to add onto a list
+                    temp.AddRange(buffer.ToList());
+                    save = temp.ToArray();
                 }
                 else
+                {
                     save = buffer;
+                }
 
                 savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
+                buffer = new byte[bufferLength]; // sets up a clean buffer
+                bufferPin = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+
                 int i = waveInUnprepareHeader(deviceHandle, ref header, Convert.ToUInt32(Marshal.SizeOf(header)));
                 if (i != 0) //MMSYSERR_NOERROR
                 {
@@ -300,8 +274,8 @@ namespace FinalProject_v3
             {
                 List<byte> temp = save.ToList();
                 temp.AddRange(buffer.ToList());
-                temp.RemoveAll(delegate(byte a) { return a == 0; });
                 save = temp.ToArray();
+
                 savePin = GCHandle.Alloc(save, GCHandleType.Pinned);
                 int i = waveInUnprepareHeader(deviceHandle, ref header, Convert.ToUInt32(Marshal.SizeOf(header)));
                 if (i != 0) //MMSYSERR_NOERROR
@@ -315,17 +289,13 @@ namespace FinalProject_v3
 
         public byte[] stop()
         {
-            List<byte> temp = buffer.ToList();
-            temp.RemoveAll(delegate(byte a) { return a == 0; });
-
-            buffer = temp.ToArray();
-            bufferPin.Free();
-            bufferPin = GCHandle.Alloc(buffer, GCHandleType.Pinned);
             waveInStop(handle);
-            waveInReset(handle);
             waveInClose(handle);
 
-            return buffer;
+            bufferPin.Free();
+            savePin.Free();
+
+            return save;
         }
     }
 }

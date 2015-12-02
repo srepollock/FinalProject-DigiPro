@@ -165,6 +165,7 @@ namespace FinalProject_v3
             { shortAr[i] = BitConverter.ToInt16(byteArray, i * globalWavHead.BlockAlign); }
             
             outputArray = shortAr.Select(x => (double)(x)).ToArray();
+
             reader.Close();
 
             return outputArray;
@@ -217,6 +218,7 @@ namespace FinalProject_v3
             int[] intAr = globalFreq.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
             // convert to bytes
             byte[] waveByteData = intAr.Select(x => Convert.ToInt16(x)).SelectMany(x => BitConverter.GetBytes(x)).ToArray();
+
             fwrite(wr, waveByteData.Length, waveByteData);
             f.Close();
             globalFilePath = fileName;
@@ -532,6 +534,17 @@ namespace FinalProject_v3
         private void hzToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             sampUpDown.Value = 44100;
+            globalWavHead.updateSampleRate((uint)sampUpDown.Value);
+        }
+
+        /*
+			hzToolStripMenuItem2_Click
+			Purpose:
+				Sets the sample rate of the data to be used as playing;
+        */
+        private void hzToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            sampUpDown.Value = 11025;
             globalWavHead.updateSampleRate((uint)sampUpDown.Value);
         }
 
@@ -1050,31 +1063,24 @@ namespace FinalProject_v3
             // get the header and set it to the global wav header
             // this should just update the header information
             wave_file_header tempHeader = handler.getHeader(); // we want to just get the size
-                                                                 // of the data recorded
-            //globalWavHead = handler.getHeader();
-            // update subchunksize
-            // this will just add to the current size (originally 0)
-            globalWavHead.updateSubChunk2(temp.Length); // Also updates ChunkSize
-            globalWavHead.BlockAlign = 2;
-            // Check if this will fail to write the proper data
+                                                               // of the data recorded
+                                                               // I want 1 byte to 1 double
 
-            short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
-            // take temp and convert it into a double array (ie: globalFreq)
-            for (int i = 0; i < (globalWavHead.SubChunk2Size / globalWavHead.BlockAlign); i++)
+            globalWavHead.updateSampleRate(tempHeader.SampleRate);
+
+            short[] shortAr = new short[temp.Length / globalWavHead.BlockAlign];
+            for (int i = 0; i < (temp.Length / globalWavHead.BlockAlign); i++)
             { shortAr[i] = BitConverter.ToInt16(temp, i * globalWavHead.BlockAlign); }
-            globalFreq = shortAr.Select(x => (double)(x)).ToArray();
+
+            globalFreq = shortAr.Select(x => (double)(x)).ToArray();            
+            
+            globalWavHead.updateSubChunk2(globalFreq.Length);
 
             plotFreqWaveChart(globalFreq);
 
             recButton.Enabled = true;
             stopRec.Enabled = false;
             playButton.Enabled = true;
-            if (handler.recordData != null)
-            {
-
-            }
-            else
-                Console.Write("Record data null");
         }
 
         /*
@@ -1090,18 +1096,6 @@ namespace FinalProject_v3
             handler.play(globalFreq, globalWavHead);
             recButton.Enabled = true;
             stopRec.Enabled = false;
-        }
-
-        // Is this needed?
-        /*
-			resetButton_Click
-			Purpose:
-				Passes to the handler object to reset the currently recorded 
-				data.
-        */
-        private void resetButton_Click(object sender, EventArgs e)
-        {
-            handler.reset();
         }
     }
 }
