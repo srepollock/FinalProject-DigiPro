@@ -132,7 +132,7 @@ namespace FinalProject_v3
             NumChannels = 1; // mono
             SampleRate = (uint)sampUpDown; // samples per second
             BitsPerSample = 16; // or 8
-            ByteRate = (uint)(SampleRate * (BitsPerSample / 8)); // bytes per second
+            ByteRate = (uint)(SampleRate * (BitsPerSample / 4)); // bytes per second
             BlockAlign = (ushort)(BitsPerSample / 8);
             SubChunk2ID = mmioStringToFOURCC("data", 0);
             SubChunk2Size = (int)(sampUpDown * BlockAlign);

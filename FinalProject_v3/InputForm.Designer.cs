@@ -57,6 +57,7 @@
             this.filterAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highPassFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.hzToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hzToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +88,6 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.clearFreqButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
-            this.hzToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
@@ -289,6 +289,7 @@
             0,
             0});
             this.lengthOfData.Name = "lengthOfData";
+            this.lengthOfData.ReadOnly = true;
             this.lengthOfData.Size = new System.Drawing.Size(352, 29);
             this.lengthOfData.TabIndex = 7;
             this.lengthOfData.Value = new decimal(new int[] {
@@ -321,7 +322,7 @@
             this.sampUpDown.Size = new System.Drawing.Size(352, 29);
             this.sampUpDown.TabIndex = 5;
             this.sampUpDown.Value = new decimal(new int[] {
-            11025,
+            22050,
             0,
             0,
             0});
@@ -409,6 +410,13 @@
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(243, 6);
+            // 
+            // hzToolStripMenuItem2
+            // 
+            this.hzToolStripMenuItem2.Name = "hzToolStripMenuItem2";
+            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(246, 34);
+            this.hzToolStripMenuItem2.Text = "11025Hz";
+            this.hzToolStripMenuItem2.Click += new System.EventHandler(this.hzToolStripMenuItem2_Click);
             // 
             // hzToolStripMenuItem
             // 
@@ -721,13 +729,6 @@
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.inputButton_Click);
-            // 
-            // hzToolStripMenuItem2
-            // 
-            this.hzToolStripMenuItem2.Name = "hzToolStripMenuItem2";
-            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(246, 34);
-            this.hzToolStripMenuItem2.Text = "11025Hz";
-            this.hzToolStripMenuItem2.Click += new System.EventHandler(this.hzToolStripMenuItem2_Click);
             // 
             // InputForm
             // 

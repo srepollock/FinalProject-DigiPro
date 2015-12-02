@@ -189,6 +189,7 @@ namespace FinalProject_v3
             ampUpDown.Value = 0; // We don't know what the amplitude is yet
             freqUpDown.Value = 0; // We don't know the frequency yet
             sampUpDown.Value = globalWavHead.SampleRate; // we know what the sample rate of the file is already
+            lengthOfData.Value = globalWavHead.SubChunk2Size;
             HFTChart.Series[0].Points.Clear(); // clears the data of the amplitude chart
             freqWaveChart.Series[0].Points.Clear(); // clears the data in the wave form chart
             // Plots the wave data
@@ -212,7 +213,10 @@ namespace FinalProject_v3
             BinaryWriter wr = new BinaryWriter(f);
             // initialize new wav head
             // freq, samp
-            globalWavHead.initialize((decimal)globalFreq.Length);
+
+            //globalWavHead.updateSubChunk2(globalFreq.Length);
+            //globalWavHead.SubChunk2Size = globalFreq.Length;
+            //globalWavHead.ChunkSize = globalWavHead.SubChunk2Size + 44;
             fwrite(wr, globalWavHead);
             // convert to int
             int[] intAr = globalFreq.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
@@ -464,8 +468,8 @@ namespace FinalProject_v3
             globalWindowedSelection.setEnd(globalChartSelection.getEnd());
 
             globalWindowing.Triangle(globalFreq, selection, start);
-            globalAmp = DFT.newDFTFunc(globalFreq, selection);
-            //globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
+            //globalAmp = DFT.newDFTFunc(globalFreq, selection);
+            globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
 
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
@@ -506,8 +510,8 @@ namespace FinalProject_v3
             {
                 globalWindowing.Welch(copiedFreq, selection, start);
             }
-            globalAmp = DFT.newDFTFunc(copiedFreq, selection);
-            //globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
+            //globalAmp = DFT.newDFTFunc(copiedFreq, selection);
+            globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
 
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
@@ -1072,9 +1076,9 @@ namespace FinalProject_v3
             for (int i = 0; i < (temp.Length / globalWavHead.BlockAlign); i++)
             { shortAr[i] = BitConverter.ToInt16(temp, i * globalWavHead.BlockAlign); }
 
-            globalFreq = shortAr.Select(x => (double)(x)).ToArray();            
-            
-            globalWavHead.updateSubChunk2(globalFreq.Length);
+            globalFreq = shortAr.Select(x => (double)(x)).ToArray();
+
+            globalWavHead.updateSubChunk2(globalFreq.Length * 2);
 
             plotFreqWaveChart(globalFreq);
 

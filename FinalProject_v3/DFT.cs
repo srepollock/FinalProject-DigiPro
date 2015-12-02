@@ -15,6 +15,7 @@ namespace FinalProject_v3
     */
     class DFT
     {
+        private double[] threadAmplitude;
 
         /* This returns an arry of complex numbers. This is not the amplitude of the wave. It must be run through Pythagorus. */
         /*
@@ -114,18 +115,19 @@ namespace FinalProject_v3
             return s;
         }
 
-        /*
         // Threading function. This can take in the data, or just the object
-        private double[] runningDFT(double[] s, int n, int threadNum, int maxThreads)
+        private void runningDFT(double[] s, int n, int threadNum, int maxThreads)
         {
-            double[] amplitude = new double[n];
-
             double temp;
             newComplex cmplx;
             double re; //real
             double im; //imaginary
 
-            int startP = ((n / maxThreads) * (threadNum)), endP = ((n / maxThreads) * (threadNum));
+            int startP = ((n / maxThreads) * (threadNum - 1)), endP = ((n / maxThreads) * (threadNum));
+            if(startP < 0)
+            {
+                startP = 0;
+            }
             if (threadNum == maxThreads - 1)
             {
                 endP = n;
@@ -144,11 +146,60 @@ namespace FinalProject_v3
                 temp = (cmplx.getReal() * cmplx.getReal()) + (cmplx.getImaginary() * cmplx.getImaginary());
                 temp = Math.Sqrt(temp);
 
-                amplitude[f] = temp; // These are the points we are going to plot.
+                threadAmplitude[f] = temp; // These are the points we are going to plot.
             }
-            return amplitude;
         }
-        */
-        
+
+        public double[] threadDFTFunc(double[] s, int n, int threadNum)
+        {
+            Thread[] tArray = new Thread[threadNum];
+            double[][] amp = new double[threadNum][];
+            threadAmplitude = new double[n];
+
+            for (int t = 0; t < threadNum; t++)
+            {
+                tArray[t] = new Thread(() => { runningDFT(s, n, t, threadNum); });
+                tArray[t].Start();
+            }
+
+            foreach (Thread th in tArray)
+                th.Join();
+
+            /*
+            tArray[0].Join();
+            if (tArray.Length == 2)
+                tArray[1].Join();
+            else if (tArray.Length == 3)
+            {
+                tArray[1].Join();
+                tArray[2].Join();
+            }
+            else if (tArray.Length == 4)
+            {
+                tArray[1].Join();
+                tArray[2].Join();
+                tArray[3].Join();
+            }
+            */
+
+            /*
+            int arsz = (n / threadNum), lastArsz = 0;
+            int pos = 0;
+            double[] temp;
+            if ((arsz * threadNum) != n)
+                lastArsz = arsz + 1;
+            for(int j = 0; j < threadNum; j++)
+            {
+                temp = amp[j];
+                pos = (arsz * j);
+                if ((threadNum - 1) == j)
+                    Array.Copy(temp, 0, amplitude, pos, lastArsz);
+                else
+                    Array.Copy(temp, 0, amplitude, pos, arsz);
+            }
+            */
+
+            return threadAmplitude;
+        }
     }
 }

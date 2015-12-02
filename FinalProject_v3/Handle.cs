@@ -214,7 +214,7 @@ namespace FinalProject_v3
 
             format.wFormatTag = 1; //WAVE_FORMAT_PCM
             format.nChannels = 1;
-            format.nSamplesPerSec = 11025;
+            format.nSamplesPerSec = 22050;
             format.wBitPerSample = 16;
             format.nBlockAlign = (ushort)(format.wBitPerSample / 8);
             format.nAvgBytesPerSec = (format.nSamplesPerSec * format.nBlockAlign);
