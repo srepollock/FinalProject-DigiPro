@@ -16,6 +16,7 @@ namespace FinalProject_v3
     class DFT
     {
         private double[] threadAmplitude;
+        private double[] threadOne, threadTwo, threadThree, threadFour;
 
         /* This returns an arry of complex numbers. This is not the amplitude of the wave. It must be run through Pythagorus. */
         /*
@@ -124,16 +125,19 @@ namespace FinalProject_v3
             double im; //imaginary
 
             int startP = ((n / maxThreads) * (threadNum - 1)), endP = ((n / maxThreads) * (threadNum));
+            /*
             if(startP < 0)
             {
                 startP = 0;
             }
+            */
             if (threadNum == maxThreads - 1)
             {
                 endP = n;
             }
 
-            for (int f = startP; f < endP; f++) // run through first half
+            // for (int f = startP; f < endP; f++) // run through first half // old
+            for (int f = 0; f < n / maxThreads; f++) // run through first half
             {
                 re = 0;
                 im = 0;
@@ -146,7 +150,23 @@ namespace FinalProject_v3
                 temp = (cmplx.getReal() * cmplx.getReal()) + (cmplx.getImaginary() * cmplx.getImaginary());
                 temp = Math.Sqrt(temp);
 
-                threadAmplitude[f] = temp; // These are the points we are going to plot.
+                switch (threadNum - 1)
+                {
+                    case 1:
+                        threadOne[f] = temp;
+                        break;
+                    case 2:
+                        threadTwo[f] = temp;
+                        break;
+                    case 3:
+                        threadThree[f] = temp;
+                        break;
+                    case 4:
+                        threadFour[f] = temp;
+                        break;
+                }
+
+                //threadAmplitude[f] = temp; // These are the points we are going to plot.
             }
         }
 
@@ -163,6 +183,28 @@ namespace FinalProject_v3
             double[][] amp = new double[threadNum][];
             threadAmplitude = new double[n];
 
+            switch (threadNum)
+            {
+                case 1:
+                    threadOne = new double[n];
+                    break;
+                case 2:
+                    threadOne = new double[n / threadNum];
+                    threadTwo = new double[n / threadNum];
+                    break;
+                case 3:
+                    threadOne = new double[n / threadNum];
+                    threadTwo = new double[n / threadNum];
+                    threadThree = new double[n / threadNum];
+                    break;
+                case 4:
+                    threadOne = new double[n / threadNum];
+                    threadTwo = new double[n / threadNum];
+                    threadThree = new double[n / threadNum];
+                    threadFour = new double[n / threadNum];
+                    break;
+            }
+
             for (int t = 0; t < threadNum; t++)
             {
                 tArray[t] = new Thread(() => { runningDFT(s, n, t, threadNum); });
@@ -171,6 +213,24 @@ namespace FinalProject_v3
 
             foreach (Thread th in tArray)
                 th.Join();
+
+            // Add all the new data to the total amplitude
+            switch (threadNum)
+            {
+                case 1:
+                    Array.Copy(threadOne, threadAmplitude, threadOne.Length);
+                    break;
+                case 2:
+                    Array.Copy(threadOne, 0, threadAmplitude, 0, threadOne.Length);
+                    Array.Copy(threadTwo, 0, threadAmplitude, (threadOne.Length + 1), threadTwo.Length);
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+            }
 
             return threadAmplitude;
         }
