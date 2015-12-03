@@ -150,6 +150,13 @@ namespace FinalProject_v3
             }
         }
 
+        /*
+            threadDFTFunc
+            Purpose:
+                
+            Parameters:
+                
+        */
         public double[] threadDFTFunc(double[] s, int n, int threadNum)
         {
             Thread[] tArray = new Thread[threadNum];
@@ -164,40 +171,6 @@ namespace FinalProject_v3
 
             foreach (Thread th in tArray)
                 th.Join();
-
-            /*
-            tArray[0].Join();
-            if (tArray.Length == 2)
-                tArray[1].Join();
-            else if (tArray.Length == 3)
-            {
-                tArray[1].Join();
-                tArray[2].Join();
-            }
-            else if (tArray.Length == 4)
-            {
-                tArray[1].Join();
-                tArray[2].Join();
-                tArray[3].Join();
-            }
-            */
-
-            /*
-            int arsz = (n / threadNum), lastArsz = 0;
-            int pos = 0;
-            double[] temp;
-            if ((arsz * threadNum) != n)
-                lastArsz = arsz + 1;
-            for(int j = 0; j < threadNum; j++)
-            {
-                temp = amp[j];
-                pos = (arsz * j);
-                if ((threadNum - 1) == j)
-                    Array.Copy(temp, 0, amplitude, pos, lastArsz);
-                else
-                    Array.Copy(temp, 0, amplitude, pos, arsz);
-            }
-            */
 
             return threadAmplitude;
         }
