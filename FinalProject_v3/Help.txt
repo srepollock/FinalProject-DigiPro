@@ -44,7 +44,14 @@ Appendix:
 ---------
 (I):
 --
-Ctrl-N:		New File
-Ctrl-O:		Open File
-Ctrl-S:		Save File
+Ctrl-N:			New File
+Ctrl-O:			Open File
+Ctrl-S:			Save File
 Ctrl-Shift-S:	Save As File
+Ctrl-C:			Copy
+Ctrl-X:			Cut
+Ctrl-V:			Paste
+Ctrl-Shift-T:	Plot Selected Frequency in a Triangle Window
+Ctrl-Shift-R:	Plot Selected Frequency in a Rectangle Window
+Ctrl-Shift-W:	Plot Selected Frequency in a Welch Window
+Ctrl-Shift-Q:	Quit the program

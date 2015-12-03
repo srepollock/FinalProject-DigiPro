@@ -55,7 +55,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.highPassFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.hzToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -382,7 +381,6 @@
             // 
             this.audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterAudioToolStripMenuItem,
-            this.highPassFilterToolStripMenuItem,
             this.toolStripMenuItem1,
             this.hzToolStripMenuItem2,
             this.hzToolStripMenuItem,
@@ -395,40 +393,33 @@
             // filterAudioToolStripMenuItem
             // 
             this.filterAudioToolStripMenuItem.Name = "filterAudioToolStripMenuItem";
-            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.filterAudioToolStripMenuItem.Text = "Low Pass Filter";
             this.filterAudioToolStripMenuItem.Click += new System.EventHandler(this.filterAudioToolStripMenuItem_Click);
-            // 
-            // highPassFilterToolStripMenuItem
-            // 
-            this.highPassFilterToolStripMenuItem.Name = "highPassFilterToolStripMenuItem";
-            this.highPassFilterToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
-            this.highPassFilterToolStripMenuItem.Text = "High Pass Filter";
-            this.highPassFilterToolStripMenuItem.Click += new System.EventHandler(this.highPassFilterToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(243, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
             // 
             // hzToolStripMenuItem2
             // 
             this.hzToolStripMenuItem2.Name = "hzToolStripMenuItem2";
-            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(246, 34);
+            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(240, 34);
             this.hzToolStripMenuItem2.Text = "11025Hz";
             this.hzToolStripMenuItem2.Click += new System.EventHandler(this.hzToolStripMenuItem2_Click);
             // 
             // hzToolStripMenuItem
             // 
             this.hzToolStripMenuItem.Name = "hzToolStripMenuItem";
-            this.hzToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+            this.hzToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.hzToolStripMenuItem.Text = "22050Hz";
             this.hzToolStripMenuItem.Click += new System.EventHandler(this.hzToolStripMenuItem_Click);
             // 
             // hzToolStripMenuItem1
             // 
             this.hzToolStripMenuItem1.Name = "hzToolStripMenuItem1";
-            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(246, 34);
+            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(240, 34);
             this.hzToolStripMenuItem1.Text = "44100Hz";
             this.hzToolStripMenuItem1.Click += new System.EventHandler(this.hzToolStripMenuItem1_Click);
             // 
@@ -447,14 +438,14 @@
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(160, 34);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(160, 34);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
             // 
@@ -473,28 +464,34 @@
             // triangleWindowToolStripMenuItem
             // 
             this.triangleWindowToolStripMenuItem.Name = "triangleWindowToolStripMenuItem";
-            this.triangleWindowToolStripMenuItem.Size = new System.Drawing.Size(278, 34);
+            this.triangleWindowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.T)));
+            this.triangleWindowToolStripMenuItem.Size = new System.Drawing.Size(406, 34);
             this.triangleWindowToolStripMenuItem.Text = "Triangle Window";
             this.triangleWindowToolStripMenuItem.Click += new System.EventHandler(this.triangleWindowToolStripMenuItem_Click);
             // 
             // rectangleWindowToolStripMenuItem
             // 
             this.rectangleWindowToolStripMenuItem.Name = "rectangleWindowToolStripMenuItem";
-            this.rectangleWindowToolStripMenuItem.Size = new System.Drawing.Size(278, 34);
+            this.rectangleWindowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.R)));
+            this.rectangleWindowToolStripMenuItem.Size = new System.Drawing.Size(406, 34);
             this.rectangleWindowToolStripMenuItem.Text = "Rectangle Window";
             this.rectangleWindowToolStripMenuItem.Click += new System.EventHandler(this.rectangleWindowToolStripMenuItem_Click);
             // 
             // welchWindowToolStripMenuItem
             // 
             this.welchWindowToolStripMenuItem.Name = "welchWindowToolStripMenuItem";
-            this.welchWindowToolStripMenuItem.Size = new System.Drawing.Size(278, 34);
+            this.welchWindowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.W)));
+            this.welchWindowToolStripMenuItem.Size = new System.Drawing.Size(406, 34);
             this.welchWindowToolStripMenuItem.Text = "Welch Window";
             this.welchWindowToolStripMenuItem.Click += new System.EventHandler(this.welchWindowToolStripMenuItem_Click);
             // 
             // plotFrequencyToolStripMenuItem
             // 
             this.plotFrequencyToolStripMenuItem.Name = "plotFrequencyToolStripMenuItem";
-            this.plotFrequencyToolStripMenuItem.Size = new System.Drawing.Size(278, 34);
+            this.plotFrequencyToolStripMenuItem.Size = new System.Drawing.Size(406, 34);
             this.plotFrequencyToolStripMenuItem.Text = "Plot Signal";
             this.plotFrequencyToolStripMenuItem.Click += new System.EventHandler(this.plotFrequencyToolStripMenuItem_Click);
             // 
@@ -524,7 +521,7 @@
             this.threads1MenuButton.CheckOnClick = true;
             this.threads1MenuButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.threads1MenuButton.Name = "threads1MenuButton";
-            this.threads1MenuButton.Size = new System.Drawing.Size(116, 34);
+            this.threads1MenuButton.Size = new System.Drawing.Size(240, 34);
             this.threads1MenuButton.Text = "1";
             this.threads1MenuButton.Click += new System.EventHandler(this.threads1MenuButton_Click);
             // 
@@ -532,7 +529,7 @@
             // 
             this.threads2MenuButton.CheckOnClick = true;
             this.threads2MenuButton.Name = "threads2MenuButton";
-            this.threads2MenuButton.Size = new System.Drawing.Size(116, 34);
+            this.threads2MenuButton.Size = new System.Drawing.Size(240, 34);
             this.threads2MenuButton.Text = "2";
             this.threads2MenuButton.Click += new System.EventHandler(this.threads2MenuButton_Click);
             // 
@@ -540,7 +537,7 @@
             // 
             this.threads3MenuButton.CheckOnClick = true;
             this.threads3MenuButton.Name = "threads3MenuButton";
-            this.threads3MenuButton.Size = new System.Drawing.Size(116, 34);
+            this.threads3MenuButton.Size = new System.Drawing.Size(240, 34);
             this.threads3MenuButton.Text = "3";
             this.threads3MenuButton.Click += new System.EventHandler(this.threads3MenuButton_Click);
             // 
@@ -548,7 +545,7 @@
             // 
             this.threads4MenuButton.CheckOnClick = true;
             this.threads4MenuButton.Name = "threads4MenuButton";
-            this.threads4MenuButton.Size = new System.Drawing.Size(116, 34);
+            this.threads4MenuButton.Size = new System.Drawing.Size(240, 34);
             this.threads4MenuButton.Text = "4";
             this.threads4MenuButton.Click += new System.EventHandler(this.threads4MenuButton_Click);
             // 
@@ -802,7 +799,6 @@
         private System.Windows.Forms.Button newFreqBtn;
         private System.Windows.Forms.Label ampUpDownLabel;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.ToolStripMenuItem highPassFilterToolStripMenuItem;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ToolStripMenuItem rectangleWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem welchWindowToolStripMenuItem;

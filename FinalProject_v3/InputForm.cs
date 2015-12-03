@@ -351,6 +351,11 @@ namespace FinalProject_v3
         }
 
         /*
+            !!--All plots take the longest time. This is noticable the most
+            time when called on large arrays.--!!
+        */
+
+        /*
             plotFreqWaveChart
             Purpose:
                 Takes a double array to then plot the data to the time domain
@@ -608,7 +613,7 @@ namespace FinalProject_v3
                 globalChartSelection.setStart(dataEnd);
                 globalChartSelection.setEnd(dataStart);
             }
-            if((dataEnd - dataStart) > 0) // If we have selected more that 1
+            if((globalChartSelection.getEnd() - globalChartSelection.getStart()) > 0) // If we have selected more that 1
             {
                 triangleWindowToolStripMenuItem.Enabled = true;
                 rectangleWindowToolStripMenuItem.Enabled = true;
@@ -633,6 +638,10 @@ namespace FinalProject_v3
         */
         public double[] FreqWaveChart_Copy()
         {
+            if (globalChartSelection.getStart() == -1)
+            {
+                return globalFreq;
+            }
             double[] copyArray = new double[(int)(globalChartSelection.getEnd() - globalChartSelection.getStart())];
             for (int i = 0; i < (int)(globalChartSelection.getEnd() - globalChartSelection.getStart()); i++)
             { copyArray[i] = globalFreq[(int)globalChartSelection.getStart() + i]; }
@@ -693,28 +702,17 @@ namespace FinalProject_v3
         */
         public double[] FreqWaveChart_Cut()
         {
-            double[] copyArray = new double[(int)(globalChartSelection.getEnd() - globalChartSelection.getStart())];
-            copyArray = FreqWaveChart_Copy();
-            // delete the copy points
-            double[] temp = new double[globalFreq.Length - copyArray.Length];
-            for(int i = 0, l = 0; i < globalFreq.Length; i++, l++)
+            if (globalChartSelection.getStart() == -1)
             {
-                if(i == globalChartSelection.getStart())
-                {
-                    int tempI = i;
-                    for(int j = tempI; j < globalChartSelection.getEnd() + tempI; i++, j++) {  }
-                    i--;
-                }
-                else
-                {
-                    temp[l] = globalFreq[i];
-                }
+                return globalFreq;
             }
-            globalFreq = temp;
-            plotFreqWaveChart(globalFreq);
-            //plotHFTWaveChart();
-
-            return copyArray;
+            List<double> copiedData = new List<double>(FreqWaveChart_Copy()); // this is the copied data
+            List<double> list = new List<double>(globalFreq);
+            // go to the position of such to remove
+            list.RemoveRange((int)globalChartSelection.getStart(), (int)(globalChartSelection.getEnd() - globalChartSelection.getStart()));
+            globalFreq = list.ToArray();
+            plotFreqWaveChart(globalFreq); // this takes the longest time
+            return copiedData.ToArray();
         }
 
         /*

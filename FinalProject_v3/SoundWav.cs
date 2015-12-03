@@ -15,6 +15,7 @@ namespace FinalProject_v3
         public SoundWav()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void newInputWindowToolStripMenuItem_Click(object sender, EventArgs e)
