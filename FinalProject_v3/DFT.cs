@@ -113,7 +113,21 @@ namespace FinalProject_v3
             return s;
         }
 
-        // Threading function. This can take in the data, or just the object
+        /*
+            runningDFT
+            Purpose:
+                This is the DFT function that will be used with threads. This
+                will take in the number of threads specified by the user, and
+                run DFT for that selection on the whole array. This will then 
+                be set to a speccific array for that thread number and used 
+                back in the threadDFT funciton to copy the array to the 
+                array that will be passed back to the windows form.
+            Parameters:
+                s:          Wave data that will be processed
+                n:          Length of the wave to be processed
+                threadNum:  Current thread being run
+                maxThreads: Number of threads specified by the user
+        */
         private void runningDFT(double[] s, int n, int threadNum, int maxThreads)
         {
             int thNum = threadNum;
@@ -154,9 +168,14 @@ namespace FinalProject_v3
             threadDFTFunc
             Purpose:
                 This function takes in the frequency we wish to DFT, the size 
-                of the frequency data, and the number of threads selected.
+                of the frequency data, and the number of threads selected. It
+                will run the number of threads specified by the user. Each will
+                copy their DFT'ed data to a personal array that will then be
+                copied into an array to be given back to the Form.
             Parameters:
-                
+                s:          Wave data to be processed
+                n:          Length of the wave data to be processed
+                threadNum:  Number of threads to be run
         */
         public double[] threadDFTFunc(double[] s, int n, int threadNum)
         {

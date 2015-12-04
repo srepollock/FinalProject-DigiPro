@@ -64,7 +64,7 @@ namespace FinalProject_v3
 			Class object to handle the audio recording and playing for the 
 			file.
         */
-        Handle handler = new Handle();
+        Recording handler = new Recording();
 
         // Copy and paste selection points
         /*
@@ -352,6 +352,7 @@ namespace FinalProject_v3
             globalFreq = new double[1];
             plotFreqWaveChart(globalFreq);
             lengthOfData.Value = globalFreq.Length;
+            freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*
@@ -373,6 +374,7 @@ namespace FinalProject_v3
             for (int m = 0; m < freq.Length; m++)
             { freqWaveChart.Series[0].Points.AddXY(m, freq[m]); }
             lengthOfData.Value = freq.Length;
+            freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*
@@ -389,6 +391,7 @@ namespace FinalProject_v3
             for (int m = 0; m < freq.Length; m++)
             { freqWaveChart.Series[0].Points.AddXY(m, freq[m]); }
             lengthOfData.Value = freq.Length;
+            freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*
@@ -414,6 +417,7 @@ namespace FinalProject_v3
                 freqWaveChart.Series[0].Points.AddXY(m, globalFreq[m]);
             }
             lengthOfData.Value = freq.Length;
+            freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*
@@ -457,6 +461,7 @@ namespace FinalProject_v3
             globalFreq = temp;
             lengthOfData.Value = globalFreq.Length;
             this.Text += "*";
+            freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*
@@ -485,6 +490,7 @@ namespace FinalProject_v3
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
             filterAudioToolStripMenuItem.Enabled = true;
+            HFTChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*
@@ -527,6 +533,7 @@ namespace FinalProject_v3
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
             filterAudioToolStripMenuItem.Enabled = true;
+            HFTChart.ChartAreas[0].AxisX.Minimum = 0;
         }
 
         /*

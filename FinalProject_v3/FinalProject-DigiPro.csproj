@@ -85,7 +85,7 @@
   <ItemGroup>
     <Compile Include="DFT.cs" />
     <Compile Include="globalChartSelect.cs" />
-    <Compile Include="Handle.cs" />
+    <Compile Include="Recording.cs" />
     <Compile Include="newComplex.cs" />
     <Compile Include="openFileTestForm.cs">
       <SubType>Form</SubType>
