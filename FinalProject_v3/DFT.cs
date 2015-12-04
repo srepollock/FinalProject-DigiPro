@@ -209,8 +209,8 @@ namespace FinalProject_v3
                     tArray[1].Start();
                     tArray[2] = new Thread(() => { runningDFT(s, n, 2, threadNum); });
                     tArray[2].Start();
-                    tArray[4] = new Thread(() => { runningDFT(s, n, 4, threadNum); });
-                    tArray[4].Start();
+                    tArray[3] = new Thread(() => { runningDFT(s, n, 3, threadNum); });
+                    tArray[3].Start();
                     break;
             }
 

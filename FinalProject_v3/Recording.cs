@@ -113,121 +113,90 @@ namespace FinalProject_v3
             waveInOpen
             Purpose:
                 Function to open the wave to start the recording for the call.
-            Parameters:
-                t:
-                id:
-                pwfx:
-                dwCallback:
-                dwInstance:
-                fdwOpen:
         */
         [DllImport("winmm.dll", EntryPoint = "waveInOpen", SetLastError = true)]
         public static extern int waveInOpen(ref IntPtr t, uint id, ref WAVEFORMAT pwfx, IntPtr dwCallback, int dwInstance, int fdwOpen);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to clear the header information.
         */
         [DllImport("winmm.dll", EntryPoint = "waveInUnprepareHeader", SetLastError = true)]
         public static extern int waveInUnprepareHeader(IntPtr hwi, ref WAVEHDR pwh, uint cbwh);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to stop the recording.   
         */
         [DllImport("winmm.dll", EntryPoint = "waveInStop", SetLastError = true)]
         static extern uint waveInStop(IntPtr hwi);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to close the wave recording.
         */
         [DllImport("winmm.dll", EntryPoint = "waveInClose", SetLastError = true)]
         public static extern uint waveInClose(IntPtr hwnd);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to reset the data.
         */
         [DllImport("winmm.dll", EntryPoint = "waveInReset", SetLastError = true)]
         static extern uint waveInReset(IntPtr hwi);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to setup the wave output.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutOpen", SetLastError = true)]
         public static extern int waveOutOpen(ref IntPtr t, uint id, ref WAVEFORMAT pwfx, IntPtr dwCallback, int dwInstance, int fdwOpen);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to setup the wave output header information.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutPrepareHeader", SetLastError = true)]
         public static extern int waveOutPrepareHeader(IntPtr hWaveIn, ref WAVEHDR lpWaveHdr, uint Size);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to start outputting the data.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutWrite", SetLastError = true)]
         public static extern int waveOutWrite(IntPtr hWaveIn, ref WAVEHDR lpWaveHdr, uint Size);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Funciton to clear the wave output header.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutUnprepareHeader", SetLastError = true)]
         public static extern int waveOutUnprepareHeader(IntPtr hwi, ref WAVEHDR pwh, uint cbwh);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to close the wave output.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutClose", SetLastError = true)]
         public static extern uint waveOutClose(IntPtr hwnd);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to start the wave output.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutStart", SetLastError = true)]
         public static extern int waveOutStart(IntPtr hWaveIn);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to stop the wave output.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutStop", SetLastError = true)]
         static extern uint waveOutStop(IntPtr hwi);
         /*
             waveInUnprepareHeader
             Purpose:
-                
-            Parameters:
-                
+                Function to reset the wave output information.
         */
         [DllImport("winmm.dll", EntryPoint = "waveOutReset", SetLastError = true)]
         static extern uint waveOutReset(IntPtr hwi);
@@ -436,9 +405,19 @@ namespace FinalProject_v3
         }
 
         /*
-            
+            callbackWaveOut
+            Purpose:
+                Callback function to C to adding to the wave.
+            Parameters:
+                deviceHandle:   Handle to the recording device
+                message:        Message that is being sent to us. Determines 
+                                recording or not
+                hInstance:      Handle to the window
+                wavehdr:        Reference to the header information for the 
+                                wave
+                reserved2:      Pointer to data
         */
-        private void callbackWaveOut(IntPtr deviceHandle, uint message, IntPtr instance, ref WAVEHDR wavehdr, IntPtr reserved2)
+        private void callbackWaveOut(IntPtr deviceHandle, uint message, IntPtr hInstance, ref WAVEHDR wavehdr, IntPtr reserved2)
         {
             if (message == 0x3C0) //WIM_DATA
             {
@@ -454,7 +433,9 @@ namespace FinalProject_v3
         }
 
         /*
-            
+            stop
+            Purpose:
+                Stops the the recording.
         */
         public byte[] stop()
         {
