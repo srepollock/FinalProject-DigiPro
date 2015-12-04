@@ -261,16 +261,5 @@ namespace FinalProject_v3
         {
             this.LayoutMdi(System.Windows.Forms.MdiLayout.TileVertical);
         }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild == null) { return; } // if no child, break
-            if (activeChild.GetType() == typeof(InputForm))
-            {
-                InputForm chartDel = (InputForm)activeChild; // become an InputForm
-                chartDel.FreqWaveChart_Del();
-            }
-        }
     }
 }

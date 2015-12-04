@@ -80,6 +80,8 @@ namespace FinalProject_v3
                 temp = (cmplx.getReal() * cmplx.getReal()) + (cmplx.getImaginary() * cmplx.getImaginary());
                 temp = Math.Sqrt(temp);
                 amplitude[f] = temp; // These are the points we are going to plot.
+
+                // am I squaring i?
             }
             return amplitude;
         }

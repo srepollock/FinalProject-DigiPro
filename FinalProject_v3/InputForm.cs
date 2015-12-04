@@ -337,8 +337,6 @@ namespace FinalProject_v3
 
             newFreqBtn.Enabled = true;
             playButton.Enabled = true;
-
-            this.Text = "*";
         }
 
         /*
@@ -460,8 +458,11 @@ namespace FinalProject_v3
             }
             globalFreq = temp;
             lengthOfData.Value = globalFreq.Length;
+<<<<<<< HEAD
             this.Text += "*";
             freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
+=======
+>>>>>>> parent of 485f45f... Added to help.txt. Added a '*' to the file name to say if you have changed the file at all, and will update once saved. Maybe add a check before closing that will see if there is a '*' at the end of the name so that it will prompt to save on closing.
         }
 
         /*
@@ -544,7 +545,6 @@ namespace FinalProject_v3
         {
             sampUpDown.Value = 22050;
             globalWavHead.updateSampleRate((uint)sampUpDown.Value);
-            this.Text += "*";
         }
 
 		/*
@@ -556,7 +556,6 @@ namespace FinalProject_v3
         {
             sampUpDown.Value = 44100;
             globalWavHead.updateSampleRate((uint)sampUpDown.Value);
-            this.Text += "*";
         }
 
         /*
@@ -568,7 +567,6 @@ namespace FinalProject_v3
         {
             sampUpDown.Value = 11025;
             globalWavHead.updateSampleRate((uint)sampUpDown.Value);
-            this.Text += "*";
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -701,7 +699,6 @@ namespace FinalProject_v3
                 plotFreqWaveChart(globalFreq);
                 plotHFTWaveChart();
             }
-            this.Text += "*";
         }
 
         /*
@@ -724,18 +721,7 @@ namespace FinalProject_v3
             list.RemoveRange((int)globalChartSelection.getStart(), (int)(globalChartSelection.getEnd() - globalChartSelection.getStart()));
             globalFreq = list.ToArray();
             plotFreqWaveChart(globalFreq); // this takes the longest time
-            this.Text += "*";
             return copiedData.ToArray();
-        }
-
-        public void FreqWaveChart_Del()
-        {
-            List<double> list = new List<double>(globalFreq);
-            // go to the position of such to remove
-            list.RemoveRange((int)globalChartSelection.getStart(), (int)(globalChartSelection.getEnd() - globalChartSelection.getStart()));
-            globalFreq = list.ToArray();
-            plotFreqWaveChart(globalFreq); // this takes the longest time
-            this.Text += "*";
         }
 
         /*
@@ -938,7 +924,6 @@ namespace FinalProject_v3
 
             plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
-            this.Text += "*";
         }
 
         // Don't worry about this for now...
@@ -950,7 +935,6 @@ namespace FinalProject_v3
 
             plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
-            this.Text += "*";
         }
 
         /*
