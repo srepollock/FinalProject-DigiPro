@@ -118,17 +118,19 @@ namespace FinalProject_v3
         // Threading function. This can take in the data, or just the object
         private void runningDFT(double[] s, int n, int threadNum, int maxThreads)
         {
+            int thNum = threadNum;
+
             double temp;
             newComplex cmplx;
             double re; //real
             double im; //imaginary
 
-            int startP = ((n / maxThreads) * (threadNum - 1)), endP = ((n / maxThreads) * (threadNum));
+            int startP = ((n / maxThreads) * (thNum - 1)), endP = ((n / maxThreads) * (thNum));
             if(startP < 0)
             {
                 startP = 0;
             }
-            if (threadNum == maxThreads - 1)
+            if (thNum == maxThreads - 1)
             {
                 endP = n;
             }
@@ -153,20 +155,46 @@ namespace FinalProject_v3
         /*
             threadDFTFunc
             Purpose:
-                
+                This function takes in the frequency we wish to DFT, the size 
+                of the frequency data, and the number of threads selected.
             Parameters:
                 
         */
         public double[] threadDFTFunc(double[] s, int n, int threadNum)
         {
             Thread[] tArray = new Thread[threadNum];
-            double[][] amp = new double[threadNum][];
             threadAmplitude = new double[n];
 
-            for (int t = 0; t < threadNum; t++)
+            switch (threadNum)
             {
-                tArray[t] = new Thread(() => { runningDFT(s, n, t, threadNum); });
-                tArray[t].Start();
+                case 1:
+                    tArray[0] = new Thread(() => { runningDFT(s, n, 0, threadNum); });
+                    tArray[0].Start();
+                    break;
+                case 2:
+                    tArray[0] = new Thread(() => { runningDFT(s, n, 0, threadNum); });
+                    tArray[0].Start();
+                    tArray[1] = new Thread(() => { runningDFT(s, n, 1, threadNum); });
+                    tArray[1].Start();
+                    break;
+                case 3:
+                    tArray[0] = new Thread(() => { runningDFT(s, n, 0, threadNum); });
+                    tArray[0].Start();
+                    tArray[1] = new Thread(() => { runningDFT(s, n, 1, threadNum); });
+                    tArray[1].Start();
+                    tArray[2] = new Thread(() => { runningDFT(s, n, 2, threadNum); });
+                    tArray[2].Start();
+                    break;
+                case 4:
+                    tArray[0] = new Thread(() => { runningDFT(s, n, 0, threadNum); });
+                    tArray[0].Start();
+                    tArray[1] = new Thread(() => { runningDFT(s, n, 1, threadNum); });
+                    tArray[1].Start();
+                    tArray[2] = new Thread(() => { runningDFT(s, n, 2, threadNum); });
+                    tArray[2].Start();
+                    tArray[4] = new Thread(() => { runningDFT(s, n, 4, threadNum); });
+                    tArray[4].Start();
+                    break;
             }
 
             foreach (Thread th in tArray)

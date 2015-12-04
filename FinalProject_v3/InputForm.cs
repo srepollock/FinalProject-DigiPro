@@ -183,7 +183,8 @@ namespace FinalProject_v3
         */
         public void OpenFile(string fileName)
         {
-            globalFilePath = fileName;
+            globalFilePath = fileName; 
+            this.Text = fileName; // Sets the text of the form to the file name
             globalFreq = readingWave(globalFilePath);
 
             ampUpDown.Value = 0; // We don't know what the amplitude is yet
@@ -209,6 +210,7 @@ namespace FinalProject_v3
         */
         public void SaveFile(string fileName)
         {
+            this.Text = fileName; // Sets the text of the form to the file name
             FileStream f = new FileStream(fileName, FileMode.Create);
             BinaryWriter wr = new BinaryWriter(f);
             // initialize new wav head

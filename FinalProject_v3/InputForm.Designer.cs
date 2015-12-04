@@ -393,33 +393,33 @@
             // filterAudioToolStripMenuItem
             // 
             this.filterAudioToolStripMenuItem.Name = "filterAudioToolStripMenuItem";
-            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
+            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(239, 34);
             this.filterAudioToolStripMenuItem.Text = "Low Pass Filter";
             this.filterAudioToolStripMenuItem.Click += new System.EventHandler(this.filterAudioToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(236, 6);
             // 
             // hzToolStripMenuItem2
             // 
             this.hzToolStripMenuItem2.Name = "hzToolStripMenuItem2";
-            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(240, 34);
+            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(239, 34);
             this.hzToolStripMenuItem2.Text = "11025Hz";
             this.hzToolStripMenuItem2.Click += new System.EventHandler(this.hzToolStripMenuItem2_Click);
             // 
             // hzToolStripMenuItem
             // 
             this.hzToolStripMenuItem.Name = "hzToolStripMenuItem";
-            this.hzToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
+            this.hzToolStripMenuItem.Size = new System.Drawing.Size(239, 34);
             this.hzToolStripMenuItem.Text = "22050Hz";
             this.hzToolStripMenuItem.Click += new System.EventHandler(this.hzToolStripMenuItem_Click);
             // 
             // hzToolStripMenuItem1
             // 
             this.hzToolStripMenuItem1.Name = "hzToolStripMenuItem1";
-            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(240, 34);
+            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(239, 34);
             this.hzToolStripMenuItem1.Text = "44100Hz";
             this.hzToolStripMenuItem1.Click += new System.EventHandler(this.hzToolStripMenuItem1_Click);
             // 
@@ -438,14 +438,14 @@
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(160, 34);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(160, 34);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
             // 
@@ -521,7 +521,7 @@
             this.threads1MenuButton.CheckOnClick = true;
             this.threads1MenuButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.threads1MenuButton.Name = "threads1MenuButton";
-            this.threads1MenuButton.Size = new System.Drawing.Size(240, 34);
+            this.threads1MenuButton.Size = new System.Drawing.Size(116, 34);
             this.threads1MenuButton.Text = "1";
             this.threads1MenuButton.Click += new System.EventHandler(this.threads1MenuButton_Click);
             // 
@@ -529,7 +529,7 @@
             // 
             this.threads2MenuButton.CheckOnClick = true;
             this.threads2MenuButton.Name = "threads2MenuButton";
-            this.threads2MenuButton.Size = new System.Drawing.Size(240, 34);
+            this.threads2MenuButton.Size = new System.Drawing.Size(116, 34);
             this.threads2MenuButton.Text = "2";
             this.threads2MenuButton.Click += new System.EventHandler(this.threads2MenuButton_Click);
             // 
@@ -537,7 +537,7 @@
             // 
             this.threads3MenuButton.CheckOnClick = true;
             this.threads3MenuButton.Name = "threads3MenuButton";
-            this.threads3MenuButton.Size = new System.Drawing.Size(240, 34);
+            this.threads3MenuButton.Size = new System.Drawing.Size(116, 34);
             this.threads3MenuButton.Text = "3";
             this.threads3MenuButton.Click += new System.EventHandler(this.threads3MenuButton_Click);
             // 
@@ -545,7 +545,7 @@
             // 
             this.threads4MenuButton.CheckOnClick = true;
             this.threads4MenuButton.Name = "threads4MenuButton";
-            this.threads4MenuButton.Size = new System.Drawing.Size(240, 34);
+            this.threads4MenuButton.Size = new System.Drawing.Size(116, 34);
             this.threads4MenuButton.Text = "4";
             this.threads4MenuButton.Click += new System.EventHandler(this.threads4MenuButton_Click);
             // 
@@ -656,7 +656,7 @@
             // playButton
             // 
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playButton.Location = new System.Drawing.Point(6, 161);
+            this.playButton.Location = new System.Drawing.Point(0, 161);
             this.playButton.Margin = new System.Windows.Forms.Padding(6);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(187, 42);
@@ -668,7 +668,7 @@
             // stopRec
             // 
             this.stopRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stopRec.Location = new System.Drawing.Point(6, 107);
+            this.stopRec.Location = new System.Drawing.Point(0, 107);
             this.stopRec.Margin = new System.Windows.Forms.Padding(6);
             this.stopRec.Name = "stopRec";
             this.stopRec.Size = new System.Drawing.Size(187, 42);
@@ -680,7 +680,7 @@
             // recButton
             // 
             this.recButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.recButton.Location = new System.Drawing.Point(0, 54);
+            this.recButton.Location = new System.Drawing.Point(0, 53);
             this.recButton.Margin = new System.Windows.Forms.Padding(6);
             this.recButton.Name = "recButton";
             this.recButton.Size = new System.Drawing.Size(187, 42);

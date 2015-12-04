@@ -202,8 +202,7 @@ namespace FinalProject_v3
 
         public void stop_playing()
         {
-            Handle.waveOutUnprepareHeader(hWaveOut, ref Outheader, Convert.ToUInt32(Marshal.SizeOf(Outheader)));
-            Handle.waveOutClose(hWaveOut);
+
         }
 
         private void setupWaveIn()
