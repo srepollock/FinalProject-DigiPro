@@ -158,7 +158,7 @@
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.cutToolStripMenuItem.Text = "&Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
@@ -166,7 +166,7 @@
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -174,15 +174,17 @@
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.pasteToolStripMenuItem.Text = "&Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(240, 34);
             this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // windowToolStripMenuItem
             // 
@@ -199,33 +201,34 @@
             // cascadeWindowsToolStripMenuItem
             // 
             this.cascadeWindowsToolStripMenuItem.Name = "cascadeWindowsToolStripMenuItem";
-            this.cascadeWindowsToolStripMenuItem.Size = new System.Drawing.Size(312, 34);
+            this.cascadeWindowsToolStripMenuItem.Size = new System.Drawing.Size(391, 34);
             this.cascadeWindowsToolStripMenuItem.Text = "Cascade Windows";
             this.cascadeWindowsToolStripMenuItem.Click += new System.EventHandler(this.cascadeWindowsToolStripMenuItem_Click);
             // 
             // horizontalWindowsToolStripMenuItem
             // 
             this.horizontalWindowsToolStripMenuItem.Name = "horizontalWindowsToolStripMenuItem";
-            this.horizontalWindowsToolStripMenuItem.Size = new System.Drawing.Size(312, 34);
+            this.horizontalWindowsToolStripMenuItem.Size = new System.Drawing.Size(391, 34);
             this.horizontalWindowsToolStripMenuItem.Text = "Horizontal Windows";
             this.horizontalWindowsToolStripMenuItem.Click += new System.EventHandler(this.horizontalWindowsToolStripMenuItem_Click);
             // 
             // verticalWindowsToolStripMenuItem
             // 
             this.verticalWindowsToolStripMenuItem.Name = "verticalWindowsToolStripMenuItem";
-            this.verticalWindowsToolStripMenuItem.Size = new System.Drawing.Size(312, 34);
+            this.verticalWindowsToolStripMenuItem.Size = new System.Drawing.Size(391, 34);
             this.verticalWindowsToolStripMenuItem.Text = "Vertical Windows";
             this.verticalWindowsToolStripMenuItem.Click += new System.EventHandler(this.verticalWindowsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(309, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(388, 6);
             // 
             // closeInputWindowToolStripMenuItem
             // 
             this.closeInputWindowToolStripMenuItem.Name = "closeInputWindowToolStripMenuItem";
-            this.closeInputWindowToolStripMenuItem.Size = new System.Drawing.Size(312, 34);
+            this.closeInputWindowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.closeInputWindowToolStripMenuItem.Size = new System.Drawing.Size(391, 34);
             this.closeInputWindowToolStripMenuItem.Text = "Close Current Window";
             this.closeInputWindowToolStripMenuItem.Click += new System.EventHandler(this.closeInputWindowToolStripMenuItem_Click);
             // 

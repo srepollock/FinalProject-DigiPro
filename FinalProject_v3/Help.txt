@@ -19,14 +19,12 @@ Developed in Visual Studio 2015.
 Table of Contents:
 ------------------
 
-1)	Introduction
-2)	Basics and Usage
+Introduction
 
 Appendix's
 (I)	Shortkeys
-(II)	References
 
-1)	Introduction
+Introduction
 ----------------
 
 Hello user, and welcome to my sound editing program. This program was created with Visual Studio 2013 & 2015 for my final project in my Digital Processing class. This program will allow you to create, edit, read, write and record your own '.wav' files all with your own computer! Cool right?!
@@ -34,10 +32,6 @@ Hello user, and welcome to my sound editing program. This program was created wi
 As this is my first time creating a large program, there will be bugs so just bear with me and if you are trying to do something to break the program, chances are you will. So if you're using this for something important, I HIGHLY RECOMMEND you find a different program, because while this one works and is good, it's just not the best bang for your buck (which is free in this case). I hope you enjoy the program, and if there are any issues let me know with an email (you can find that on my website).
 
 Anyways, lets get down to the basics:
-
-2)	Basics and Usage
---------------------
-
 
 
 Appendix:
@@ -48,10 +42,12 @@ Ctrl-N:			New File
 Ctrl-O:			Open File
 Ctrl-S:			Save File
 Ctrl-Shift-S:	Save As File
-Ctrl-C:			Copy
-Ctrl-X:			Cut
-Ctrl-V:			Paste
+Ctrl-C:			Copy selected data
+Ctrl-X:			Cut selected data
+Ctrl-V:			Paste copied data
+Del:			Delete selection
 Ctrl-Shift-T:	Plot Selected Frequency in a Triangle Window
 Ctrl-Shift-R:	Plot Selected Frequency in a Rectangle Window
 Ctrl-Shift-W:	Plot Selected Frequency in a Welch Window
+Ctrl-W:			Closes the current open file.
 Ctrl-Shift-Q:	Quit the program
