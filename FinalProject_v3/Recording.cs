@@ -232,7 +232,6 @@ namespace FinalProject_v3
         [DllImport("winmm.dll", EntryPoint = "waveOutReset", SetLastError = true)]
         static extern uint waveOutReset(IntPtr hwi);
 
-
         private Recording.RecordingDelegate waveIn;
         private IntPtr hnd;
         private IntPtr hndWavOut;
@@ -247,6 +246,12 @@ namespace FinalProject_v3
         private byte[] savedDataSound;
         private byte[] tempSound;
 
+        /*
+            getHeader
+            Purpose:
+                Gets the header of the current recorded data and returns it to 
+                the Form.
+        */
         public wave_file_header getHeader()
         {
             wave_file_header header = new wave_file_header();
@@ -269,18 +274,24 @@ namespace FinalProject_v3
             header.ByteRate = format.nAvgBytesPerSec;
             header.BlockAlign = format.nBlockAlign;
             header.BitsPerSample = format.wBitPerSample;
-            // chunk size and subchunk2size not set
-
-            // chunk size based on subchunk2size + 44 (44 for the size of the header)
-
             return header;
         }
 
+        /*
+            Record
+            Purpose:
+                This begins the recording. This is called from the form.
+        */
         public void Record()
         {
             setupWaveIn();
         }
 
+        /*
+            setupBuffer
+            Purpose:
+                This function sets up the buffer of the recorded file.
+        */
         private void setupBuffer()
         {
             head.lpData = bufferPin.AddrOfPinnedObject();
@@ -292,22 +303,19 @@ namespace FinalProject_v3
             head.lpNext = IntPtr.Zero;
             head.reserved = IntPtr.Zero;
             headerPin = GCHandle.Alloc(head, GCHandleType.Pinned);
-
             int i = Recording.waveInPrepareHeader(this.hnd, ref head, Convert.ToUInt32(Marshal.SizeOf(head)));
             if (i != 0)
-            {
-                //Error in waveIn
-                return;
-            }
-
+                return; // Error
             i = Recording.waveInAddBuffer(hnd, ref head, Convert.ToUInt32(Marshal.SizeOf(head)));
             if (i != 0)
-            {
-                //Error om waveInAdd
-                return;
-            }
+                return; // Error
         }
 
+        /*
+            setupOutbuffer
+            Purpose:
+                Sets up the buffer for the output.
+        */
         private void setupOutbuffer()
         {
             oHead.lpData = savePin.AddrOfPinnedObject();
@@ -317,87 +325,95 @@ namespace FinalProject_v3
             oHead.dwLoops = 1;
             oHead.lpNext = IntPtr.Zero;
             oHead.reserved = IntPtr.Zero;
-
             int i = Recording.waveOutPrepareHeader(hndWavOut, ref oHead, Convert.ToUInt32(Marshal.SizeOf(oHead)));
             if (i != 0)
-                return;
-
+                return; // Error
             i = Recording.waveOutWrite(hndWavOut, ref oHead, Convert.ToUInt32(Marshal.SizeOf(oHead)));
             if (i != 0)
-                return;
+                return; // Error
         }
 
+        /*
+            play
+            Purpose:
+                Called from the form. This begins playing the data passed in 
+                the parameters, with the specified waveHeader passed in.
+            Parameters:
+                data:       Data to be played
+                waveHeader: Format to play the data with
+        */
         public void play(double[] data, wave_file_header waveHeader)
         {
             int[] intAr = data.Select(x => Convert.ToInt32(Math.Round(x))).ToArray();
             byte[] waveByteData = intAr.Select(x => Convert.ToInt16(x)).SelectMany(x => BitConverter.GetBytes(x)).ToArray();
             savedDataSound = waveByteData;
             savePin = GCHandle.Alloc(savedDataSound, GCHandleType.Pinned);
-            
             hndWavOut = new IntPtr();
             waveIn = this.callbackWaveOut;
-            
             format.wFormatTag = 1; // WAVE_FORMAT_PCM
             format.nChannels = waveHeader.NumChannels;
             format.nSamplesPerSec = waveHeader.SampleRate;
             format.wBitPerSample = waveHeader.BitsPerSample;
             format.nBlockAlign = waveHeader.BlockAlign;
             format.nAvgBytesPerSec = waveHeader.ByteRate;
-
             savePin = GCHandle.Alloc(waveByteData, GCHandleType.Pinned);
             format.cbSize = 0;
-
-            //WAVE_MAPPER
             int i = Recording.waveOutOpen(ref hndWavOut, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
             if (i != 0)
-            {
-                //Error
-                return;
-            }
+                return; // Error
             setupOutbuffer();
         }
 
         /*
             Not implemented
         */
-        public void stop_playing()
-        {
-        }
+        public void stop_playing() { }
 
+        /*
+            setupWaveIn
+            Purpose:
+                Sets up the buffer to record the data in. This will also setup
+                the format to record the data in with. 
+        */
         private void setupWaveIn()
         {
             savedDataSound = null;
             hnd = new IntPtr();
             waveIn = this.callbackWaveIn;
-
-            format.wFormatTag = 1; //WAVE_FORMAT_PCM
+            format.wFormatTag = 1;
             format.nChannels = 1;
             format.nSamplesPerSec = 22050;
             format.wBitPerSample = 16;
             format.nBlockAlign = (ushort)(format.wBitPerSample / 8);
             format.nAvgBytesPerSec = (format.nSamplesPerSec * format.nBlockAlign);
-
             bufferLength = format.nSamplesPerSec * 2;
             format.cbSize = 0;
-
             tempSound = new byte[bufferLength];
             bufferPin = GCHandle.Alloc(tempSound, GCHandleType.Pinned);
-
             int i = Recording.waveInOpen(ref hnd, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
             if (i != 0)
-            {
-                //Error
-                return;
-            }
+                return; // Error
             setupBuffer();
             i = waveInStart(hnd);
             if (i != 0)
-            {
-                //error
-            }
+                return; // Error
         }
 
-        private void callbackWaveIn(IntPtr deviceHandle, uint message, IntPtr instance, ref WAVEHDR wavehdr, IntPtr reserved2)
+        /*
+            callbackWaveIn
+            Purpose:
+                This is the callback function for the wave in. This will 
+                continue to save the data stored in buffer, and reset the 
+                buffer to record more data.
+            Parameters:
+                deviceHandle:   Handle to the recording device
+                message:        Message to pass to the OS to specify recording
+                hInstance:      Handle to the window we are recording from
+                wavehdr:        Reference to the wave header to record the data
+                                in
+                reserved2:      Pointer to data
+        */
+        private void callbackWaveIn(IntPtr deviceHandle, uint message, IntPtr hInstance, ref WAVEHDR wavehdr, IntPtr reserved2)
         {
             if (message == 0x3C0) //WIM_DATA
             {
@@ -408,24 +424,20 @@ namespace FinalProject_v3
                     savedDataSound = temp.ToArray();
                 }
                 else
-                {
                     savedDataSound = tempSound;
-                }
-
                 savePin = GCHandle.Alloc(savedDataSound, GCHandleType.Pinned);
                 tempSound = new byte[bufferLength]; // sets up a clean buffer
                 bufferPin = GCHandle.Alloc(tempSound, GCHandleType.Pinned);
-
                 int i = waveInUnprepareHeader(deviceHandle, ref head, Convert.ToUInt32(Marshal.SizeOf(head)));
                 if (i != 0) //MMSYSERR_NOERROR
-                {
-                    //Error
-                    return;
-                }
+                    return; // Error
                 setupBuffer();
             }
         }
 
+        /*
+            
+        */
         private void callbackWaveOut(IntPtr deviceHandle, uint message, IntPtr instance, ref WAVEHDR wavehdr, IntPtr reserved2)
         {
             if (message == 0x3C0) //WIM_DATA
@@ -433,26 +445,23 @@ namespace FinalProject_v3
                 List<byte> temp = savedDataSound.ToList();
                 temp.AddRange(tempSound.ToList());
                 savedDataSound = temp.ToArray();
-
                 savePin = GCHandle.Alloc(savedDataSound, GCHandleType.Pinned);
                 int i = waveInUnprepareHeader(deviceHandle, ref head, Convert.ToUInt32(Marshal.SizeOf(head)));
                 if (i != 0) //MMSYSERR_NOERROR
-                {
-                    //Error
-                    return;
-                }
+                    return; // Error
                 setupBuffer();
             }
         }
 
+        /*
+            
+        */
         public byte[] stop()
         {
             waveInStop(hnd);
             waveInClose(hnd);
-
             bufferPin.Free();
             savePin.Free();
-
             return savedDataSound;
         }
     }

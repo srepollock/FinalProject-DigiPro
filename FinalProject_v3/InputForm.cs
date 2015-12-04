@@ -482,8 +482,7 @@ namespace FinalProject_v3
             globalWindowedSelection.setStart(globalChartSelection.getStart());
             globalWindowedSelection.setEnd(globalChartSelection.getEnd());
 
-            globalWindowing.Triangle(globalFreq, selection, start);
-            //globalAmp = DFT.newDFTFunc(globalFreq, selection);
+            globalWindowing.Triangle(globalFreq, selection, start); // Default
             globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
 
             HFTChart.Series[0].Points.Clear();
@@ -654,16 +653,13 @@ namespace FinalProject_v3
         public double[] FreqWaveChart_Copy()
         {
             if (globalChartSelection.getStart() == -1)
-            {
                 return globalFreq;
-            }
             double[] copyArray = new double[(int)(globalChartSelection.getEnd() - globalChartSelection.getStart())];
             for (int i = 0; i < (int)(globalChartSelection.getEnd() - globalChartSelection.getStart()); i++)
             { copyArray[i] = globalFreq[(int)globalChartSelection.getStart() + i]; }
             // set the copy points
             globalCopyPoints.setStart(globalChartSelection.getStart());
             globalCopyPoints.setEnd(globalChartSelection.getEnd());
-            
             return copyArray;
         }
 
@@ -857,7 +853,6 @@ namespace FinalProject_v3
                 }
             }
             if (N % 2 != 0) outComplex[N / 2] = new newComplex(0, 0);
-
             return outComplex;
         }
 
@@ -881,7 +876,6 @@ namespace FinalProject_v3
         {
             int N = orgSignal.Length, WN = convolutionData.Length;
             double[] newSignal = new double[N];
-            
             for(int n = 0; n < N; n++)
             {
                 double temp = 0;
