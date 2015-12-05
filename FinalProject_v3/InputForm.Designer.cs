@@ -54,8 +54,6 @@
             this.freqWaveChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filterAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.hzToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hzToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +71,8 @@
             this.threads2MenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.threads3MenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.threads4MenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.ampUpDownLabel = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -347,6 +347,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tableLayoutPanel1.SetColumnSpan(this.menuStrip1, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.menuStrip1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -354,7 +355,8 @@
             this.audioToolStripMenuItem,
             this.chartToolStripMenuItem,
             this.chartToolStripMenuItem1,
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.filterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(970, 24);
@@ -364,27 +366,13 @@
             // audioToolStripMenuItem
             // 
             this.audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filterAudioToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.hzToolStripMenuItem2,
             this.hzToolStripMenuItem,
             this.hzToolStripMenuItem1});
             this.audioToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.audioToolStripMenuItem.Name = "audioToolStripMenuItem";
-            this.audioToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.audioToolStripMenuItem.Text = "Audio";
-            // 
-            // filterAudioToolStripMenuItem
-            // 
-            this.filterAudioToolStripMenuItem.Name = "filterAudioToolStripMenuItem";
-            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.filterAudioToolStripMenuItem.Text = "Low Pass Filter";
-            this.filterAudioToolStripMenuItem.Click += new System.EventHandler(this.filterAudioToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.audioToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
+            this.audioToolStripMenuItem.Text = "Audio Sample Rate";
             // 
             // hzToolStripMenuItem2
             // 
@@ -414,13 +402,14 @@
             this.zoomToolStripMenuItem});
             this.chartToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.chartToolStripMenuItem.Text = "Select";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.chartToolStripMenuItem.Text = "Selection Options";
             // 
             // selectToolStripMenuItem
             // 
             this.selectToolStripMenuItem.Checked = true;
             this.selectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.selectToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
             this.selectToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.selectToolStripMenuItem.Text = "Select";
@@ -428,6 +417,7 @@
             // 
             // zoomToolStripMenuItem
             // 
+            this.zoomToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
             this.zoomToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
@@ -442,11 +432,12 @@
             this.plotFrequencyToolStripMenuItem});
             this.chartToolStripMenuItem1.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.chartToolStripMenuItem1.Name = "chartToolStripMenuItem1";
-            this.chartToolStripMenuItem1.Size = new System.Drawing.Size(48, 20);
-            this.chartToolStripMenuItem1.Text = "Chart";
+            this.chartToolStripMenuItem1.Size = new System.Drawing.Size(125, 20);
+            this.chartToolStripMenuItem1.Text = "Windowing Options";
             // 
             // triangleWindowToolStripMenuItem
             // 
+            this.triangleWindowToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.triangleWindowToolStripMenuItem.Name = "triangleWindowToolStripMenuItem";
             this.triangleWindowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.T)));
@@ -485,8 +476,8 @@
             this.descreteFourierTransformThreadsToolStripMenuItem});
             this.optionsToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(118, 20);
+            this.optionsToolStripMenuItem.Text = "Threading Options";
             // 
             // descreteFourierTransformThreadsToolStripMenuItem
             // 
@@ -495,6 +486,7 @@
             this.threads2MenuButton,
             this.threads3MenuButton,
             this.threads4MenuButton});
+            this.descreteFourierTransformThreadsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.descreteFourierTransformThreadsToolStripMenuItem.Name = "descreteFourierTransformThreadsToolStripMenuItem";
             this.descreteFourierTransformThreadsToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.descreteFourierTransformThreadsToolStripMenuItem.Text = "Descrete Fourier Transform Threads";
@@ -504,6 +496,7 @@
             this.threads1MenuButton.Checked = true;
             this.threads1MenuButton.CheckOnClick = true;
             this.threads1MenuButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.threads1MenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.threads1MenuButton.Name = "threads1MenuButton";
             this.threads1MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads1MenuButton.Text = "1";
@@ -512,6 +505,7 @@
             // threads2MenuButton
             // 
             this.threads2MenuButton.CheckOnClick = true;
+            this.threads2MenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.threads2MenuButton.Name = "threads2MenuButton";
             this.threads2MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads2MenuButton.Text = "2";
@@ -520,6 +514,7 @@
             // threads3MenuButton
             // 
             this.threads3MenuButton.CheckOnClick = true;
+            this.threads3MenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.threads3MenuButton.Name = "threads3MenuButton";
             this.threads3MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads3MenuButton.Text = "3";
@@ -528,10 +523,28 @@
             // threads4MenuButton
             // 
             this.threads4MenuButton.CheckOnClick = true;
+            this.threads4MenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.threads4MenuButton.Name = "threads4MenuButton";
             this.threads4MenuButton.Size = new System.Drawing.Size(80, 22);
             this.threads4MenuButton.Text = "4";
             this.threads4MenuButton.Click += new System.EventHandler(this.threads4MenuButton_Click);
+            // 
+            // filterToolStripMenuItem
+            // 
+            this.filterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filterAudioToolStripMenuItem});
+            this.filterToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.filterToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
+            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.filterToolStripMenuItem.Text = "Filter";
+            // 
+            // filterAudioToolStripMenuItem
+            // 
+            this.filterAudioToolStripMenuItem.Name = "filterAudioToolStripMenuItem";
+            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterAudioToolStripMenuItem.Text = "Low Pass Filter";
+            this.filterAudioToolStripMenuItem.Click += new System.EventHandler(this.filterAudioToolStripMenuItem_Click);
             // 
             // panel6
             // 
@@ -766,7 +779,6 @@
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem filterAudioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem plotFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem triangleWindowToolStripMenuItem;
@@ -790,11 +802,12 @@
         private System.Windows.Forms.Button stopRec;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button clearFreqButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem hzToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hzToolStripMenuItem1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown lengthOfData;
         private System.Windows.Forms.ToolStripMenuItem hzToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterAudioToolStripMenuItem;
     }
 }
