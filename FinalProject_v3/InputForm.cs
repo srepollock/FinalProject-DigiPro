@@ -426,8 +426,7 @@ namespace FinalProject_v3
                 completion.
             Parameters:
                 filteredWindow: This is the array of the filtered window data.
-        */
-        
+        */        
         public void updateGlobalFreq(double[] filteredWindow)
         {
             // Use windowed selection
@@ -448,7 +447,7 @@ namespace FinalProject_v3
                 }
             }
             globalFreq = temp;
-            lengthOfData.Value = globalFreq.Length;
+            lengthOfData.Value = globalFreq.Length * 2;
             this.Text += "*";
             freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
@@ -684,8 +683,10 @@ namespace FinalProject_v3
                 globalFreq = temp;
                 plotFreqWaveChart(globalFreq);
                 plotHFTWaveChart();
+                globalWavHead.updateSubChunk2(globalFreq.Length * globalWavHead.BlockAlign);
+                lengthOfData.Value = globalFreq.Length;
+                this.Text += "*";
             }
-            this.Text += "*";
         }
 
         /*
@@ -709,6 +710,8 @@ namespace FinalProject_v3
             globalFreq = list.ToArray();
             plotFreqWaveChart(globalFreq); // this takes the longest time
             this.Text += "*";
+            globalWavHead.updateSubChunk2(globalFreq.Length * globalWavHead.BlockAlign);
+            lengthOfData.Value = globalFreq.Length;
             return copiedData.ToArray();
         }
 
@@ -720,6 +723,8 @@ namespace FinalProject_v3
             globalFreq = list.ToArray();
             plotFreqWaveChart(globalFreq); // this takes the longest time
             this.Text += "*";
+            globalWavHead.updateSubChunk2(globalFreq.Length * globalWavHead.BlockAlign);
+            lengthOfData.Value = globalFreq.Length;
         }
 
         /*
@@ -911,13 +916,8 @@ namespace FinalProject_v3
 
             newComplex[] filter = creationOfLowpassFilter(globalAmp);
 
-            // convolve(WindowTechnique(iDFT(weights)))
-
-            // Windowing?
-            // convolve(globalWindowing.Triangle(DFT.invDFT(filter, filter.Length), filter.Length), globalFreq);
-
             convolve(DFT.invDFT(filter, filter.Length), globalFreq);
-            
+
             plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
             this.Text += "*";
@@ -927,9 +927,7 @@ namespace FinalProject_v3
         private void highPassFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newComplex[] filter = creationOfHighpassFilter(globalAmp);
-            
             convolve(DFT.invDFT(filter, filter.Length), globalFreq);
-
             plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
             this.Text += "*";
@@ -1080,7 +1078,7 @@ namespace FinalProject_v3
 
             globalFreq = shortAr.Select(x => (double)(x)).ToArray();
 
-            globalWavHead.updateSubChunk2(globalFreq.Length);
+            globalWavHead.updateSubChunk2(globalFreq.Length * globalWavHead.BlockAlign);
 
             plotFreqWaveChart(globalFreq);
 
