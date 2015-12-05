@@ -211,6 +211,7 @@ namespace FinalProject_v3
         private GCHandle headerPin;
         private GCHandle bufferPin;
         private GCHandle savePin;
+        private bool firstPass = true;
 
         private byte[] savedDataSound;
         private byte[] tempSound;
@@ -357,7 +358,7 @@ namespace FinalProject_v3
             format.nAvgBytesPerSec = (format.nSamplesPerSec * format.nBlockAlign);
             bufferLength = format.nSamplesPerSec * 2;
             format.cbSize = 0;
-            tempSound = new byte[bufferLength];
+            tempSound = new byte[bufferLength]; // buffer setup
             bufferPin = GCHandle.Alloc(tempSound, GCHandleType.Pinned);
             int i = Recording.waveInOpen(ref hnd, 4294967295, ref format, Marshal.GetFunctionPointerForDelegate(waveIn), 0, 0x0030000);
             if (i != 0)
@@ -384,16 +385,22 @@ namespace FinalProject_v3
         */
         private void callbackWaveIn(IntPtr deviceHandle, uint message, IntPtr hInstance, ref WAVEHDR wavehdr, IntPtr reserved2)
         {
+            bool firstPass = false;
+            //wavehdr.dwBytesRecorded
             if (message == 0x3C0) //WIM_DATA
             {
                 if (savedDataSound != null)
                 {
                     List<byte> temp = savedDataSound.ToList(); // easier to add onto a list
-                    temp.AddRange(tempSound.ToList());
+                    List<byte> tempRec = tempSound.ToList();
+                    temp.AddRange(tempRec.GetRange(0, (int)wavehdr.dwBytesRecorded));
                     savedDataSound = temp.ToArray();
                 }
+                else if (firstPass) { firstPass = false;  }
                 else
+                {
                     savedDataSound = tempSound;
+                }
                 savePin = GCHandle.Alloc(savedDataSound, GCHandleType.Pinned);
                 tempSound = new byte[bufferLength]; // sets up a clean buffer
                 bufferPin = GCHandle.Alloc(tempSound, GCHandleType.Pinned);
@@ -439,6 +446,7 @@ namespace FinalProject_v3
         */
         public byte[] stop()
         {
+            firstPass = true;
             waveInStop(hnd);
             waveInClose(hnd);
             bufferPin.Free();

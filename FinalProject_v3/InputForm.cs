@@ -155,19 +155,13 @@ namespace FinalProject_v3
             globalWavHead.BitsPerSample = reader.ReadUInt16();
             globalWavHead.SubChunk2ID = reader.ReadInt32();
             globalWavHead.SubChunk2Size = reader.ReadInt32();
-            
             byteArray = reader.ReadBytes((int)globalWavHead.SubChunk2Size);
-            
             short[] shortAr = new short[globalWavHead.SubChunk2Size / globalWavHead.BlockAlign];
             double[] outputArray;
-            
             for (int i = 0; i < globalWavHead.SubChunk2Size / globalWavHead.BlockAlign; i++)
             { shortAr[i] = BitConverter.ToInt16(byteArray, i * globalWavHead.BlockAlign); }
-            
             outputArray = shortAr.Select(x => (double)(x)).ToArray();
-
             reader.Close();
-
             return outputArray;
         }
 
@@ -186,7 +180,6 @@ namespace FinalProject_v3
             globalFilePath = fileName; 
             this.Text = fileName; // Sets the text of the form to the file name
             globalFreq = readingWave(globalFilePath);
-
             ampUpDown.Value = 0; // We don't know what the amplitude is yet
             freqUpDown.Value = 0; // We don't know the frequency yet
             sampUpDown.Value = globalWavHead.SampleRate; // we know what the sample rate of the file is already
@@ -195,7 +188,6 @@ namespace FinalProject_v3
             freqWaveChart.Series[0].Points.Clear(); // clears the data in the wave form chart
             // Plots the wave data
             plotFreqWaveChart(globalFreq);
-
             newFreqBtn.Enabled = true;
             playButton.Enabled = true;
         }
@@ -435,15 +427,12 @@ namespace FinalProject_v3
             Parameters:
                 filteredWindow: This is the array of the filtered window data.
         */
+        
         public void updateGlobalFreq(double[] filteredWindow)
         {
             // Use windowed selection
             int start = (int)globalWindowedSelection.getStart();
-
             double[] temp = new double[globalFreq.Length + filteredWindow.Length];
-            // Get global selection the the freq chart.
-            // GF is the globalFrequency counter
-            // CW is convolvedWindow counter
             for (int GF = 0; GF < globalFreq.Length; GF++)
             {
                 if (GF == start)
@@ -463,15 +452,13 @@ namespace FinalProject_v3
             this.Text += "*";
             freqWaveChart.ChartAreas[0].AxisX.Minimum = 0;
         }
+        
 
         /*
             plotHFTWaveChart
             Purpose:
                 Plots the frequency domain chart based on the seleciton of the
-                user on the time domain. This will check to see if the
-                selection from the user is greater than half of the maximum 
-                sample size, and if so will minimize the amount of data the 
-                function will plot.                
+                user on the time domain.                
         */
         public void plotHFTWaveChart()
         {
@@ -481,10 +468,9 @@ namespace FinalProject_v3
                 // This is incase the user selects a new point.
             globalWindowedSelection.setStart(globalChartSelection.getStart());
             globalWindowedSelection.setEnd(globalChartSelection.getEnd());
-
-            globalWindowing.Triangle(globalFreq, selection, start); // Default
+            double[] copiedFreq = globalFreq;
+            globalWindowing.Triangle(copiedFreq, selection, start); // Default
             globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
-
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
@@ -512,7 +498,6 @@ namespace FinalProject_v3
             // This is incase the user selects a new point.
             globalWindowedSelection.setStart(globalChartSelection.getStart());
             globalWindowedSelection.setEnd(globalChartSelection.getEnd());
-
             if(String.Compare(windowType, "Triangle") == 0)
             {
                 globalWindowing.Triangle(copiedFreq, selection, start);
@@ -527,7 +512,6 @@ namespace FinalProject_v3
             }
             //globalAmp = DFT.newDFTFunc(copiedFreq, selection);
             globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
-
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
@@ -884,9 +868,7 @@ namespace FinalProject_v3
                     if ((n + wn) < (N - 1)) // if we are less than the frequency data size
                         temp += convolutionData[wn] * orgSignal[n + wn];
                     else
-                    {
                         temp += 0;
-                    }
                 }
                 newSignal[n] = temp;
             }
@@ -935,7 +917,7 @@ namespace FinalProject_v3
             // convolve(globalWindowing.Triangle(DFT.invDFT(filter, filter.Length), filter.Length), globalFreq);
 
             convolve(DFT.invDFT(filter, filter.Length), globalFreq);
-
+            
             plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
             this.Text += "*";
@@ -1090,7 +1072,6 @@ namespace FinalProject_v3
             wave_file_header tempHeader = handler.getHeader(); // we want to just get the size
                                                                // of the data recorded
                                                                // I want 1 byte to 1 double
-
             globalWavHead.updateSampleRate(tempHeader.SampleRate);
 
             short[] shortAr = new short[temp.Length / globalWavHead.BlockAlign];
@@ -1099,7 +1080,7 @@ namespace FinalProject_v3
 
             globalFreq = shortAr.Select(x => (double)(x)).ToArray();
 
-            globalWavHead.updateSubChunk2(globalFreq.Length * 2);
+            globalWavHead.updateSubChunk2(globalFreq.Length);
 
             plotFreqWaveChart(globalFreq);
 
