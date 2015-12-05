@@ -11,4 +11,5 @@ Changes since Demo
 - Cut/Copy/Paste/Delete
 	- All now work inside the program, and you can cut/copy between different files
 - Filtering*
-	- Filtering an audio file works, however entire data will be 'doubled' (as in the sound is kept while filtering new sound and both saved ontop of each other) but STILL FILTERED
+	- Filtering works. When selecting a large amount of data, and then selecting filter, you will however duplicate the original data
+	- The filtered data (yes it DOES WORK) will be 'doubled' (as in the sound is kept while filtering new sound and both saved ontop of each other) but STILL FILTERED

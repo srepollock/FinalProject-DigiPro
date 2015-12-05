@@ -2,16 +2,17 @@
 How to use SoundWav:
 --------------------
 
-Developer: Spencer Pollock
+Developer:	Spencer Pollock
+		A00924319 (Student Number)
 
-*This program was created for my Computers 3931 Digital Processing Class*
+*This program was created for my Computers 3931 Digital Processing Class & Computers 3770 Windows 32 Programming with C/C++*
 
 Winter 2015
 Computer Systems Technology
 Term 3
-COMP 3931
+COMP 3931 & COMP 3770
 
-Developed in C# with online resources and source code written by myself.
+Developed in C# and C with help of online resources and source code written by myself.
 
 Developed in Visual Studio 2015.
 
@@ -31,23 +32,25 @@ Hello user, and welcome to my sound creating/editing program. This program was c
 
 As this is my first time creating a large program, there will be bugs so just bear with me and if you are trying to do something to break the program, chances are you will. So if you're using this for something important, I HIGHLY RECOMMEND you find a different program, because while this one works and is good, it's just not the best bang for your buck (which is free in this case). I hope you enjoy the program, and if there are any issues let me know with an email (you can find that on my website).
 
-Anyways, lets get down to the basics:
-
 
 Appendix:
 ---------
 (I):
 --
-Ctrl-N:			New File
-Ctrl-O:			Open File
-Ctrl-S:			Save File
+Ctrl-N:		New File
+Ctrl-O:		Open File
+Ctrl-S:		Save File
 Ctrl-Shift-S:	Save As File
-Ctrl-C:			Copy selected data
-Ctrl-X:			Cut selected data
-Ctrl-V:			Paste copied data
-Del:			Delete selection
+Ctrl-C:		Copy selected data
+Ctrl-X:		Cut selected data
+Ctrl-V:		Paste copied data
+Del:		Delete selection
 Ctrl-Shift-T:	Plot Selected Frequency in a Triangle Window
 Ctrl-Shift-R:	Plot Selected Frequency in a Rectangle Window
 Ctrl-Shift-W:	Plot Selected Frequency in a Welch Window
-Ctrl-W:			Closes the current open file.
+Ctrl-W:		Closes the current open file.
 Ctrl-Shift-Q:	Quit the program
+Ctrl-Alt-C:	Cascades all child windows
+Ctrl-Alt-H:	Horizontally displays all child windows
+Ctrl-Alt-V:	Vertically displays all child windows
+Ctrl-H:		Opens Help

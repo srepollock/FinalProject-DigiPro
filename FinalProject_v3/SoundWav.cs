@@ -37,25 +37,6 @@ namespace FinalProject_v3
             newMDIChild.Show();
         }
 
-        private void newSoundWindowToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Checks if there is already a child form of this type open
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.GetType() == typeof(GraphForm))
-                {
-                    form.Activate();
-                    return;
-                }
-            }
-
-            GraphForm newMDIChild = new GraphForm();
-            // Sets the Parent form of the Child window.
-            newMDIChild.MdiParent = this;
-            // Displays the new form
-            newMDIChild.Show();
-        }
-
         private void closeInputWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Determines active child
