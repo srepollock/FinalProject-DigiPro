@@ -473,7 +473,7 @@ namespace FinalProject_v3
             globalAmp = DFT.threadDFTFunc(copiedFreq, selection, threads);
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
-            { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
+            { HFTChart.Series["DFT"].Points.AddXY(i, globalAmp[i]); }
             filterAudioToolStripMenuItem.Enabled = true;
             HFTChart.ChartAreas[0].AxisX.Minimum = 0;
         }
@@ -514,7 +514,7 @@ namespace FinalProject_v3
             globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
-            { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
+            { HFTChart.Series["DFT"].Points.AddXY(i, globalAmp[i]); }
             filterAudioToolStripMenuItem.Enabled = true;
             HFTChart.ChartAreas[0].AxisX.Minimum = 0;
         }
@@ -784,7 +784,7 @@ namespace FinalProject_v3
         */
         private newComplex[] creationOfLowpassFilter(double[] frequencySize)
         {
-            int N = frequencySize.Length;
+            int N = frequencySize.Length; // amplitude displayed on DFT chart
             newComplex[] outComplex = new newComplex[N];
             double start = globalHFTChartSelection.getStart();
 
@@ -822,6 +822,7 @@ namespace FinalProject_v3
                 frequencySize:  Size of the frequency data array that we are
                                 preforming the highpass filter on.
         */
+        /* // not Implemented yet
         private newComplex[] creationOfHighpassFilter(double[] frequencySize)
         {
             int N = frequencySize.Length;
@@ -845,6 +846,7 @@ namespace FinalProject_v3
             if (N % 2 != 0) outComplex[N / 2] = new newComplex(0, 0);
             return outComplex;
         }
+        */
 
         /*
             convolve
@@ -914,23 +916,12 @@ namespace FinalProject_v3
         {
             // This is where I will filter
             // get the selection of the frequency to filter from the audio file
-
+            this.Text += " - Filtering...";
             newComplex[] filter = creationOfLowpassFilter(globalAmp);
-
-            convolve(DFT.invDFT(filter, filter.Length), globalFreq);
-
-            plotFreqWaveChart(globalFreq);
-            plotHFTWaveChart();
-            this.Text += "*";
-        }
-
-        // Don't worry about this for now...
-        private void highPassFilterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            newComplex[] filter = creationOfHighpassFilter(globalAmp);
             convolve(DFT.invDFT(filter, filter.Length), globalFreq);
             plotFreqWaveChart(globalFreq);
             plotHFTWaveChart();
+            this.Text = globalFilePath;
             this.Text += "*";
         }
 
@@ -1077,13 +1068,9 @@ namespace FinalProject_v3
             short[] shortAr = new short[temp.Length / globalWavHead.BlockAlign];
             for (int i = 0; i < (temp.Length / globalWavHead.BlockAlign); i++)
             { shortAr[i] = BitConverter.ToInt16(temp, i * globalWavHead.BlockAlign); }
-
             globalFreq = shortAr.Select(x => (double)(x)).ToArray();
-
             globalWavHead.updateSubChunk2(globalFreq.Length * globalWavHead.BlockAlign);
-
             plotFreqWaveChart(globalFreq);
-
             recButton.Enabled = true;
             stopRec.Enabled = false;
             playButton.Enabled = true;
