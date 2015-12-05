@@ -190,6 +190,7 @@ namespace FinalProject_v3
             plotFreqWaveChart(globalFreq);
             newFreqBtn.Enabled = true;
             playButton.Enabled = true;
+            addButton.Enabled = false;
         }
 
         /*
@@ -469,7 +470,7 @@ namespace FinalProject_v3
             globalWindowedSelection.setEnd(globalChartSelection.getEnd());
             double[] copiedFreq = globalFreq;
             globalWindowing.Triangle(copiedFreq, selection, start); // Default
-            globalAmp = DFT.threadDFTFunc(globalFreq, selection, threads);
+            globalAmp = DFT.threadDFTFunc(copiedFreq, selection, threads);
             HFTChart.Series[0].Points.Clear();
             for (int i = 0; i < globalAmp.Length; i++)
             { HFTChart.Series["HFT"].Points.AddXY(i, globalAmp[i]); }
@@ -1051,6 +1052,7 @@ namespace FinalProject_v3
             recButton.Enabled = false;
             stopRec.Enabled = true;
             playButton.Enabled = false;
+            addButton.Enabled = false;
             handler.Record();
         }
 
