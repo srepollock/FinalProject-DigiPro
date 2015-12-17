@@ -37,15 +37,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.freqLabel = new System.Windows.Forms.Label();
-            this.freqUpDown = new System.Windows.Forms.NumericUpDown();
             this.panel5 = new System.Windows.Forms.Panel();
             this.HFTChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ampLabel = new System.Windows.Forms.Label();
-            this.ampUpDown = new System.Windows.Forms.NumericUpDown();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lengthOfData = new System.Windows.Forms.NumericUpDown();
             this.sampLabel = new System.Windows.Forms.Label();
@@ -73,114 +66,58 @@
             this.threads4MenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.ampUpDownLabel = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.newFreqBtn = new System.Windows.Forms.Button();
-            this.newFreqLabel = new System.Windows.Forms.Label();
-            this.newFreqUpDown = new System.Windows.Forms.NumericUpDown();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.playButton = new System.Windows.Forms.Button();
             this.stopRec = new System.Windows.Forms.Button();
             this.recButton = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.clearFreqButton = new System.Windows.Forms.Button();
-            this.addButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.HFTChart)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ampUpDown)).BeginInit();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lengthOfData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sampUpDown)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.freqWaveChart)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.newFreqUpDown)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.83071F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.26241F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.90689F));
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 4);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.76139F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.7781F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.46051F));
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel6, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel8, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel9, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel8, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel9, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.256881F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.93578F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.93578F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.93578F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.93578F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1090, 566);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.freqLabel);
-            this.panel2.Controls.Add(this.freqUpDown);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 195);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(210, 118);
-            this.panel2.TabIndex = 1;
-            // 
-            // freqLabel
-            // 
-            this.freqLabel.AutoSize = true;
-            this.freqLabel.Location = new System.Drawing.Point(4, 2);
-            this.freqLabel.Name = "freqLabel";
-            this.freqLabel.Size = new System.Drawing.Size(57, 13);
-            this.freqLabel.TabIndex = 2;
-            this.freqLabel.Text = "Frequency";
-            // 
-            // freqUpDown
-            // 
-            this.freqUpDown.DecimalPlaces = 2;
-            this.freqUpDown.Location = new System.Drawing.Point(4, 18);
-            this.freqUpDown.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.freqUpDown.Name = "freqUpDown";
-            this.freqUpDown.Size = new System.Drawing.Size(192, 20);
-            this.freqUpDown.TabIndex = 1;
-            this.freqUpDown.Value = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.HFTChart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(219, 71);
+            this.panel5.Location = new System.Drawing.Point(174, 27);
             this.panel5.Name = "panel5";
             this.tableLayoutPanel1.SetRowSpan(this.panel5, 2);
-            this.panel5.Size = new System.Drawing.Size(748, 242);
+            this.panel5.Size = new System.Drawing.Size(787, 264);
             this.panel5.TabIndex = 6;
             // 
             // HFTChart
@@ -201,68 +138,17 @@
             series1.MarkerSize = 3;
             series1.Name = "DFT";
             this.HFTChart.Series.Add(series1);
-            this.HFTChart.Size = new System.Drawing.Size(748, 242);
+            this.HFTChart.Size = new System.Drawing.Size(787, 264);
             this.HFTChart.TabIndex = 0;
             this.HFTChart.Text = "DFT Data";
             title1.Name = "HFT";
             this.HFTChart.Titles.Add(title1);
             this.HFTChart.Click += new System.EventHandler(this.HFTChart_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.ampLabel);
-            this.panel1.Controls.Add(this.ampUpDown);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 70);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(212, 120);
-            this.panel1.TabIndex = 7;
-            // 
-            // ampLabel
-            // 
-            this.ampLabel.AutoSize = true;
-            this.ampLabel.Location = new System.Drawing.Point(5, 2);
-            this.ampLabel.Name = "ampLabel";
-            this.ampLabel.Size = new System.Drawing.Size(53, 13);
-            this.ampLabel.TabIndex = 4;
-            this.ampLabel.Text = "Amplitude";
-            this.ampLabel.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // ampUpDown
-            // 
-            this.ampUpDown.Location = new System.Drawing.Point(5, 18);
-            this.ampUpDown.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.ampUpDown.Name = "ampUpDown";
-            this.ampUpDown.Size = new System.Drawing.Size(192, 20);
-            this.ampUpDown.TabIndex = 3;
-            this.ampUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.ampUpDown.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.lengthOfData);
-            this.panel3.Controls.Add(this.sampLabel);
-            this.panel3.Controls.Add(this.sampUpDown);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 319);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(210, 118);
-            this.panel3.TabIndex = 8;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 45);
+            this.label1.Location = new System.Drawing.Point(3, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 8;
@@ -270,7 +156,7 @@
             // 
             // lengthOfData
             // 
-            this.lengthOfData.Location = new System.Drawing.Point(4, 61);
+            this.lengthOfData.Location = new System.Drawing.Point(3, 87);
             this.lengthOfData.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -278,7 +164,7 @@
             0});
             this.lengthOfData.Name = "lengthOfData";
             this.lengthOfData.ReadOnly = true;
-            this.lengthOfData.Size = new System.Drawing.Size(192, 20);
+            this.lengthOfData.Size = new System.Drawing.Size(137, 20);
             this.lengthOfData.TabIndex = 7;
             this.lengthOfData.Value = new decimal(new int[] {
             10000,
@@ -289,7 +175,7 @@
             // sampLabel
             // 
             this.sampLabel.AutoSize = true;
-            this.sampLabel.Location = new System.Drawing.Point(4, 4);
+            this.sampLabel.Location = new System.Drawing.Point(3, 13);
             this.sampLabel.Name = "sampLabel";
             this.sampLabel.Size = new System.Drawing.Size(47, 13);
             this.sampLabel.TabIndex = 6;
@@ -297,7 +183,7 @@
             // 
             // sampUpDown
             // 
-            this.sampUpDown.Location = new System.Drawing.Point(4, 20);
+            this.sampUpDown.Location = new System.Drawing.Point(3, 29);
             this.sampUpDown.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -305,7 +191,7 @@
             0});
             this.sampUpDown.Name = "sampUpDown";
             this.sampUpDown.ReadOnly = true;
-            this.sampUpDown.Size = new System.Drawing.Size(192, 20);
+            this.sampUpDown.Size = new System.Drawing.Size(137, 20);
             this.sampUpDown.TabIndex = 5;
             this.sampUpDown.Value = new decimal(new int[] {
             22050,
@@ -317,10 +203,10 @@
             // 
             this.panel4.Controls.Add(this.freqWaveChart);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(219, 319);
+            this.panel4.Location = new System.Drawing.Point(174, 297);
             this.panel4.Name = "panel4";
             this.tableLayoutPanel1.SetRowSpan(this.panel4, 2);
-            this.panel4.Size = new System.Drawing.Size(748, 244);
+            this.panel4.Size = new System.Drawing.Size(787, 266);
             this.panel4.TabIndex = 9;
             // 
             // freqWaveChart
@@ -340,7 +226,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Freq";
             this.freqWaveChart.Series.Add(series2);
-            this.freqWaveChart.Size = new System.Drawing.Size(748, 244);
+            this.freqWaveChart.Size = new System.Drawing.Size(787, 266);
             this.freqWaveChart.TabIndex = 0;
             this.freqWaveChart.Text = "Frequency";
             this.freqWaveChart.Click += new System.EventHandler(this.freqWaveChart_Click);
@@ -359,7 +245,7 @@
             this.filterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(970, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(964, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -377,21 +263,21 @@
             // hzToolStripMenuItem2
             // 
             this.hzToolStripMenuItem2.Name = "hzToolStripMenuItem2";
-            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.hzToolStripMenuItem2.Size = new System.Drawing.Size(118, 22);
             this.hzToolStripMenuItem2.Text = "11025Hz";
             this.hzToolStripMenuItem2.Click += new System.EventHandler(this.hzToolStripMenuItem2_Click);
             // 
             // hzToolStripMenuItem
             // 
             this.hzToolStripMenuItem.Name = "hzToolStripMenuItem";
-            this.hzToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hzToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.hzToolStripMenuItem.Text = "22050Hz";
             this.hzToolStripMenuItem.Click += new System.EventHandler(this.hzToolStripMenuItem_Click);
             // 
             // hzToolStripMenuItem1
             // 
             this.hzToolStripMenuItem1.Name = "hzToolStripMenuItem1";
-            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.hzToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
             this.hzToolStripMenuItem1.Text = "44100Hz";
             this.hzToolStripMenuItem1.Click += new System.EventHandler(this.hzToolStripMenuItem1_Click);
             // 
@@ -542,99 +428,9 @@
             // filterAudioToolStripMenuItem
             // 
             this.filterAudioToolStripMenuItem.Name = "filterAudioToolStripMenuItem";
-            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterAudioToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.filterAudioToolStripMenuItem.Text = "Low Pass Filter";
             this.filterAudioToolStripMenuItem.Click += new System.EventHandler(this.filterAudioToolStripMenuItem_Click);
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.ampUpDownLabel);
-            this.panel6.Controls.Add(this.numericUpDown1);
-            this.panel6.Controls.Add(this.newFreqBtn);
-            this.panel6.Controls.Add(this.newFreqLabel);
-            this.panel6.Controls.Add(this.newFreqUpDown);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(219, 27);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(748, 38);
-            this.panel6.TabIndex = 11;
-            // 
-            // ampUpDownLabel
-            // 
-            this.ampUpDownLabel.AutoSize = true;
-            this.ampUpDownLabel.Location = new System.Drawing.Point(79, 9);
-            this.ampUpDownLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.ampUpDownLabel.Name = "ampUpDownLabel";
-            this.ampUpDownLabel.Size = new System.Drawing.Size(53, 13);
-            this.ampUpDownLabel.TabIndex = 4;
-            this.ampUpDownLabel.Text = "Amplitude";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(160, 8);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(77, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // newFreqBtn
-            // 
-            this.newFreqBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newFreqBtn.Location = new System.Drawing.Point(501, 1);
-            this.newFreqBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.newFreqBtn.Name = "newFreqBtn";
-            this.newFreqBtn.Size = new System.Drawing.Size(67, 30);
-            this.newFreqBtn.TabIndex = 2;
-            this.newFreqBtn.Text = "Insert";
-            this.newFreqBtn.UseVisualStyleBackColor = true;
-            this.newFreqBtn.Click += new System.EventHandler(this.newFreqBtn_Click);
-            // 
-            // newFreqLabel
-            // 
-            this.newFreqLabel.AutoSize = true;
-            this.newFreqLabel.Location = new System.Drawing.Point(263, 9);
-            this.newFreqLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.newFreqLabel.Name = "newFreqLabel";
-            this.newFreqLabel.Size = new System.Drawing.Size(104, 13);
-            this.newFreqLabel.TabIndex = 1;
-            this.newFreqLabel.Text = "Add New Frequency";
-            // 
-            // newFreqUpDown
-            // 
-            this.newFreqUpDown.DecimalPlaces = 2;
-            this.newFreqUpDown.Location = new System.Drawing.Point(392, 9);
-            this.newFreqUpDown.Margin = new System.Windows.Forms.Padding(2);
-            this.newFreqUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.newFreqUpDown.Name = "newFreqUpDown";
-            this.newFreqUpDown.Size = new System.Drawing.Size(85, 20);
-            this.newFreqUpDown.TabIndex = 0;
-            this.newFreqUpDown.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 27);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(210, 38);
-            this.panel7.TabIndex = 12;
             // 
             // panel8
             // 
@@ -642,10 +438,10 @@
             this.panel8.Controls.Add(this.stopRec);
             this.panel8.Controls.Add(this.recButton);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(973, 71);
+            this.panel8.Location = new System.Drawing.Point(967, 27);
             this.panel8.Name = "panel8";
             this.tableLayoutPanel1.SetRowSpan(this.panel8, 4);
-            this.panel8.Size = new System.Drawing.Size(114, 492);
+            this.panel8.Size = new System.Drawing.Size(120, 536);
             this.panel8.TabIndex = 13;
             // 
             // playButton
@@ -684,19 +480,17 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.clearFreqButton);
-            this.panel9.Controls.Add(this.addButton);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(3, 443);
+            this.panel9.Location = new System.Drawing.Point(3, 432);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(210, 120);
+            this.panel9.Size = new System.Drawing.Size(165, 131);
             this.panel9.TabIndex = 14;
             // 
             // clearFreqButton
             // 
-            this.clearFreqButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.clearFreqButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.clearFreqButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearFreqButton.Location = new System.Drawing.Point(64, 61);
+            this.clearFreqButton.Location = new System.Drawing.Point(43, 58);
             this.clearFreqButton.Name = "clearFreqButton";
             this.clearFreqButton.Size = new System.Drawing.Size(75, 23);
             this.clearFreqButton.TabIndex = 6;
@@ -704,18 +498,18 @@
             this.clearFreqButton.UseVisualStyleBackColor = true;
             this.clearFreqButton.Click += new System.EventHandler(this.clearFreqButton_Click);
             // 
-            // addButton
+            // panel1
             // 
-            this.addButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addButton.Location = new System.Drawing.Point(64, 33);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 5;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.inputButton_Click);
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.sampUpDown);
+            this.panel1.Controls.Add(this.lengthOfData);
+            this.panel1.Controls.Add(this.sampLabel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(165, 129);
+            this.panel1.TabIndex = 15;
             // 
             // InputForm
             // 
@@ -730,28 +524,18 @@
             this.Load += new System.EventHandler(this.InputForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.freqUpDown)).EndInit();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.HFTChart)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ampUpDown)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lengthOfData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sampUpDown)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.freqWaveChart)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.newFreqUpDown)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -759,35 +543,20 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.NumericUpDown freqUpDown;
-        private System.Windows.Forms.Label freqLabel;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataVisualization.Charting.Chart HFTChart;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label ampLabel;
-        private System.Windows.Forms.NumericUpDown ampUpDown;
         private System.Windows.Forms.Label sampLabel;
         private System.Windows.Forms.NumericUpDown sampUpDown;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataVisualization.Charting.Chart freqWaveChart;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem audioToolStripMenuItem;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem plotFrequencyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem triangleWindowToolStripMenuItem;
-        private System.Windows.Forms.NumericUpDown newFreqUpDown;
-        private System.Windows.Forms.Label newFreqLabel;
-        private System.Windows.Forms.Button newFreqBtn;
-        private System.Windows.Forms.Label ampUpDownLabel;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ToolStripMenuItem rectangleWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem welchWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
@@ -809,5 +578,6 @@
         private System.Windows.Forms.ToolStripMenuItem hzToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filterAudioToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
     }
 }

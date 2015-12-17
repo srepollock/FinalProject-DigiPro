@@ -117,7 +117,6 @@ namespace FinalProject_v3
         {
             InitializeComponent();
             globalWavHead.initialize((uint)sampUpDown.Value);
-            newFreqBtn.Enabled = false;
             filterAudioToolStripMenuItem.Enabled = false; // Cannot use until we have plotted the frequency domain chart
             triangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
             rectangleWindowToolStripMenuItem.Enabled = false; // Cannot use until we have a selection
@@ -180,17 +179,13 @@ namespace FinalProject_v3
             globalFilePath = fileName; 
             this.Text = fileName; // Sets the text of the form to the file name
             globalFreq = readingWave(globalFilePath);
-            ampUpDown.Value = 0; // We don't know what the amplitude is yet
-            freqUpDown.Value = 0; // We don't know the frequency yet
             sampUpDown.Value = globalWavHead.SampleRate; // we know what the sample rate of the file is already
             lengthOfData.Value = globalWavHead.SubChunk2Size;
             HFTChart.Series[0].Points.Clear(); // clears the data of the amplitude chart
             freqWaveChart.Series[0].Points.Clear(); // clears the data in the wave form chart
             // Plots the wave data
             plotFreqWaveChart(globalFreq);
-            newFreqBtn.Enabled = true;
             playButton.Enabled = true;
-            addButton.Enabled = false;
         }
 
         /*
@@ -303,35 +298,6 @@ namespace FinalProject_v3
             for(int t = 0; t < n; t++)
             { outputData[t] = amp * Math.Cos(2 * Math.PI * t * freq / n); }
             return outputData;
-        }
-
-        /*
-            inputButton_Click
-            Purpose:
-                This is the beginning of a new file. This is called first
-                when one wishes to create a new signal. This file will write
-                directly to the globalWavHead object with information set by
-                the user. After the header is completed, the cosWaveCreation is
-                called to create the cosine wave and set the data to 
-                globalFreq. After that information is set, the globalFreq data
-                is then plotted to the time domain chart.
-        */
-        private void inputButton_Click(object sender, EventArgs e)
-        {
-            globalWavHead.initialize(sampUpDown.Value);
-            // Get input data to create a frequency from the user
-            double amp = (double)ampUpDown.Value;
-            double freqData = (double)freqUpDown.Value;
-            int samp = (int)sampUpDown.Value;
-            
-            // Frequencey plot
-            globalFreq = cosWaveCreation(amp, freqData, samp);
-            plotFreqWaveChart(globalFreq);
-
-            newFreqBtn.Enabled = true;
-            playButton.Enabled = true;
-
-            this.Text = "*";
         }
 
         /*
@@ -966,19 +932,6 @@ namespace FinalProject_v3
         }
 
         /*
-            newFreqBtn_Click
-            Purpose:
-                Takes in a specified frequency and amplitude from the user, to
-                then add to the current frequency data.
-        */
-        private void newFreqBtn_Click(object sender, EventArgs e)
-        {
-            double[] newFreqWave = cosWaveCreation((int)ampUpDown.Value, (double)newFreqUpDown.Value, globalFreq.Length);
-            plotFreqWaveChart(globalFreq, newFreqWave);
-            plotHFTWaveChart();
-        }
-
-        /*
 			threads1MenuButton_Click
 			Purpose:
 				This method sets the thread count for the DFT function to 1.
@@ -1043,7 +996,6 @@ namespace FinalProject_v3
             recButton.Enabled = false;
             stopRec.Enabled = true;
             playButton.Enabled = false;
-            addButton.Enabled = false;
             handler.Record();
         }
 
